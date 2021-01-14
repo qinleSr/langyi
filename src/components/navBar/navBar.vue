@@ -21,19 +21,24 @@
 </template>
 <script>
 export default {
-  name: "navBar",
-  components: {},
+  name: "navBar"
 };
 </script>
 <style scoped>
 .head_main {
+  height: 60px;
   display: flex;
   align-items: center;
   background: cornflowerblue;
 }
+.head_main .head_icon{
+width: 200px;
+  height: 60px;
+ 
+}
 .head_main .head_icon img{
-  width: 100px;
-  height: 50px;
+ width: 200px;
+  height: 60px;
 }
 .head_content .Content_head{
     display: flex;

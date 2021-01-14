@@ -1,11 +1,13 @@
 <template>
   <div class="about">
     <el-container>
-  <el-header>
-    <nav-bar/>
+  <el-header style=" background:red; ">
+    <nav-bar></nav-bar>
   </el-header>
   <el-container>
-    <el-aside width="200px">Aside</el-aside>
+    <el-aside width="200px" style=" background:red; ">
+      <menulist></menulist>
+     </el-aside>
     <el-container>
       <el-main>
         <div class="Main_Box">
@@ -217,9 +219,30 @@
   </div>
 </template>
 <script>
-export default {};
+import navBar from '../components/navBar/navBar';
+import menulist from '../components/Menulist/menulist'
+export default {
+  components: { navBar,menulist},
+  name:'Index',
+  data(){
+    return{}
+  },
+  created(){},
+  mounted(){},
+  methods:{
+       handleOpen(key, keyPath) {
+        console.log(key, keyPath);
+      },
+      handleClose(key, keyPath) {
+        console.log(key, keyPath);
+      }
+  }
+};
 </script>
 <style scoped>
 @import "../assets/css/base.css";
 @import "../assets/css/index.css";
+.el-head{
+  padding: 0;
+}
 </style>
