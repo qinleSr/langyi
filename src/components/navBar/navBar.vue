@@ -29,7 +29,7 @@ export default {
   height: 60px;
   display: flex;
   align-items: center;
-  background: cornflowerblue;
+  background: #8B7568;
 }
 .head_main .head_icon{
 width: 200px;
@@ -40,9 +40,12 @@ width: 200px;
  width: 200px;
   height: 60px;
 }
+.head_content {
+  width: 100%;
+}
 .head_content .Content_head{
     display: flex;
-    align-content: center;
+    background: #5C4A3D;
 }
 .head_content .Content_head .Content_con{
     display: flex;

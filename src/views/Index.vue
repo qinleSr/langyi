@@ -1,7 +1,7 @@
 <template>
   <div class="about">
     <el-container>
-  <el-header style=" background:red; ">
+  <el-header style="padding:0; ">
     <nav-bar></nav-bar>
   </el-header>
   <el-container>
@@ -9,7 +9,7 @@
       <menulist></menulist>
      </el-aside>
     <el-container>
-      <el-main>
+      <el-main style="height:100%;padding:0;">
         <div class="Main_Box">
       <div class="Main_Left">
         <div class="Room_status_title">房间状态与统计</div>
@@ -212,37 +212,32 @@
       </div>
     </div>
       </el-main>
-      <el-footer>Footer</el-footer>
+    
     </el-container>
   </el-container>
+   <el-footer  style=" background:red;padding:0; height:62px;">
+     <footer></footer>
+   </el-footer>
 </el-container>
   </div>
 </template>
 <script>
 import navBar from '../components/navBar/navBar';
 import menulist from '../components/Menulist/menulist'
+import footer from '../components/Footer/footer'
+import Footer from '../components/Footer/footer.vue';
 export default {
-  components: { navBar,menulist},
+  components: { navBar,menulist,Footer},
   name:'Index',
   data(){
     return{}
   },
   created(){},
   mounted(){},
-  methods:{
-       handleOpen(key, keyPath) {
-        console.log(key, keyPath);
-      },
-      handleClose(key, keyPath) {
-        console.log(key, keyPath);
-      }
-  }
+  methods:{}
 };
 </script>
 <style scoped>
 @import "../assets/css/base.css";
 @import "../assets/css/index.css";
-.el-head{
-  padding: 0;
-}
 </style>
