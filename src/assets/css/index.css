@@ -1,0 +1,217 @@
+.Main_Box{
+    margin: 150px;
+    display: flex;
+    align-items: center;
+}
+.Main_Box .Main_Left{
+    width: 770px;
+    height: 840px;
+    border: 2px solid #eee
+}
+.Main_Left .Room_status_title{
+    background: #eeee;
+    color: darkgoldenrod;
+    padding: 10px;
+}
+.Room_chooseItem .choose_tips{
+    border-bottom: 2px solid #eee;
+    font-size: 13px;
+    margin-left: 5px;
+    position: relative;
+}
+.Room_chooseItem .choose_tips .tips_text{
+    border-bottom: 2px solid darkgoldenrod;
+    width: 100px;
+    padding: 10px;
+
+}
+.bottom{
+    position: absolute;  
+    width: 0px;  
+    height: 0px;  
+    line-height: 0px;/*为了防止ie下出现题型*/  
+    border-bottom: 5px solid darkgoldenrod;  
+    border-left: 5px solid #fff;  
+    border-right: 5px solid#fff;  
+    left: 50px;  
+    transform: rotate(-180deg); 
+}
+.choos_Box{
+    width: 120px;
+    height: 100px;
+     display: flex; 
+    border: 2px solid #eee;
+    /* padding: 5px; */
+    margin: 5px;
+}
+.choos_Box .Room_left{
+    width: 50%;
+    padding: 5px;
+}
+.choos_Box .Room_left .search_icon{
+    padding: 5px;
+    width: 25px;
+    height: 25px;
+}
+.choos_Box .Room_left .Room_num{
+padding: 5px 0;
+}
+.choos_Box .Room_left .Room_username{
+font-size: 15px;
+}
+.choos_Box .Room_right{
+    width: 50%;
+    display: flex;
+    flex-flow: column;
+}
+.choos_Box .Room_right img{
+    margin-left: auto;
+    padding: 10px 0;
+    height: 30px;
+}
+.Room_chooseItem .choose_row{
+display: flex;
+align-items: center;
+}
+.Room_right .two_people{
+    display: flex;
+    align-items: center;
+}
+.Main_Right{
+    margin:0 10px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+.Main_Right .Main_Subscribe{
+    width: 770px;
+    height: 405px;
+    border: 1px solid #eee
+}
+.Main_Subscribe .Subscribe_title{
+    display: flex;
+    align-items: center;
+    background-color: #eee;
+}
+.Main_Subscribe .Subscribe_title  .Subscribe_tips{
+    color: #333333;
+    font-weight: bold;
+    width: 55%;
+    font-size: 20px;
+    margin: 0 10px;
+}
+.Main_Subscribe .Subscribe_title .Subscribe_Items{
+    margin: 0 10px;
+    font-size: 13px;
+    color: darkgoldenrod;
+    width: 70px;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    
+}
+.Subscribe_title .Subscribe_Items .Subscribe_text{
+    
+}
+.Subscribe_Items .top{
+    position: absolute;  
+    width: 0px;  
+    height: 0px;  
+    line-height: 0px;/*为了防止ie下出现题型*/  
+    border-bottom: 5px solid darkgoldenrod;  
+    border-left: 5px solid #eee;  
+    border-right: 5px solid#eee;  
+    left: 35px;  
+    bottom: 0;
+}
+
+.Content_Items{
+    display: flex;
+    align-items: center;
+    background-color: #eee;
+    border: 1px solid #fff;
+}
+.Content_Items .UserName{
+width: 120px;
+border: 1px solid #fff;
+text-align: center;
+font-size: 15px;
+padding: 5px 0;
+}
+.Content_Items .UserPhone{
+    width: 140px;
+    border: 1px solid #fff;
+text-align: center;
+font-size: 15px;
+padding: 5px 0;
+}
+.Content_Items .UserDo{
+    width: 200px;
+    border: 1px solid #fff;
+    text-align: center;
+    font-size: 15px;
+    padding: 5px 0;
+}
+.Content_Items .UserTime{
+    width: 200px;
+    border: 1px solid #fff;
+    text-align: center;
+    font-size: 15px;
+    padding: 5px 0;
+}
+.Content_Items .UserTeacher{
+    width: 130px;
+    text-align: center;
+    font-size: 15px;
+    padding: 5px 0;
+    border: 1px solid #fff;
+}
+.Now_Remind{
+    margin-top: 30px;
+    width: 770px;
+    height: 405px;
+    border: 1px solid #eee;
+}
+.Now_Remind .Remind_title{
+    background: #eeee;
+    color: darkgoldenrod;
+    padding: 10px;
+}
+.Now_Remind .Remind_content{
+    margin: 10px;
+}
+.Remind_content .Remind_Row{
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+.Remind_content .Remind_Row .Remind_Item{
+    background: #eee;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    position: relative;
+    padding: 10px;
+    margin:0 5px;
+}
+.Remind_Row .Remind_Item img{
+    width: 80px;
+    height: 80px;
+}
+.Remind_Row .Remind_Item .Remind_num{
+    position: absolute;
+    top: 70px;
+    right: 30px;
+    color: #fff;
+    background-color: #888888;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+}
+.Remind_Row .Remind_Item .Remind_text{
+    margin-top: 20px;
+    color: darkgoldenrod;
+}
