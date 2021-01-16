@@ -15,13 +15,18 @@
             <div class="RightItems">2</div>
             <div class="RightItems">3</div>
           </div>
+         
         </div>
       </div>
     </div>
 </template>
 <script>
+
 export default {
-  name: "navBar"
+  name: "navBar",
+  components:{
+  
+  }
 };
 </script>
 <style scoped>
@@ -52,6 +57,7 @@ width: 200px;
     align-content: center;
     color: #ffff;
     margin-right: auto;
+    min-width: 300px;
 }
 .Content_head .Content_con img{
     width: 20px;

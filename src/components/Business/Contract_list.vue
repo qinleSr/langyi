@@ -16,12 +16,14 @@
           <option>新用户签约</option>
         </select>
         <select>
-          <option>销售人员</option>
-          <option>王会敏</option>
+          <option>预定套餐</option>
+          <option>佛跳墙</option>
+          <option>佛跳墙</option>
+          <option>佛跳墙</option>
         </select>
       </div>
       <div class="Choos_Time">
-        <div class="Time_title">建档日期</div>
+        <div class="Time_title">签约日期</div>
         <el-date-picker
           v-model="value1"
           type="daterange"
@@ -33,48 +35,52 @@
     </div>
     <div class="All_Content">
         <tr>
+            <th>签约日期</th>
             <th>姓名</th>
             <th>联系方式</th>
-            <th>家庭地址</th>
-            <th>生产医院</th>
+            <th style="width: 300px;">合同编号</th>
+            <th>入住日期</th>
+            <th>出所日期</th>
+            <th>分娩医院</th>
             <th>预产期</th>
-            <th>渠道</th>
-            <th>销售员</th>
-            <th>建档日期</th>
-            <th>状态</th>
+            <th>客户来源</th>
+            <th>预定天数</th>
+            <th>预定房间</th>
+            <th>预定套餐</th>
+            <th>合同价格</th>
+            <th>已收定金</th>
         </tr>
         <tr>
+            <td>2020-4-30</td>
             <td>张一二</td>
             <td>15555828930</td>
-            <td>钱江新城某某小区</td>
+            <td>HZCLYGX20200522025</td>
+            <td>2020-4-30</td>
+            <td>2020-4-30</td>
             <td>省妇保医院</td>
             <td>2020-4-30</td>
             <td>老客户推荐</td>
-            <td>王会敏</td>
-            <td>2020-4-30</td>
+            <td>28</td>
+            <td>208</td>
             <td>跟进中</td>
+            <td>189,800</td>
+            <td>89,800</td>
         </tr>
-         <tr>
+        <tr>
+            <td>2020-4-30</td>
             <td>张一二</td>
             <td>15555828930</td>
-            <td>钱江新城某某小区</td>
+            <td>HZCLYGX20200522025</td>
+            <td>2020-4-30</td>
+            <td>2020-4-30</td>
             <td>省妇保医院</td>
             <td>2020-4-30</td>
             <td>老客户推荐</td>
-            <td>王会敏</td>
-            <td>2020-4-30</td>
+            <td>28</td>
+            <td>208</td>
             <td>跟进中</td>
-        </tr>
-         <tr>
-            <td>张一二</td>
-            <td>15555828930</td>
-            <td>钱江新城某某小区</td>
-            <td>省妇保医院</td>
-            <td>2020-4-30</td>
-            <td>老客户推荐</td>
-            <td>王会敏</td>
-            <td>2020-4-30</td>
-            <td>跟进中</td>
+            <td>189,800</td>
+            <td>89,800</td>
         </tr>
         <div class="Allcontent_Footer">
              <el-pagination
@@ -169,6 +175,14 @@ export default {
     padding: 10px 0;
     border-bottom: 1px solid #eee;
 
+}
+.All_Content td button{
+    border: 0;
+    background: #C19A68;
+    width: 60px;
+    height: 30px;
+    border-radius: 3px;
+    color: #fff;
 }
 .All_Content .Allcontent_Footer{
     margin: 10px;

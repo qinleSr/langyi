@@ -33,7 +33,7 @@
 </template>
 <script>
 import navBar from "../components/navBar/navBar";
-import Menulist from '../components/Menulist/menulist'
+import Menulist from '../components/Menulist/menulist';
 import Footer from "../components/Footer/footer.vue";
 export default {
   components: { navBar, Footer,Menulist },

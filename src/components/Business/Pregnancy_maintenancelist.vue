@@ -4,24 +4,14 @@
       <Search class="Search"></Search>
       <div class="All_headRight">
         <select>
-          <option>全部状态</option>
-          <option>跟进中</option>
-          <option>已签约</option>
-          <option>暂停</option>
-          <option>审核中</option>
-        </select>
-        <select>
-          <option>渠道来源</option>
-          <option>老客户推荐</option>
-          <option>新用户签约</option>
-        </select>
-        <select>
-          <option>销售人员</option>
-          <option>王会敏</option>
+          <option>已签套餐</option>
+          <option>佛跳墙</option>
+          <option>佛跳墙</option>
+          <option>佛跳墙</option>
         </select>
       </div>
       <div class="Choos_Time">
-        <div class="Time_title">建档日期</div>
+        <div class="Time_title">签约日期</div>
         <el-date-picker
           v-model="value1"
           type="daterange"
@@ -35,46 +25,41 @@
         <tr>
             <th>姓名</th>
             <th>联系方式</th>
-            <th>家庭地址</th>
-            <th>生产医院</th>
             <th>预产期</th>
-            <th>渠道</th>
-            <th>销售员</th>
-            <th>建档日期</th>
-            <th>状态</th>
+            <th>孕周期</th>
+            <th>已签套餐</th>
+            <th>孕期回访</th>
+            <th>孕期课程活动</th>
+            <th>个性化产康宣教</th>
+            <th style="width:300px">入院信息沟通</th>
+            <th style="width:300px">入院陪护安排</th>
+            <th>入住安排</th>
         </tr>
         <tr>
             <td>张一二</td>
             <td>15555828930</td>
-            <td>钱江新城某某小区</td>
-            <td>省妇保医院</td>
             <td>2020-4-30</td>
-            <td>老客户推荐</td>
-            <td>王会敏</td>
-            <td>2020-4-30</td>
-            <td>跟进中</td>
+            <td>5周</td>
+            <td>淑·套餐</td>
+            <td> <button>查看</button> </td>
+            <td><button>查看</button></td>
+            <td><button>查看</button></td>
+            <td>省妇保医院,身体状况良好</td>
+            <td>5月1号安排一名月嫂陪护</td>
+            <td><button>编辑</button></td>
         </tr>
          <tr>
             <td>张一二</td>
             <td>15555828930</td>
-            <td>钱江新城某某小区</td>
-            <td>省妇保医院</td>
             <td>2020-4-30</td>
-            <td>老客户推荐</td>
-            <td>王会敏</td>
-            <td>2020-4-30</td>
-            <td>跟进中</td>
-        </tr>
-         <tr>
-            <td>张一二</td>
-            <td>15555828930</td>
-            <td>钱江新城某某小区</td>
-            <td>省妇保医院</td>
-            <td>2020-4-30</td>
-            <td>老客户推荐</td>
-            <td>王会敏</td>
-            <td>2020-4-30</td>
-            <td>跟进中</td>
+            <td>5周</td>
+            <td>淑·套餐</td>
+            <td> <button>查看</button> </td>
+            <td><button>查看</button></td>
+            <td><button>编辑</button></td>
+            <td><button>编辑</button></td>
+            <td><button>编辑</button></td>
+            <td><button>编辑</button></td>
         </tr>
         <div class="Allcontent_Footer">
              <el-pagination
@@ -169,6 +154,14 @@ export default {
     padding: 10px 0;
     border-bottom: 1px solid #eee;
 
+}
+.All_Content td button{
+    border: 0;
+    background: #C19A68;
+    width: 60px;
+    height: 30px;
+    border-radius: 3px;
+    color: #fff;
 }
 .All_Content .Allcontent_Footer{
     margin: 10px;

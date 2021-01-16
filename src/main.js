@@ -1,7 +1,13 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import {Input,Form,FormItem,Container,Header,Main,Footer,Aside,Submenu,MenuItem,MenuItemGroup,Menu,DatePicker,Pagination} from 'element-ui'
+import {
+  Input,Form,FormItem,Container,
+  Header,Main,Footer,Aside,
+  Submenu,MenuItem,MenuItemGroup,Menu,
+  DatePicker,Pagination,Breadcrumb,BreadcrumbItem,
+  Dialog,Button,Select,Option,Checkbox,CheckboxGroup
+} from 'element-ui'
 Vue.use(Header)
 Vue.use(Main)
 Vue.use(Aside)
@@ -16,6 +22,14 @@ Vue.use(MenuItemGroup)
 Vue.use(Menu)
 Vue.use(DatePicker)
 Vue.use(Pagination)
+Vue.use(Breadcrumb)
+Vue.use(BreadcrumbItem)
+Vue.use(Dialog)
+Vue.use(Button)
+Vue.use(Select)
+Vue.use(Option)
+Vue.use(Checkbox)
+Vue.use(CheckboxGroup)
 Vue.config.productionTip = false
 
 new Vue({

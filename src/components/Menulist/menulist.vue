@@ -27,15 +27,15 @@
         <el-submenu index="1-1">
           <template slot="title">客户档案管理</template>
           <el-menu-item :index=" '/Customer' ">客户信息管理</el-menu-item>
-          <el-menu-item index="1-1-1">客户跟踪管理</el-menu-item>
+          <el-menu-item :index="'/CustomeTrack'">客户跟踪管理</el-menu-item>
         </el-submenu>
          <el-submenu index="1-2">
           <template slot="title">合同管理</template>
-          <el-menu-item index="1-2-1">签约管理</el-menu-item>
+          <el-menu-item :index="'/SigningContract'">签约管理</el-menu-item>
           <el-menu-item index="1-2-2">套餐管理</el-menu-item>
           <el-menu-item index="1-2-2">退签管理</el-menu-item>
         </el-submenu>
-          <el-menu-item index="1-3">孕期维护管理</el-menu-item>
+          <el-menu-item :index="'/PregnancyMaintenance'">孕期维护管理</el-menu-item>
           <el-menu-item index="1-4">人事管理</el-menu-item>
         </el-menu-item-group>
       </el-submenu>
