@@ -3,7 +3,8 @@
     <el-container>
       <!-- 头部区域 -->
       <el-header style="padding:0; ">
-        <nav-bar></nav-bar>
+        <nav-bar>
+        </nav-bar>
       </el-header>
       <el-container>
         <!-- 左侧菜单栏区域 -->
@@ -35,6 +36,7 @@
 import navBar from "../components/navBar/navBar";
 import Menulist from '../components/Menulist/menulist';
 import Footer from "../components/Footer/footer.vue";
+
 export default {
   components: { navBar, Footer,Menulist },
   name: "Index",
@@ -103,6 +105,10 @@ export default {
 }
 .el-menu {
   border-right: none;
+}
+.el-aside{
+  height: 810px;
+  overflow: hidden;
 }
 @import "../assets/css/base.css";
 @import "../assets/css/index.css";

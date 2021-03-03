@@ -1,9 +1,10 @@
 <template>
+  <!-- 孕期维护管理 -->
   <div class="CustmerBox">
     <div class="CustmerBox_Head">
       <div class="Tab">
         <div class="Tab_Right">
-          <div class="Right_items" >
+          <div class="Right_items">
             <img src="../../assets/img/11.png" />
             <div class="Right_itemsTitle">新增</div>
           </div>
@@ -23,30 +24,406 @@
         </div>
       </div>
       <div class="cards">
-          <PregnancyList></PregnancyList>
+        <div class="All_head">
+          <Search class="Search"></Search>
+          <div class="All_headRight">
+            <select>
+              <option>已签套餐</option>
+              <option>佛跳墙</option>
+              <option>佛跳墙</option>
+              <option>佛跳墙</option>
+            </select>
+          </div>
+          <div class="Choos_Time">
+            <div class="Time_title">入住日期</div>
+            <el-date-picker
+              v-model="value1"
+              type="daterange"
+              range-separator="至"
+              start-placeholder="开始日期"
+              end-placeholder="结束日期"
+              style="width: 350px;"
+            ></el-date-picker>
+          </div>
+        </div>
+        <PregnancyList :tableData="tableData" :tableLabel="tableLabel" :config="config">
+          <template v-slot:look> 
+            <button class="slot_btn" @click="aaa">查看1</button>
+          </template>
+          <template v-slot:look1>
+            <button class="slot_btn" @click="aaa">查看2</button>
+          </template>
+          <template v-slot:edit1>
+            <button class="slot_btn" @click="bbb">编辑1</button>
+          </template>
+           <template v-slot:edit2>
+            <button class="slot_btn" @click="ccc">编辑2</button>
+          </template>
+           <template v-slot:edit3>
+            <button class="slot_btn" @click="ddd">编辑3</button>
+          </template>
+          <template v-slot:look3>
+            <button class="slot_btn" @click="fff">查看3</button>
+          </template>
+        </PregnancyList>
       </div>
     </div>
+    <!-- 孕期回访弹框 -->
+    <el-dialog title="提示" :visible.sync="dialogVisit" width="50%">
+      <div
+        style="display: flex;align-items: center;float: right;padding: 10px 0;cursor: pointer;"
+        @click="add"
+      >
+        <img src="../../assets/img/11.png" />
+        <div>新增</div>
+      </div>
+      <Dialogtable :tableData="tableData1" :tableLabel="tableLabel1" :config="config1">
+         
+      </Dialogtable>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisit = false">取 消</el-button>
+        <el-button type="primary" @click="dialogVisit = false">确 定</el-button>
+      </span>
+    </el-dialog>
+    <!-- 孕期回访新增弹框 -->
+    <el-dialog title="提示" :visible.sync="dialogadd" width="40%">
+      <div class="add_box">
+        <div class="add_row">
+          <div class="add_items">
+            <div class="add_itemstitle">
+              <span>跟进日期</span>
+            </div>
+            <el-date-picker v-model="add_dialogValue" type="date" placeholder="选择日期"></el-date-picker>
+          </div>
+          <div class="add_items" style="margin-left: 80px;">
+            <div class="add_itemstitle">
+              <span>孕期膳食指导</span>
+            </div>
+            <el-input placeholder="膳食指导"></el-input>
+          </div>
+        </div>
+        <div class="add_row">
+          <div class="add_items">
+            <div class="add_itemstitle">
+              <span>孕期健康评估</span>
+            </div>
+            <el-input placeholder="健康评估"></el-input>
+          </div>
+          <div class="add_items" style="margin-left: 80px;">
+            <div class="add_itemstitle">
+              <span>其他回访服务</span>
+            </div>
+            <el-input placeholder="回访服务"></el-input>
+          </div>
+        </div>
+        <div class="add_row">
+          <div class="add_items" style="width: 100%;">
+            <div class="add_itemstitle">
+              <span>沟通信息</span>
+            </div>
+            <el-input type="textarea" :rows="2" placeholder="请输入内容" v-model="textarea"></el-input>
+          </div>
+        </div>
+      </div>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogadd = false">取 消</el-button>
+        <el-button type="primary" @click="dialogadd = false">确 定</el-button>
+      </span>
+    </el-dialog>
+    <!-- 个性化宣教弹框 -->
+    <el-dialog title="提示" :visible.sync="dialogCourse" width="50%">
+      <div class="course_box">
+        <div class="course_row"> 
+          <div class="course_rowitems">
+            <div class="course_rowtitle">
+              <span>产前注意事项</span>
+            </div>
+            <el-select v-model="matters" placeholder="请选择">
+              <el-option
+                v-for="item in matters_options"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              ></el-option>
+            </el-select>
+          </div>
+          <div class="course_rowitems">
+            <div class="course_rowtitle">
+              <span>顺产分娩产程和注意事项</span>
+            </div>
+            <el-select v-model="childbirth" placeholder="请选择">
+              <el-option
+                v-for="item in childbirth_options"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              ></el-option>
+            </el-select>
+          </div>
+          <div class="course_rowitems">
+            <div class="course_rowtitle">
+              <span>剖腹产的注意事项</span>
+            </div>
+            <el-select v-model="cesarean" placeholder="请选择">
+              <el-option
+                v-for="item in cesarean_options"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              ></el-option>
+            </el-select>
+          </div>
+        </div>
+        <div class="course_row" style="width:100%;">
+          <div class="course_rowitems">
+            <div class="course_rowtitle">
+              <span>备注</span>
+            </div>
+             <el-input type="textarea" :rows="2" placeholder="请输入内容" v-model="textarea" style="width: 445px;"></el-input>
+          </div>
+        </div>
+      </div>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogCourse = false">取 消</el-button>
+        <el-button type="primary" @click="dialogCourse = false">确 定</el-button>
+      </span>
+    </el-dialog>
+    <!-- 入院信息沟通弹框 -->
+    <el-dialog
+  title="编辑"
+  :visible.sync="LiveHospotal"
+  width="30%">
+  <el-input
+  type="textarea"
+  :rows="2"
+  placeholder="请输入内容"
+  v-model="Livetextarea"
+ style=" height: 80px;"
+  >
+</el-input>
+  <span slot="footer" class="dialog-footer">
+    <el-button @click="LiveHospotal = false">取 消</el-button>
+    <el-button type="primary" @click="LiveHospotal = false">确 定</el-button>
+  </span>
+</el-dialog>
+<!-- 入院陪护安排弹框 -->   
+<el-dialog
+  title="编辑"
+  :visible.sync="CareHospotal"
+  width="30%">
+  <el-input
+  type="textarea"
+  :rows="2"
+  placeholder="请输入内容"
+  v-model="Caretextarea"
+ style=" height: 80px;"
+  >
+</el-input>
+  <span slot="footer" class="dialog-footer">
+    <el-button @click="CareHospotal = false">取 消</el-button>
+    <el-button type="primary" @click="CareHospotal = false">确 定</el-button>
+  </span>
+</el-dialog>
   </div>
 </template>
 <script>
-import PregnancyList from "../Business/Pregnancy_maintenancelist.vue";
+import PregnancyList from "../Business/table_Track.vue";
+import Dialogtable from "../Business/table_Track.vue";
+import Search from "../Conpontool/Search.vue";
 export default {
   name: "customer",
-  components: { PregnancyList },
+  components: { PregnancyList, Search, Dialogtable },
   data() {
     return {
-     
       active: false,
-   
-     
+      value1: "",
+      tableData: [
+        {
+          user_name: "张一二",
+          user_phone: "15555828930",
+          due_date: "2020-4-30",
+          gestation_period: "5周",
+          package: "淑·套餐",
+          baby_sex: "女",
+          total_amount: "148000",
+          received_deposit: "48000"
+        }
+      ],
+      tableLabel: [
+        {
+          prop: "user_name",
+          label: "姓名"
+        },
+        {
+          prop: "user_phone",
+          label: "联系方式"
+        },
+        {
+          prop: "due_date",
+          label: "预产期"
+        },
+        {
+          prop: "gestation_period",
+          label: "孕周期"
+        },
+        {
+          prop: "package",
+          label: "已签套餐",
+          width: "90"
+        },
+        {
+          prop: "return_visit",
+          label: "孕期回访",
+          type: 2
+        },
+        {
+          prop: "course_activity",
+          label: "孕期课程活动",
+          type: 6
+        },
+        {
+          prop: "mission",
+          label: "个性化产康宣教",
+          type: 3
+        },
+        {
+          prop: "hospital_communication",
+          label: "入院信息沟通",
+          width: "200",
+          type: 4
+        },
+        {
+          prop: "escort",
+          label: "入院陪护安排",
+          width: "200",
+          type: 5
+        },
+        {
+          prop: "stay_in",
+          label: "入住通知",
+          type: 8
+        }
+      ],
+      config: {
+        page: 1,
+        total: 30,
+        loading: false
+      },
+      dialogVisit: false,
+      dialogCourse: false,
+      dialogadd: false,
+      tableLabel1: [
+        {
+          prop: "follow_date",
+          label: "跟进日期",
+          width: "160"
+        },
+        {
+          prop: "course_food",
+          label: "孕期膳食指导",
+          width: "160"
+        },
+        {
+          prop: "course_health",
+          label: "孕期健康评估",
+          width: "160"
+        },
+        {
+          prop: "ohter_visit",
+          label: "其他回访服务",
+          width: "160"
+        },
+        {
+          prop: "msg",
+          label: "沟通信息",
+          width: "200"
+        }
+      ],
+      tableData1: [
+        {
+          follow_date: "2020-4-30",
+          course_food: "完成",
+          course_health: "完成",
+          ohter_visit: "完成",
+          msg: "有xxx需求"
+        }
+      ],
+      config1: {
+        page: 1,
+        total: 30,
+        loading: false
+      },
+      add_dialogValue: "", //孕期回访 新增
+      matters: "", //产前注意事项
+      matters_options: [
+        {
+          value: "选项1",
+          label: "完成"
+        },
+        {
+          value: "选项2",
+          label: "未完成"
+        }
+      ],
+      childbirth:'',//顺产分娩注意事项
+      childbirth_options: [
+        {
+          value: "选项1",
+          label: "完成"
+        },
+        {
+          value: "选项2",
+          label: "未完成"
+        }
+      ],
+      cesarean:'',//剖腹产的注意事项
+      cesarean_options: [
+        {
+          value: "选项1",
+          label: "完成"
+        },
+        {
+          value: "选项2",
+          label: "未完成"
+        }
+      ],
+      textarea:'',
+      Livetextarea:'',
+      LiveHospotal:false,
+      Caretextarea:'',
+      CareHospotal:false
     };
   },
   created() {},
   mounted() {},
 
   methods: {
-    
-  
+    //孕期回访查看事件
+    aaa() {
+      console.log(123)
+      this.dialogVisit = true;
+    },
+    // 孕期课程活动事件
+    bbb() {
+      console.log(456)
+      this.dialogCourse = true;
+    },
+    // 孕期回访查看--新增事件
+    add() {
+      console.log(789)
+      this.dialogadd = true;
+    },
+    ccc(){
+      console.log(111232)
+      this.LiveHospotal=true
+    },
+    ddd(){
+      console.log(4444)
+      this.CareHospotal=true
+    },
+    fff(){
+      this.$router.push('/NoticeForm')
+    }
   }
 };
 </script>
@@ -60,33 +437,9 @@ export default {
 .CustmerBox_Head .Tab {
   display: flex;
   align-items: center;
+  border-bottom: 2px solid #eee;
 }
-.CustmerBox_Head .Tab ul {
-  display: flex;
-  align-items: center;
-}
-.CustmerBox_Head .Tab ul li {
-  list-style: none;
-  width: 100px;
-  text-align: center;
-  cursor: pointer;
-}
-.tabs .tab-link.active {
-  border-bottom: 3px solid #7a6f69;
-}
-.CustmerBox_Head .CustmerBox_Right {
-  display: flex;
-  align-content: center;
-}
-.tabs .tab-link .TabName {
-  padding: 10px 0;
-}
-.cards .tab-card {
-  margin: 10px;
-  border: 1px solid #eee;
-  border-radius: 3px;
-  box-shadow: 1px 1px 1px #eee;
-}
+
 .Tab .Tab_Right {
   display: flex;
   align-items: center;
@@ -108,11 +461,73 @@ export default {
   color: #fff;
   border-color: #c19a68;
 }
-.Dialog_row {
+.All_head {
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid #eee;
+}
+.All_head .Search {
+  flex: 1;
+  min-width: 350px;
+}
+.All_head .All_headRight {
+  flex: 1;
+  min-width: 530px;
+}
+.All_head .All_headRight select {
+  height: 35px;
+  padding: 0 50px 0 10px;
+  margin: 0 10px;
+  font-size: 16px;
+  border: 1px solid #eee;
+  border-radius: 3px;
+}
+.All_headRight select:focus {
+  outline: 0;
+}
+.All_head .Choos_Time {
+  display: flex;
+  align-items: center;
+  min-width: 490px;
+}
+.All_head .Choos_Time .Time_title {
+  font-size: 20px;
+  margin: 0 10px;
+}
+.All_headRight .el-date-picker:active {
+  outline: 0;
+  border-color: none;
+}
+.slot_btn {
+  border: 0;
+  background: #c19a68;
+  width: 60px;
+  height: 30px;
+  border-radius: 3px;
+  color: #fff;
+  outline: none;
+}
+.el-dialog__body {
+  padding: 0 20px;
+}
+.add_row {
   display: flex;
   align-items: center;
 }
-.Dialog_row .Dialog_items {
-  margin: 10px 20px;
+.add_row .add_items .el-input {
+  width: 220px;
+}
+.add_itemstitle {
+  padding: 10px 0;
+}
+.course_row{
+  display: flex;
+  align-items: center;
+}
+.course_row .course_rowitems{
+  margin: 0 20px;
+}
+.course_row .course_rowitems .course_rowtitle{
+  padding: 10px 0;
 }
 </style>

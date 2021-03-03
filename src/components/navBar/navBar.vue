@@ -1,7 +1,7 @@
 <template>
 <div class="head_main">
       <div class="head_icon">
-        <img src="../../assets/img/7.jpg"></img>
+        <img src="../../assets/img/7.png"></img>
       </div>
       <div class="head_content">
         <div class="Content_head">
@@ -15,25 +15,22 @@
             <div class="RightItems">2</div>
             <div class="RightItems">3</div>
           </div>
-         
         </div>
+        <!-- <CommonTab></CommonTab> -->
       </div>
     </div>
 </template>
 <script>
-
+import CommonTab from '../CommonTab/CommonTab.vue'
 export default {
   name: "navBar",
-  components:{
-  
+    components: { CommonTab },
   }
-};
 </script>
 <style scoped>
 .head_main {
   height: 60px;
   display: flex;
-  align-items: center;
   background: #8B7568;
 }
 .head_main .head_icon{

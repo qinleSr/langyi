@@ -3,8 +3,10 @@
     display: flex;
 }
 .Main_Box .Main_Left{
-    width: 770px;
-    height: 780px;
+    width: 50%;
+    min-width: 600px;
+    min-height: 780px;
+    /* height: 780px; */
     border: 2px solid #eee;
     box-shadow: 1px 1px 1px #eee;
     border-radius: 3px;
@@ -33,7 +35,7 @@
     position: absolute;  
     width: 0px;  
     height: 0px;  
-    line-height: 0px;/*为了防止ie下出现题型*/  
+    line-height: 0px;
     border-bottom: 5px solid darkgoldenrod;  
     border-left: 5px solid #fff;  
     border-right: 5px solid#fff;  
@@ -63,7 +65,6 @@ color: #7A6F69;
 }
 .choos_Box .Room_left .Room_username{
 font-size: 15px;
-font-size: 17px;
 color: #7A6F69;
 }
 .choos_Box .Room_right{
@@ -85,14 +86,17 @@ align-items: center;
     align-items: center;
 }
 .Main_Right{
+    width: 50%;
+    min-width: 650px;
     margin:0 10px;
     display: flex;
     flex-flow: column;
     align-items: center;
 }
 .Main_Right .Main_Subscribe{
-    width: 770px;
-    height: 300px;
+    /* width: 100%; */
+    min-height: 300px;
+    /* height: 300px; */
     border: 1px solid #eee;
     border-radius: 3px;
     box-shadow: 1px 1px 1px #eee;
@@ -179,8 +183,9 @@ padding: 5px 0;
 }
 .Now_Remind{
     margin-top: 30px;
-    width: 770px;
-    height: 405px;
+    width: 100%;
+    min-height: 405px;
+    /* height: 405px; */
     border: 1px solid #eee;
     box-shadow: 1px 1px 1px #eee;
     border-radius: 3px;

@@ -11,9 +11,14 @@ export default {
   name:'app',
   components:{
     navBar
-  }
+  },
+  mounted(){
+	let start = window.location.href.lastIndexOf('/');
+	let path = window.location.href.slice(start+1);
+	this.activeIndex = path;
+}
 }
 </script>
 <style>
- 
+
 </style>
