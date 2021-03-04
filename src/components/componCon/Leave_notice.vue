@@ -4,14 +4,6 @@
     <div class="CustmerBox_Head">
       <div class="Tab">
         <div class="Tab_Right">
-          <div class="Right_items" >
-            <img src="../../assets/img/11.png" />
-            <div class="Right_itemsTitle">新增</div>
-          </div>
-          <div class="Right_items">
-            <img src="../../assets/img/12.png" />
-            <div class="Right_itemsTitle">修改</div>
-          </div>
           <div class="Right_items">
             <img src="../../assets/img/13.png" />
             <div class="Right_itemsTitle">查看</div>

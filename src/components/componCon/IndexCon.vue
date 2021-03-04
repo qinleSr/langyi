@@ -48,7 +48,7 @@
                 <img src="../../assets/img/2.png" />
               </div>
             </div>
-            <div class="choos_Box"style=" background:#C19A68;">
+            <div class="choos_Box" style=" background:#C19A68;">
               <div class="Room_left"  >
                 <div class="Room_num">302</div>
                 <div class="Room_username">陈女士</div>

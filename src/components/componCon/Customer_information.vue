@@ -6,11 +6,11 @@
         <div class="Tab_Right">
           <div class="Right_items" @click="add_dialog">
             <img src="../../assets/img/11.png" />
-            <div class="Right_itemsTitle">新增</div>
+            <div class="Right_itemsTitle">项目预约</div>
           </div>
           <div class="Right_items">
             <img src="../../assets/img/12.png" />
-            <div class="Right_itemsTitle">修改</div>
+            <div class="Right_itemsTitle">新增</div>
           </div>
           <div class="Right_items">
             <img src="../../assets/img/13.png" />
@@ -47,17 +47,21 @@
               range-separator="至"
               start-placeholder="开始日期"
               end-placeholder="结束日期"
-              style="width: 350px;"
+              style="width: 350px"
             ></el-date-picker>
           </div>
         </div>
-        <Maintenance :tableData="tableData" :tableLabel="tableLabel" :config="config">
-          <template v-slot:edit> 
+        <Maintenance
+          :tableData="tableData"
+          :tableLabel="tableLabel"
+          :config="config"
+        >
+          <template v-slot:edit>
             <button class="slot_btn" @click="first_come">编辑1</button>
           </template>
           <template v-slot:edit1>
             <button class="slot_btn" @click="first_call">编辑2</button>
-          </template> 
+          </template>
           <template v-slot:edit2>
             <button class="slot_btn" @click="body">编辑3</button>
           </template>
@@ -88,14 +92,20 @@
               <span class="improtant">*</span>
               <span>客户姓名</span>
             </div>
-            <el-input v-model="form.customer_name" autocomplete="off"></el-input>
+            <el-input
+              v-model="form.customer_name"
+              autocomplete="off"
+            ></el-input>
           </el-col>
           <el-col>
             <div class="label_title">
               <span class="improtant">*</span>
               <span>联系方式</span>
             </div>
-            <el-input v-model="form.customer_phone" autocomplete="off"></el-input>
+            <el-input
+              v-model="form.customer_phone"
+              autocomplete="off"
+            ></el-input>
           </el-col>
         </el-row>
         <el-row>
@@ -130,7 +140,9 @@
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormAdd = false">取 消</el-button>
-        <el-button type="primary" @click="dialogFormAdd = false">确 定</el-button>
+        <el-button type="primary" @click="dialogFormAdd = false"
+          >确 定</el-button
+        >
       </div>
     </el-dialog>
     <!-- 首次来电登记 -->
@@ -154,14 +166,20 @@
               <span class="imprtant">*</span>
               <span>客户姓名</span>
             </div>
-            <el-input v-model="form1.customer_name" autocomplete="off"></el-input>
+            <el-input
+              v-model="form1.customer_name"
+              autocomplete="off"
+            ></el-input>
           </el-col>
           <el-col>
             <div class="label_title">
               <span class="imprtant">*</span>
               <span>联系方式</span>
             </div>
-            <el-input v-model="form1.customer_phone" autocomplete="off"></el-input>
+            <el-input
+              v-model="form1.customer_phone"
+              autocomplete="off"
+            ></el-input>
           </el-col>
           <el-col>
             <div class="label_title">
@@ -287,14 +305,20 @@
               <span class="imprtant">*</span>
               <span>客户姓名</span>
             </div>
-            <el-input v-model="form2.customer_name" autocomplete="off"></el-input>
+            <el-input
+              v-model="form2.customer_name"
+              autocomplete="off"
+            ></el-input>
           </el-col>
           <el-col>
             <div class="label_title">
               <span class="imprtant">*</span>
               <span>联系方式</span>
             </div>
-            <el-input v-model="form2.customer_phone" autocomplete="off"></el-input>
+            <el-input
+              v-model="form2.customer_phone"
+              autocomplete="off"
+            ></el-input>
           </el-col>
           <el-col>
             <div class="label_title">
@@ -334,7 +358,7 @@
             </div>
             <el-input v-model="form2.childNum" autocomplete="off"></el-input>
           </el-col>
-          
+
           <el-col>
             <div class="label_title">
               <span class="imprtant">*</span>
@@ -374,8 +398,7 @@
               <el-option label="区域二" value="beijing"></el-option>
             </el-select>
           </el-col>
-          <el-col>
-          </el-col>
+          <el-col> </el-col>
         </el-row>
         <el-row>
           <el-col>
@@ -404,7 +427,10 @@
               <span class="imprtant">*</span>
               <span>客户意向</span>
             </div>
-            <el-input v-model="form2.customer_think" autocomplete="off"></el-input>
+            <el-input
+              v-model="form2.customer_think"
+              autocomplete="off"
+            ></el-input>
           </el-col>
         </el-row>
         <el-row>
@@ -423,18 +449,25 @@
               <span class="imprtant">*</span>
               <span>首次接待情况</span>
             </div>
-            <el-input v-model="form2.reception_stauts" autocomplete="off" style="width:430px"></el-input>
+            <el-input
+              v-model="form2.reception_stauts"
+              autocomplete="off"
+              style="width: 430px"
+            ></el-input>
           </el-col>
         </el-row>
         <el-row>
-          <el-col>
-          </el-col>
+          <el-col> </el-col>
           <el-col>
             <div class="label_title">
               <span class="imprtant">*</span>
               <span>备注</span>
             </div>
-            <el-input v-model="form2.note" autocomplete="off" style="width:430px"></el-input>
+            <el-input
+              v-model="form2.note"
+              autocomplete="off"
+              style="width: 430px"
+            ></el-input>
           </el-col>
         </el-row>
       </el-form>
@@ -464,28 +497,42 @@
               <span class="imprtant">*</span>
               <span>客户姓名</span>
             </div>
-            <el-input v-model="form3.customer_name" autocomplete="off"></el-input>
+            <el-input
+              v-model="form3.customer_name"
+              autocomplete="off"
+            ></el-input>
           </el-col>
           <el-col>
             <div class="label_title">
               <span class="imprtant">*</span>
               <span>联系方式</span>
             </div>
-            <el-input v-model="form3.customer_phone" autocomplete="off"></el-input>
+            <el-input
+              v-model="form3.customer_phone"
+              autocomplete="off"
+            ></el-input>
           </el-col>
           <el-col>
             <div class="label_title">
               <span class="imprtant">*</span>
               <span>房号</span>
             </div>
-            <el-input v-model="form3.room_num" autocomplete="off" style="width:100px"></el-input>
+            <el-input
+              v-model="form3.room_num"
+              autocomplete="off"
+              style="width: 100px"
+            ></el-input>
           </el-col>
           <el-col>
             <div class="label_title">
               <span class="imprtant">*</span>
               <span>套餐</span>
             </div>
-            <el-input v-model="form3.food" autocomplete="off" style="width:100px"></el-input>
+            <el-input
+              v-model="form3.food"
+              autocomplete="off"
+              style="width: 100px"
+            ></el-input>
           </el-col>
         </el-row>
         <el-row>
@@ -494,23 +541,38 @@
               <span class="imprtant">*</span>
               <span>生产日期</span>
             </div>
-            <el-date-picker v-model="form3.production" type="date" value-format="yyyy-MM-dd" placeholder="选择日期"></el-date-picker>
+            <el-date-picker
+              v-model="form3.production"
+              type="date"
+              value-format="yyyy-MM-dd"
+              placeholder="选择日期"
+            ></el-date-picker>
           </el-col>
           <el-col>
             <div class="label_title">
               <span class="imprtant">*</span>
               <span>入所日期</span>
             </div>
-            <el-date-picker v-model="form3.to_date" type="date" value-format="yyyy-MM-dd" placeholder="选择日期"></el-date-picker>
+            <el-date-picker
+              v-model="form3.to_date"
+              type="date"
+              value-format="yyyy-MM-dd"
+              placeholder="选择日期"
+            ></el-date-picker>
           </el-col>
           <el-col>
             <div class="label_title">
               <span class="imprtant">*</span>
               <span>出所日期</span>
             </div>
-           <el-date-picker v-model="form3.leave_date" type="date" value-format="yyyy-MM-dd" placeholder="选择日期"></el-date-picker>
+            <el-date-picker
+              v-model="form3.leave_date"
+              type="date"
+              value-format="yyyy-MM-dd"
+              placeholder="选择日期"
+            ></el-date-picker>
           </el-col>
-           <el-col></el-col>
+          <el-col></el-col>
           <el-col></el-col>
         </el-row>
         <el-row>
@@ -548,9 +610,7 @@
               <el-option label="区域二" value="beijing"></el-option>
             </el-select>
           </el-col>
-          <el-col>
-      
-          </el-col>
+          <el-col> </el-col>
         </el-row>
         <el-row>
           <el-col>
@@ -575,14 +635,15 @@
               <span class="imprtant">*</span>
               <span>签单日期</span>
             </div>
-            <el-date-picker v-model="form3.sigin_order" type="date" value-format="yyyy-MM-dd" placeholder="选择日期"></el-date-picker>
+            <el-date-picker
+              v-model="form3.sigin_order"
+              type="date"
+              value-format="yyyy-MM-dd"
+              placeholder="选择日期"
+            ></el-date-picker>
           </el-col>
-          <el-col>
-      
-          </el-col>
-          <el-col>
-      
-          </el-col>
+          <el-col> </el-col>
+          <el-col> </el-col>
         </el-row>
         <el-row>
           <el-col>
@@ -599,19 +660,18 @@
             </div>
             <el-input v-model="form3.discount" autocomplete="off"></el-input>
           </el-col>
-           <el-col>
+          <el-col>
             <div class="label_title">
               <span class="imprtant">*</span>
               <span>签约人员</span>
             </div>
-            <el-input v-model="form3.sigin_people" autocomplete="off" ></el-input>
+            <el-input
+              v-model="form3.sigin_people"
+              autocomplete="off"
+            ></el-input>
           </el-col>
-          <el-col>
-      
-          </el-col>
-          <el-col>
-      
-          </el-col>
+          <el-col> </el-col>
+          <el-col> </el-col>
         </el-row>
         <el-row>
           <el-col>
@@ -619,7 +679,11 @@
               <span class="imprtant">*</span>
               <span>备注</span>
             </div>
-            <el-input v-model="form3.note" autocomplete="off" style="width:430px"></el-input>
+            <el-input
+              v-model="form3.note"
+              autocomplete="off"
+              style="width: 430px"
+            ></el-input>
           </el-col>
         </el-row>
       </el-form>
@@ -633,6 +697,7 @@
 <script>
 import Maintenance from "../Business/table_Track.vue";
 import Search from "../Conpontool/Search.vue";
+import { productionClientList } from "../../api/production/productionClient";
 export default {
   name: "customer",
   components: { Maintenance, Search },
@@ -649,69 +714,69 @@ export default {
           production_date: "2020-4-30",
           channel: "大众点评",
           Focus_on: "A-意向非常强，价格接受度高",
-          area: "钱江新城"
-        }
+          area: "钱江新城",
+        },
       ],
       tableLabel: [
         {
           prop: "document_date",
           label: "建档日期",
-          width: "110"
+          width: "110",
         },
         {
           prop: "user_name",
           label: "客户姓名",
-          width: "110"
+          width: "110",
         },
         {
           prop: "user_phone",
-          label: "联系方式"
+          label: "联系方式",
         },
         {
           prop: "production_date",
-          label: "生产日期"
+          label: "生产日期",
         },
         {
           prop: "channel",
-          label: "渠道"
+          label: "渠道",
         },
         {
           prop: "Focus_on",
           label: "关注点",
-          width: "300"
+          width: "300",
         },
         {
           prop: "area",
-          label: "区域"
+          label: "区域",
         },
         {
           prop: "first_call",
           label: "首次来电登记",
-          type: 1
+          type: 1,
         },
         {
           prop: "first_come",
           label: "首次来访登记",
 
-          type: 3
+          type: 3,
         },
         {
           prop: "physical_assessment",
           label: "身体评估",
 
-          type: 4
+          type: 4,
         },
         {
           prop: "order",
           label: "产康签单",
 
-          type: 5
-        }
+          type: 5,
+        },
       ],
       config: {
         page: 1,
         total: 30,
-        loading: false
+        loading: false,
       },
       dialogFormAdd: false,
       form: {
@@ -720,9 +785,9 @@ export default {
         customer_phone: "",
         customer_phone: "",
         delivery: false,
-        channel:'',
+        channel: "",
         concerns: "",
-        area: ""
+        area: "",
       },
       formLabelWidth: "120px",
       FirstCome: false,
@@ -731,65 +796,70 @@ export default {
         customer_name: "",
         customer_phone: "",
         channel: "",
-        production: '',
-        hospital: '',
+        production: "",
+        hospital: "",
         type: "",
         concerns: "",
-        area:'',
-        answer:'',
-        is_come:'',
-        concerns:'',
-        status:'',
+        area: "",
+        answer: "",
+        is_come: "",
+        concerns: "",
+        status: "",
       },
       value: "",
-      FirstCall:false,
-       form2: {
+      FirstCall: false,
+      form2: {
         registration: "",
         customer_name: "",
         customer_phone: "",
         channel: "",
-        production: '',
-        type: '',
+        production: "",
+        type: "",
         childNum: "",
         concerns: "",
-        area:'',
-        experience:'',
-        project:'',
-        money:'',
-        want_money:'',
-        adres:'',
-        customer_think:'',
-        people:'',
-        reception_stauts:'',
-        note:'',
-
+        area: "",
+        experience: "",
+        project: "",
+        money: "",
+        want_money: "",
+        adres: "",
+        customer_think: "",
+        people: "",
+        reception_stauts: "",
+        note: "",
       },
-      SignBill:false,
+      SignBill: false,
       form3: {
         sigin_date: "",
         customer_name: "",
         customer_phone: "",
         room_num: "",
-        food: '',
-        production: '',
+        food: "",
+        production: "",
         to_date: "",
         leave_date: "",
-        childNum:'',
-        area:'',
-        channel:'',
-        project:'',
-        open_order:'',
-        sigin_order:'',
-        sigin_money:'',
-        discount:'',
-        sigin_people:''
+        childNum: "",
+        area: "",
+        channel: "",
+        project: "",
+        open_order: "",
+        sigin_order: "",
+        sigin_money: "",
+        discount: "",
+        sigin_people: "",
       },
     };
   },
-  created() {},
+  created() {
+    this.getCustomerInformationList();
+  },
   mounted() {},
 
   methods: {
+   async getCustomerInformationList() {
+      const res =await productionClientList();
+      console.log(res)
+    },
     add_dialog() {
       this.dialogFormAdd = true;
     },
@@ -799,18 +869,18 @@ export default {
       this.FirstCome = true;
     },
     // 首次来访弹框
-    first_call(){
-      this.FirstCall = true
+    first_call() {
+      this.FirstCall = true;
     },
     // 签单
-    sigin(){
-      this.SignBill = true
+    sigin() {
+      this.SignBill = true;
     },
     // 身体评估
-    body(){
-       this.$router.push('/BodyAss')
-    }
-  }
+    body() {
+      this.$router.push("/BodyAss");
+    },
+  },
 };
 </script>
 <style  scoped>

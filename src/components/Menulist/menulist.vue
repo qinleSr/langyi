@@ -57,7 +57,7 @@
           <!-- <el-menu-item index="1-2">入所服务</el-menu-item> -->
           <el-submenu index="3-2">
             <template slot="title">入所服务</template>
-            <el-menu-item :index="'/ArrivalNotice'">入住通知</el-menu-item>
+            <el-menu-item :index="'/moveInNotice'">入住通知</el-menu-item>
             <el-menu-item :index="'/Innotice'">入所准备</el-menu-item>
             <el-menu-item :index="'/Inhandle'">入所办理</el-menu-item>
           </el-submenu>

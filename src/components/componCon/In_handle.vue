@@ -46,11 +46,15 @@
               range-separator="至"
               start-placeholder="开始日期"
               end-placeholder="结束日期"
-              style="width: 350px;"
+              style="width: 350px"
             ></el-date-picker>
           </div>
         </div>
-        <common-table :tableData="tableData" :tableLabel="tableLabel" :config="config"></common-table>
+        <common-table
+          :tableData="tableData"
+          :tableLabel="tableLabel"
+          :config="config"
+        ></common-table>
       </div>
     </div>
     <!-- 入住办理弹框 -->
@@ -62,28 +66,32 @@
               <span class="improtant">*</span>
               <span>合同编号</span>
             </div>
-            <el-input :disabled="true">11</el-input>
+            <el-input v-model="contract_id" :disabled="false">11</el-input>
           </div>
           <div class="checkin_items">
             <div class="checkin_title">
               <span class="improtant">*</span>
               <span>客户姓名</span>
             </div>
-            <el-input placeholder=""></el-input>
+            <el-input v-model="client_name" placeholder=""></el-input>
           </div>
           <div class="checkin_items">
             <div class="checkin_title">
               <span class="improtant">*</span>
               <span>联系方式</span>
             </div>
-            <el-input placeholder=""></el-input>
+            <el-input v-model="client_mobile" placeholder=""></el-input>
           </div>
           <div class="checkin_items">
             <div class="checkin_title">
               <span class="improtant">*</span>
               <span>出生日期</span>
             </div>
-            <el-date-picker v-model="birth_day" type="date" placeholder="选择日期"></el-date-picker>
+            <el-date-picker
+              v-model="birth_at"
+              type="date"
+              placeholder="选择日期"
+            ></el-date-picker>
           </div>
         </div>
         <div class="checkin_row">
@@ -92,23 +100,27 @@
               <span class="improtant">*</span>
               <span>建档日期</span>
             </div>
-            <el-date-picker v-model="document_day" type="date" placeholder="选择日期"></el-date-picker>
+            <el-date-picker
+              v-model="card_at"
+              type="date"
+              placeholder="选择日期"
+            ></el-date-picker>
           </div>
           <div class="checkin_items">
             <div class="checkin_title">
               <span class="improtant">*</span>
               <span>国家和地区</span>
             </div>
-            <el-input placeholder=""></el-input>
+            <el-input v-model="country_region" placeholder=""></el-input>
           </div>
-          <div class="checkin_items" style="margin-right: 20px;">
+          <div class="checkin_items" style="margin-right: 20px">
             <div class="checkin_title">
               <span class="improtant">*</span>
               <span>证件种类</span>
             </div>
-            <div style="display:flex;">
-              <div >
-                <el-select v-model="certificate" placeholder="请选择">
+            <div style="display: flex">
+              <div>
+                <el-select v-model="card_type" placeholder="请选择">
                   <el-option
                     v-for="item in certificate_options"
                     :key="item.value"
@@ -118,56 +130,63 @@
                 </el-select>
               </div>
               <div class="right_items">
-                <el-input placeholder="证件号码" style="margin-left:10px;"></el-input>
+                <el-input
+                  v-model="idno"
+                  placeholder="证件号码"
+                  style="margin-left: 10px"
+                ></el-input>
               </div>
               <div class="right_items">
-                <el-input placeholder="证件有效期" ></el-input>
+                <el-input
+                  v-model="card_expired"
+                  placeholder="证件有效期"
+                ></el-input>
               </div>
             </div>
           </div>
         </div>
-         <div class="checkin_row">
-          <div class="checkin_items" style="width: 475px;">
+        <div class="checkin_row">
+          <div class="checkin_items" style="width: 475px">
             <div class="checkin_title">
               <span class="improtant">*</span>
               <span>地址</span>
             </div>
-            <el-input style="width:442px"></el-input>
+            <el-input v-model="address" style="width: 442px"></el-input>
           </div>
           <div class="checkin_items">
             <div class="checkin_title">
               <span class="improtant">*</span>
               <span>合同套餐</span>
             </div>
-           <el-select v-model="contract_food" placeholder="请选择">
-                  <el-option
-                    v-for="item in food_options"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
+            <el-select v-model="contract_food" placeholder="请选择">
+              <el-option
+                v-for="item in food_options"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              ></el-option>
+            </el-select>
           </div>
           <div class="checkin_items">
             <div class="checkin_title">
               <span class="improtant">*</span>
               <span>套餐价格</span>
             </div>
-            <el-input placeholder=""></el-input>
+            <el-input v-model="meal_price" placeholder=""></el-input>
           </div>
           <div class="checkin_items">
             <div class="checkin_title">
               <span class="improtant">*</span>
               <span>房间号</span>
             </div>
-             <el-select v-model="room_num" placeholder="请选择">
-                  <el-option
-                    v-for="item in room_options"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
+            <el-select v-model="room_num" placeholder="请选择">
+              <el-option
+                v-for="item in room_options"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              ></el-option>
+            </el-select>
           </div>
         </div>
         <div class="checkin_row">
@@ -176,35 +195,43 @@
               <span class="improtant">*</span>
               <span>入住日期</span>
             </div>
-            <el-date-picker v-model="to_day" type="date" placeholder="选择日期"></el-date-picker>
+            <el-date-picker
+              v-model="in_at"
+              type="date"
+              placeholder="选择日期"
+            ></el-date-picker>
           </div>
           <div class="checkin_items">
             <div class="checkin_title">
               <span class="improtant">*</span>
               <span>出所日期</span>
             </div>
-            <el-date-picker v-model="leave_day" type="date" placeholder="选择日期"></el-date-picker>
+            <el-date-picker
+              v-model="out_at"
+              type="date"
+              placeholder="选择日期"
+            ></el-date-picker>
           </div>
           <div class="checkin_items">
             <div class="checkin_title">
               <span class="improtant">*</span>
               <span>押金</span>
             </div>
-            <el-input placeholder=""></el-input>
+            <el-input v-model="deposit_amount" placeholder=""></el-input>
           </div>
           <div class="checkin_items">
             <div class="checkin_title">
               <span class="improtant">*</span>
               <span>付款方式</span>
             </div>
-             <el-select v-model="pay" placeholder="请选择">
-                  <el-option
-                    v-for="item in pay_options"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
+            <el-select v-model="payment" placeholder="请选择">
+              <el-option
+                v-for="item in pay_options"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              ></el-option>
+            </el-select>
           </div>
         </div>
         <div class="checkin_row">
@@ -213,21 +240,26 @@
               <span class="improtant">*</span>
               <span>宝宝姓名</span>
             </div>
-           <el-input placeholder=""></el-input>
+            <el-input v-model="baby_name" placeholder=""></el-input>
           </div>
           <div class="checkin_items">
             <div class="checkin_title">
               <span class="improtant">*</span>
               <span>宝宝性别</span>
             </div>
-            <el-input placeholder=""></el-input>
+             <el-radio v-model="baby_gender" label="1">男</el-radio>
+            <el-radio v-model="baby_gender" label="2">女</el-radio>
           </div>
           <div class="checkin_items">
             <div class="checkin_title">
               <span class="improtant">*</span>
               <span>出生日期</span>
             </div>
-            <el-date-picker v-model="baby_birth" type="date" placeholder="选择日期"></el-date-picker>
+            <el-date-picker
+              v-model="baby_birth"
+              type="date"
+              placeholder="选择日期"
+            ></el-date-picker>
           </div>
         </div>
         <div class="checkin_row">
@@ -236,53 +268,58 @@
               <span class="improtant">*</span>
               <span>陪护人姓名</span>
             </div>
-           <el-input placeholder=""></el-input>
+            <el-input v-model="relation_name" placeholder=""></el-input>
           </div>
           <div class="checkin_items">
             <div class="checkin_title">
               <span class="improtant">*</span>
-              <span>关系</span>
+              <span>陪护人关系</span>
             </div>
-            <el-input placeholder=""></el-input>
+            <el-input v-model="relationship" placeholder=""></el-input>
           </div>
           <div class="checkin_items">
             <div class="checkin_title">
               <span class="improtant">*</span>
               <span>性别</span>
             </div>
-            <el-input placeholder=""></el-input>
+            <el-radio v-model="relation_gender" label="1">男</el-radio>
+            <el-radio v-model="relation_gender" label="2">女</el-radio>
           </div>
           <div class="checkin_items">
             <div class="checkin_title">
               <span class="improtant">*</span>
               <span>紧急联系人</span>
             </div>
-            <el-input placeholder=""></el-input>
+            <el-input v-model="panic_name" placeholder=""></el-input>
           </div>
           <div class="checkin_items">
             <div class="checkin_title">
               <span class="improtant">*</span>
               <span>联系电话</span>
             </div>
-            <el-input placeholder=""></el-input>
+            <el-input v-model="panic_mobile" placeholder=""></el-input>
           </div>
         </div>
         <div class="checkin_row">
-          <div class="checkin_items" style="width:440px">
+          <div class="checkin_items" style="width: 440px">
             <div class="checkin_title">
               <span class="improtant">*</span>
               <span>国家和地区</span>
             </div>
-           <el-input placeholder="" style="width:442px"></el-input>
+            <el-input
+              v-model="panic_country"
+              placeholder=""
+              style="width: 442px"
+            ></el-input>
           </div>
-          <div class="checkin_items" style="margin-right: 20px;">
+          <div class="checkin_items" style="margin-right: 20px">
             <div class="checkin_title">
               <span class="improtant">*</span>
               <span>证件种类</span>
             </div>
-            <div style="display:flex;">
-              <div >
-                <el-select v-model="escorter" placeholder="请选择">
+            <div style="display: flex">
+              <div>
+                <el-select v-model="panic_id_type" placeholder="请选择">
                   <el-option
                     v-for="item in escorter_options"
                     :key="item.value"
@@ -292,27 +329,38 @@
                 </el-select>
               </div>
               <div class="right_items">
-                <el-input placeholder="证件号码" style="margin-left:10px;"></el-input>
+                <el-input
+                  v-model="panic_id_no"
+                  placeholder="证件号码"
+                  style="margin-left: 10px"
+                ></el-input>
               </div>
               <div class="right_items">
-                <el-input placeholder="证件有效期" ></el-input>
+                <el-input
+                  v-model="panic_card_expired"
+                  placeholder="证件有效期"
+                ></el-input>
               </div>
             </div>
           </div>
         </div>
         <div class="checkin_row">
-          <div class="checkin_items" style="width:100%">
+          <div class="checkin_items" style="width: 100%">
             <div class="checkin_title">
               <span class="improtant">*</span>
               <span>特殊要求</span>
             </div>
-           <el-input placeholder="" style="width:100%"></el-input>
+            <el-input
+              v-model="special_require"
+              placeholder=""
+              style="width: 100%"
+            ></el-input>
           </div>
         </div>
       </div>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogCheckIn = false">取 消</el-button>
-        <el-button type="primary" @click="dialogCheckIn = false">确 定</el-button>
+        <el-button type="primary" @click="addInHandleData">确 定</el-button>
       </span>
     </el-dialog>
   </div>
@@ -320,6 +368,7 @@
 <script>
 import CommonTable from "../Business/table.vue";
 import Search from "../Conpontool/Search.vue";
+import { addInHandle } from "../../api/contract/preparation";
 export default {
   name: "customer",
   components: { CommonTable, Search },
@@ -342,145 +391,167 @@ export default {
           total_amount: "148000",
           deposit: "48000",
           pay_type: "现金",
-          document_date: "2020-4-30"
-        }
+          document_date: "2020-4-30",
+        },
       ],
       tableLabel: [
         {
           prop: "check_in_date",
-          label: "入住日期"
+          label: "入住日期",
         },
         {
           prop: "leave_date",
-          label: "出所日期"
+          label: "出所日期",
         },
         {
           prop: "due_days",
           label: "预定天数",
-          width: "100"
+          width: "100",
         },
         {
           prop: "user_name",
-          label: "姓名"
+          label: "姓名",
         },
         {
           prop: "user_phone",
-          label: "联系方式"
+          label: "联系方式",
         },
         {
           prop: "baby_name",
           label: "宝宝姓名",
-          width: "100"
+          width: "100",
         },
         {
           prop: "baby_sex",
           label: "宝宝性别",
-          width: "100"
+          width: "100",
         },
         {
           prop: "birth_date",
-          label: "出生日期"
+          label: "出生日期",
         },
         {
           prop: "due_food",
-          label: "套餐"
+          label: "套餐",
         },
         {
           prop: "due_room",
           label: "房间号",
-          width: "100"
+          width: "100",
         },
 
         {
           prop: "total_amount",
-          label: "套餐价格"
+          label: "套餐价格",
         },
         {
           prop: "deposit",
-          label: "押金"
+          label: "押金",
         },
         {
           prop: "pay_type",
-          label: "付款方式"
+          label: "付款方式",
         },
         {
           prop: "document_date",
-          label: "建档日期"
-        }
+          label: "建档日期",
+        },
       ],
       config: {
         page: 1,
         total: 30,
-        loading: false
+        loading: false,
       },
       dialogCheckIn: false,
-      birth_day: "", //出生日期
-      document_day: "", //建档日期
-      certificate: "", //证件种类
-      contract_food:'',//合同套餐
-      room_num:'',//房间号
-      to_day:'',//入住日期
-      leave_day:'',//出所日期
-      pay:'',//付款方式
-      baby_birth:'',//宝宝出生日期
-      escorter:'',//陪护人证件
+      contract_id: "", //合同编号
+      birth_at: "", //出生日期
+      card_at: "", //建档日期
+      country_region: "", //国家和地区
+      card_type: "", //证件种类
+      idno: "", //证件号码
+      card_expired: "", //证件有效期
+      address: "", //证件地址
+      in_at: "", //入住日期
+      out_at: "", //出所日期
+      deposit_amount: "", //押金
+      payment: "", //付款方式
+      baby_name: "", //宝宝姓名
+      baby_gender: "", //宝宝性别
+      relation_name: "", //陪护人姓名
+      relationship: "", //陪护人关系
+      relation_gender: "", //陪护人性别
+      panic_name: "", //紧急联系人
+      panic_mobile: "", //紧急联系人电话
+      panic_country: "", //紧急联系人地区
+      panic_id_type: "", //紧急联系人证件类型
+      panic_id_no: "", //证件号码
+      panic_card_expired: "", //证件有效期
+      special_require: "", //特殊需求
+
+      client_name: "", //客户姓名
+      client_mobile: "", //客户电话
+      meal_price: "", //套餐价格
+      baby_birth: "", //宝宝出生日期
+      escorter: "", //陪护人证件
+      contract_food: "", //合同套餐
+      room_num: "", //房间号
       certificate_options: [
         {
           value: "选项1",
-          label: "身份证"
+          label: "身份证",
         },
         {
           value: "选项2",
-          label: "军官证"
-        }
+          label: "军官证",
+        },
       ],
       food_options: [
         {
           value: "选项1",
-          label: "淑·套餐"
+          label: "淑·套餐",
         },
         {
           value: "选项2",
-          label: "荣·套餐"
-        }
+          label: "荣·套餐",
+        },
       ],
       room_options: [
         {
           value: "选项1",
-          label: "201"
+          label: "201",
         },
         {
-          value: "选项2",
-          label: "202"
+          value: "选项3",
+          label: "202",
         },
         {
-          value: "选项2",
-          label: "203"
-        }
+          value: "选项4",
+          label: "203",
+        },
       ],
       pay_options: [
         {
           value: "选项1",
-          label: "支票"
+          label: "支票",
         },
         {
-          value: "选项2",
-          label: "转账"
+          value: "选项5",
+          label: "转账",
         },
         {
-          value: "选项2",
-          label: "微信"
-        }
+          value: "选项6",
+          label: "微信",
+        },
       ],
       escorter_options: [
         {
           value: "选项1",
-          label: "身份证"
+          label: "身份证",
         },
         {
-          value: "选项2",
-          label: "军官证"
-        }
+          value: "7",
+          label: "军官证",
+        },
       ],
     };
   },
@@ -491,8 +562,51 @@ export default {
     // 添加入住信息事件
     add_checkin() {
       this.dialogCheckIn = true;
-    }
-  }
+    },
+    addInHandleData() {
+      const form = {
+        contract_id: this.contract_id,
+        birth_at: this.birth_at,
+        card_at: this.card_at,
+        country_region: this.country_region,
+        card_type: this.card_type,
+        idno: this.idno,
+        card_expired: this.card_expired,
+        address: this.address,
+        in_at: this.in_at,
+        out_at: this.out_at,
+        deposit_amount: this.deposit_amount,
+        payment: this.payment,
+        baby_name: this.baby_name,
+        baby_gender: this.baby_gender,
+        relation_name: this.relation_name,
+        relationship: this.relationship,
+        relation_gender: this.relation_gender,
+        panic_name: this.panic_name,
+        panic_mobile: this.panic_mobile,
+        panic_country: this.panic_country,
+        panic_id_type: this.panic_id_type,
+        panic_id_no: this.panic_id_no,
+        panic_card_expired: this.panic_card_expired,
+        special_require: this.special_require,
+      };
+      console.log(form);
+      // console.log(addInHandle());
+      addInHandle(form)
+        .then((res) => {
+          console.log(res);
+          if (res.status == 0) {
+            this.$message.success("恭喜创建成功");
+            this.dialogCheckIn = false;
+          } else {
+            this.$message.error(res.data.message);
+          }
+        })
+        .catch((res) => {
+          this.$message.success(res.data.message);
+        });
+    },
+  },
 };
 </script>
 <style  scope>
@@ -558,10 +672,11 @@ export default {
 .el-date-editor.el-input__inner {
   width: 202px;
 }
-.checkin_items .el-input,.el-select{
+.checkin_items .el-input,
+.el-select {
   width: 202px;
 }
-.right_items{
-      margin: 0 20px;
+.right_items {
+  margin: 0 20px;
 }
 </style>

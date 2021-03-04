@@ -47,11 +47,15 @@
               range-separator="至"
               start-placeholder="开始日期"
               end-placeholder="结束日期"
-              style="width: 350px;"
+              style="width: 350px"
             ></el-date-picker>
           </div>
         </div>
-        <common-table :tableData="tableData" :tableLabel="tableLabel" :config="config"></common-table>
+        <common-table
+          :tableData="tableData"
+          :tableLabel="tableLabel"
+          :config="config"
+        ></common-table>
       </div>
     </div>
   </div>
@@ -84,111 +88,115 @@ export default {
           total_amount: "148000",
           received_deposit: "48000",
           balance_payment: "1000000",
-          document_date: "2020-4-30"
-        }
+          document_date: "2020-4-30",
+        },
       ],
       tableLabel: [
         {
           prop: "check_in_date",
           label: "入住日期",
-          width: "100"
+          width: "100",
         },
         {
           prop: "leave_date",
           label: "出所日期",
-          width: "100"
+          width: "100",
         },
         {
           prop: "due_days",
           label: "预定天数",
-          width: "90"
+          width: "90",
         },
         {
           prop: "user_name",
           label: "姓名",
-          width: "100"
+          width: "100",
         },
         {
           prop: "user_phone",
           label: "联系方式",
-          width: "120"
+          width: "120",
         },
         {
           prop: "due_food",
           label: "预定套餐",
-          width: "100"
+          width: "100",
         },
         {
           prop: "due_room",
           label: "预定房间",
-          width: "90"
+          width: "90",
         },
         {
           prop: "hospital",
           label: "分娩医院",
-          width: "100"
+          width: "100",
         },
         {
           prop: "due_date",
           label: "预产期",
-          width: "100"
+          width: "100",
         },
         {
           prop: "production_date",
           label: "生产日期",
-          width: "100"
+          width: "100",
         },
         {
           prop: "production_mode",
           label: "生产方式",
-          width: "100"
+          width: "100",
         },
         {
           prop: "baby_name",
           label: "宝宝姓名",
-          width: "90"
+          width: "90",
         },
         {
           prop: "baby_sex",
           label: "宝宝性别",
-          width: "90"
+          width: "90",
         },
         {
           prop: "total_amount",
           label: "总金额",
-          width: "100"
+          width: "100",
         },
         {
           prop: "received_deposit",
           label: "已收定金",
-          width: "90"
+          width: "90",
         },
         {
           prop: "balance_payment",
           label: "入住尾款",
-          width: "90"
+          width: "90",
         },
         {
           prop: "document_date",
           label: "建档日期",
-          width: "100"
-        }
+          width: "100",
+        },
       ],
       config: {
         page: 1,
         total: 30,
-        loading: false
+        loading: false,
       },
+      roomId: 0,
     };
   },
-  created() {},
+  created() {
+    this.roomId = this.$route.query.id;
+    console.log(this.roomId);
+  },
   mounted() {},
 
   methods: {
     add_notice() {
-      this.$router.push('/NoticeForm')
-    }
-  }
+      this.$router.push({ path: "NoticeForm", query: { id: this.roomId } });
+    },
+  },
 };
 </script>
 <style  scoped>
@@ -263,7 +271,7 @@ export default {
   outline: 0;
   border-color: none;
 }
-.el-row{
+.el-row {
   padding: 10px 0;
 }
 </style>

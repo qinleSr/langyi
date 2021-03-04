@@ -71,7 +71,9 @@ import RecordDetail from '../components/componCon/Record_detail.vue'
 import BodyAss from '../components/componCon/body_ass.vue'
 import OutCustomer from '../components/componCon/out_customer.vue'
 import AddNutrition from '../components/componCon/add_nutrition.vue'
+// 入住通知房间
 import NoticeForm from '../components/componCon/Notice_form.vue'
+import moveInNotice from '../components/componCon/move_inNotice'
 Vue.use(VueRouter)
 const routes = [
   {
@@ -127,10 +129,16 @@ const routes = [
           name: '人事管理'
         }
       }, {
+        path: '/moveInNotice',
+        component: moveInNotice,
+        meta: {
+          name: '入住通知'
+        }
+      }, {
         path: '/ArrivalNotice',
         component: ArrivalNotice,
         meta: {
-          name: '入住通知'
+          name: '入住通知房间信息'
         }
       }, {
         path: '/LeaveNotice',
