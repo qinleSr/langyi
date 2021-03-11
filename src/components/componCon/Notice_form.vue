@@ -1,7 +1,7 @@
 <template>
   <div class="body">
     <el-form :model="form" ref="form">
-      <el-row :gutter="30">
+      <el-row >
         <el-col :span="4">
           <div class="grid-content bg-purple">
             <span class="improtant">*</span>

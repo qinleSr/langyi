@@ -9,14 +9,9 @@
             <div class="Right_itemsTitle">新增</div>
           </div>
           <div class="Right_items">
-            <img src="../../assets/img/12.png" />
-            <div class="Right_itemsTitle">修改</div>
-          </div>
-          <div class="Right_items">
             <img src="../../assets/img/13.png" />
             <div class="Right_itemsTitle">查看</div>
           </div>
-
           <div class="Right_items">
             <img src="../../assets/img/14.png" />
             <div class="Right_itemsTitle">导出</div>
@@ -47,7 +42,7 @@
               range-separator="至"
               start-placeholder="开始日期"
               end-placeholder="结束日期"
-              style="width: 350px;"
+              style="width: 350px"
             ></el-date-picker>
           </div>
         </div>
@@ -61,6 +56,7 @@
         </Maintenance>
       </div>
     </div>
+    <!-- 新增 -->
     <el-dialog title="新增" :visible.sync="dialogDue">
       <el-form :model="form">
         <el-row>
@@ -70,7 +66,7 @@
               <span>预约日期</span>
             </div>
             <el-date-picker
-              v-model="form.due_date"
+              v-model="form.rtime"
               type="date"
               value-format="yyyy-MM-dd"
               placeholder="选择日期"
@@ -81,14 +77,14 @@
               <span class="improtant">*</span>
               <span>客户姓名</span>
             </div>
-            <el-input v-model="form.customer_name" placeholder></el-input>
+            <el-input v-model="form.cname" placeholder></el-input>
           </el-col>
           <el-col>
             <div class="label_title">
               <span class="improtant">*</span>
               <span>联系方式</span>
             </div>
-            <el-input v-model="form.customer_phone" placeholder></el-input>
+            <el-input v-model="form.mobile" placeholder></el-input>
           </el-col>
         </el-row>
         <el-row>
@@ -98,9 +94,9 @@
               <span class="improtant">*</span>
               <span>预约项目</span>
             </div>
-            <el-select v-model="form.due_form" placeholder>
-              <el-option label="区域一" value="shanghai"></el-option>
-              <el-option label="区域二" value="beijing"></el-option>
+            <el-select v-model="form.projectid" placeholder>
+              <el-option label="朗逸" :value="1"></el-option>
+              <el-option label="话小猪" :value="2"></el-option>
             </el-select>
           </el-col>
           <el-col>
@@ -109,8 +105,8 @@
               <span>产康房间</span>
             </div>
             <el-select v-model="form.room" placeholder>
-              <el-option label="区域一" value="shanghai"></el-option>
-              <el-option label="区域二" value="beijing"></el-option>
+              <el-option label="101" :value="101"></el-option>
+              <el-option label="102" :value="102"></el-option>
             </el-select>
           </el-col>
         </el-row>
@@ -121,9 +117,9 @@
               <span class="improtant">*</span>
               <span>项目类别</span>
             </div>
-            <el-select v-model="form.project_type" placeholder>
-              <el-option label="区域一" value="shanghai"></el-option>
-              <el-option label="区域二" value="beijing"></el-option>
+            <el-select v-model="form.status" placeholder>
+              <el-option label="全服务" :value="1"></el-option>
+              <el-option label="半服务" :value="2"></el-option>
             </el-select>
           </el-col>
           <el-col>
@@ -131,16 +127,16 @@
               <span class="improtant">*</span>
               <span>产康师</span>
             </div>
-            <el-select v-model="form.teacher" placeholder>
-              <el-option label="区域一" value="shanghai"></el-option>
-              <el-option label="区域二" value="beijing"></el-option>
+            <el-select v-model="form.skill" placeholder>
+              <el-option label="中技" :value="1"></el-option>
+              <el-option label="次技" :value="2"></el-option>
             </el-select>
           </el-col>
         </el-row>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogDue = false">取 消</el-button>
-        <el-button type="primary" @click="dialogDue = false">确 定</el-button>
+        <el-button type="primary" @click="adddialogDue">确 定</el-button>
       </div>
     </el-dialog>
     <!-- 编辑弹框 -->
@@ -179,14 +175,22 @@
               <span class="improtant">*</span>
               <span>房号</span>
             </div>
-            <el-input v-model="form1.customer_room" autocomplete="off" style="width:100px"></el-input>
+            <el-input
+              v-model="form1.customer_room"
+              autocomplete="off"
+              style="width: 100px"
+            ></el-input>
           </el-col>
           <el-col>
             <div class="label_title">
               <span class="improtant">*</span>
               <span>套餐</span>
             </div>
-            <el-input v-model="form1.customer_food" autocomplete="off" style="width:100px"></el-input>
+            <el-input
+              v-model="form1.customer_food"
+              autocomplete="off"
+              style="width: 100px"
+            ></el-input>
           </el-col>
         </el-row>
         <el-row>
@@ -282,13 +286,12 @@
           <el-col></el-col>
         </el-row>
         <!-- 测试 -->
-       <el-table
+        <el-table
           class="table_b"
           :data="tableData00"
           border
           @selection-change="selectionChangeHandle"
           @cell-dblclick="celledit"
-         
         >
           <el-table-column>
             <el-table-column type="index" width="85"></el-table-column>
@@ -314,7 +317,7 @@
                 <span v-else>{{ scope.row.first.value }}</span>
               </template>
             </el-table-column>
-             <el-table-column prop="second" width="100" label="第二次">
+            <el-table-column prop="second" width="100" label="第二次">
               <template slot-scope="scope">
                 <el-input
                   v-if="scope.row.second.edit"
@@ -326,7 +329,7 @@
                 <span v-else>{{ scope.row.second.value }}</span>
               </template>
             </el-table-column>
-          <el-table-column prop="third" width="100" label="第三次">
+            <el-table-column prop="third" width="100" label="第三次">
               <template slot-scope="scope">
                 <el-input
                   v-if="scope.row.third.edit"
@@ -338,7 +341,7 @@
                 <span v-else>{{ scope.row.third.value }}</span>
               </template>
             </el-table-column>
-              <el-table-column prop="four" width="100" label="第四次">
+            <el-table-column prop="four" width="100" label="第四次">
               <template slot-scope="scope">
                 <el-input
                   v-if="scope.row.four.edit"
@@ -421,12 +424,13 @@
                 ></el-input>
                 <span v-else>{{ scope.row.ten.value }}</span>
               </template>
-            </el-table-column> -->
+            </el-table-column>
+            -->
           </el-table-column>
         </el-table>
-<!-- 编辑弹框 -->
+        <!-- 编辑弹框 -->
 
-<!-- 编辑弹框 -->
+        <!-- 编辑弹框 -->
         <!-- 测试 -->
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -439,6 +443,7 @@
 <script>
 import Maintenance from "../Business/table_Track.vue";
 import Search from "../Conpontool/Search.vue";
+import { projectReservList, addProjectReserv } from "../../api/production/project_admin";
 export default {
   name: "customer",
   components: { Maintenance, Search },
@@ -454,69 +459,69 @@ export default {
           project_type: "套内",
           due_project: "无痛乳腺疏通",
           room: "美容按摩室",
-          teacher: "王一一"
-        }
+          teacher: "王一一",
+        },
       ],
       tableLabel: [
         {
-          prop: "due_date",
+          prop: "rtime",
           label: "预约日期",
-          width: "300"
+          width: "300",
         },
         {
-          prop: "user_name",
-          label: "客户姓名"
+          prop: "name",
+          label: "客户姓名",
         },
         {
-          prop: "user_phone",
+          prop: "mobile",
           label: "联系方式",
-          width: "150"
+          width: "150",
         },
         {
-          prop: "project_type",
-          label: "项目类型"
+          prop: "type",
+          label: "项目类型",
         },
         {
           prop: "due_project",
           label: "预约项目",
-          width: "200"
+          width: "200",
         },
         {
           prop: "room",
           label: "产康房间",
-          width: "160"
+          width: "160",
         },
         {
-          prop: "teacher",
-          label: "产康师"
+          prop: "skill",
+          label: "产康师",
         },
         {
           prop: "project_order",
           label: "项目消单",
           width: "160",
-          type: 1
+          type: 1,
         },
         {
           prop: "next_serve",
           label: "下次服务",
           width: "150",
-          type: 2
-        }
+          type: 2,
+        },
       ],
       config: {
         page: 1,
         total: 30,
-        loading: false
+        loading: false,
       },
       dialogDue: false,
       form: {
-        due_date: "",
-        customer_name: "",
-        customer_phone: "",
-        due_project: "",
+        cname: "",
+        mobile: "",
+        rtime: "",
         room: "",
-        project_type: "",
-        teacher: ""
+        projectid: "",
+        skill: "",
+        status: "",
       },
       customer_msg: false,
       form1: {
@@ -534,11 +539,11 @@ export default {
         channel: "",
         sigin_money: "",
         discount: "",
-        sigin_people: ""
+        sigin_people: "",
       },
       temp: {},
       dialogFormVisible: false,
-     tableData00: [
+      tableData00: [
         {
           project_name: "无痛乳腺疏",
           first: "产康师：王老师",
@@ -551,7 +556,7 @@ export default {
           eight: "预约",
           nine: "预约",
           ten: "预约",
-          edit: false
+          edit: false,
         },
         {
           project_name: "无痛乳腺疏",
@@ -565,7 +570,7 @@ export default {
           eight: "预约",
           nine: "预约",
           ten: "预约",
-          edit: false
+          edit: false,
         },
         {
           project_name: "无痛乳腺疏",
@@ -579,7 +584,7 @@ export default {
           eight: "预约",
           nine: "预约",
           ten: "预约",
-          edit: false
+          edit: false,
         },
         {
           project_name: "无痛乳腺疏",
@@ -593,25 +598,60 @@ export default {
           eight: "预约",
           nine: "预约",
           ten: "预约",
-          edit: false
-        }
+          edit: false,
+        },
       ],
       tableDataSelections00: [], //选中的表格数据
 
       calendarTypeOptions: [{ display_name: "123" }, { display_name: "456" }],
-      text123:'',
-      ccc:false
+      text123: "",
+      ccc: false,
     };
   },
-  created() {},
+  created() {
+    this.getprojectReservList();
+  },
   mounted() {
     this.formatData();
   },
 
   methods: {
+    // 获取项目预约列表
+    getprojectReservList() {
+      projectReservList()
+        .then((res) => {
+          console.log(res);
+          if (res.status == 200) {
+            this.$message.success("获取成功");
+            this.tableData = res.data.data.data;
+          } else {
+            this.$message.error(res.data.message);
+          }
+        })
+        .catch((res) => {
+          this.$message.success(res.data.message);
+        });
+    },
     // 新增预约
     add_due() {
       this.dialogDue = true;
+    },
+    // 确认新增
+    adddialogDue() {
+      console.log(this.form);
+      addProjectReserv(this.form)
+        .then((res) => {
+          console.log(res);
+          if (res.status == 1) {
+            this.$message.success("新增成功");
+            this.dialogDue = false;
+          } else {
+            this.$message.error(res.data.message);
+          }
+        })
+        .catch((res) => {
+          this.$message.success(res.data.message);
+        });
     },
     edit_due() {
       this.customer_msg = true;
@@ -628,11 +668,11 @@ export default {
     },
     // 测试
     formatData() {
-      this.tableData00.forEach(item => {
+      this.tableData00.forEach((item) => {
         for (let key in item) {
           item[key] = {
             value: item[key],
-            edit: false
+            edit: false,
           };
         }
       });
@@ -644,7 +684,7 @@ export default {
         goods_name: { value: "", edit: true },
         num: { value: "", edit: true },
         note: { value: "", edit: true },
-        do: {}
+        do: {},
       });
     },
     // 多选
@@ -657,7 +697,7 @@ export default {
         this.$confirm(`确定删除选中数据?`, "提示", {
           confirmButtonText: "确定",
           cancelButtonText: "取消",
-          type: "warning"
+          type: "warning",
         })
           .then(() => {
             for (let i = 0; i < selections.length; i++) {
@@ -674,23 +714,23 @@ export default {
     },
     //单元格双击事件
     celledit(row, column, cell, event) {
-      console.log('我是哪一行',row)
-      console.log('我是哪一列',column)
-      console.log(cell)
-      console.log(event)
+      console.log("我是哪一行", row);
+      console.log("我是哪一列", column);
+      console.log(cell);
+      console.log(event);
       if (row[column.property]) {
         row[column.property].edit = true;
-        this.ccc = true
+        this.ccc = true;
         // this.text123 = row.goods_name.value
         setTimeout(() => {
           this.$refs[column.property].focus();
         }, 20);
       }
-    }
-  }
+    },
+  },
 };
 </script>
-<style  scoped>
+<style scoped>
 .CustmerBox {
   margin: 10px;
   border: 1px solid #eee;

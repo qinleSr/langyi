@@ -43,9 +43,12 @@ export default {
                 }
             },
             yAxis: {
-                name: '',
+                name: '次数',
+                 interval:2,
+                min:0,
+                max:6,
                 nameTextStyle: {
-                    color: '#FA6F53',
+                    color: '#333',
                     fontSize: 16,
                     padding: [10, 10, 10, 10]
                 },
@@ -59,7 +62,7 @@ export default {
             series: [
               {
                 name: '大宝',
-                data:  [36.1,36.3,36.5,37,38,36.8,36.7],
+                data:  [1,2,3,1,4,5,1,3,2],
                 type: 'line',               // 类型为折线图
                 lineStyle: {                // 线条样式 => 必须使用normal属性
                     normal: {
@@ -69,7 +72,7 @@ export default {
               },
               {
                 name: '二宝',
-                data: [36.3,36.3,36.4,37.1,38.2,37.8,38.7],
+                data: [2,3,5,1,2,4,3,2,5],
                 type: 'line',
                 lineStyle: {
                     normal: {

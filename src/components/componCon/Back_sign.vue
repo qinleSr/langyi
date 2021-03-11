@@ -16,7 +16,6 @@
             <img src="../../assets/img/13.png" />
             <div class="Right_itemsTitle">查看</div>
           </div>
-
           <div class="Right_items">
             <img src="../../assets/img/14.png" />
             <div class="Right_itemsTitle">导出</div>
@@ -34,11 +33,15 @@
               range-separator="至"
               start-placeholder="开始日期"
               end-placeholder="结束日期"
-              style="width: 350px;"
+              style="width: 350px"
             ></el-date-picker>
           </div>
         </div>
-        <Maintenance :tableData="tableData" :tableLabel="tableLabel" :config="config">
+        <Maintenance
+          :tableData="tableData"
+          :tableLabel="tableLabel"
+          :config="config"
+        >
           <template v-slot:edit>
             <button class="slot_btn" @click="edit">编辑</button>
           </template>
@@ -85,12 +88,16 @@
             <span class="improtant">*</span>
             <span>联系方式</span>
           </div>
-          <el-input v-model="customer_phone" placeholder="请输入电话号码" maxlength="11"></el-input>
+          <el-input
+            v-model="customer_phone"
+            placeholder="请输入电话号码"
+            maxlength="11"
+          ></el-input>
         </div>
       </div>
       <div class="back_row">
         <div class="back_rowitems">
-          <div class="back_itemtitle" style="width: 460px;">
+          <div class="back_itemtitle" style="width: 460px">
             <span>退订原因</span>
           </div>
           <el-input v-model="back_why" placeholder="请输入退订原因"></el-input>
@@ -99,25 +106,41 @@
           <div class="back_itemtitle">
             <span>已交定金</span>
           </div>
-          <div style="display:flex;">
-            <el-input v-model="money_small" placeholder="人民币小写金额"></el-input>
-            <el-input v-model="money_big" placeholder="人民币大写金额" style="margin-left:20px;"></el-input>
+          <div style="display: flex">
+            <el-input
+              v-model="money_small"
+              placeholder="人民币小写金额"
+            ></el-input>
+            <el-input
+              v-model="money_big"
+              placeholder="人民币大写金额"
+              style="margin-left: 20px"
+            ></el-input>
           </div>
           <div class="back_itemtitle">
             <span>退还金额</span>
           </div>
-          <div style="display:flex;">
-            <el-input v-model="back_money_small" placeholder="人民币小写金额"></el-input>
-            <el-input v-model="back_money_big" placeholder="人民币大写金额" style="margin-left:20px;"></el-input>
+          <div style="display: flex">
+            <el-input
+              v-model="back_money_small"
+              placeholder="人民币小写金额"
+            ></el-input>
+            <el-input
+              v-model="back_money_big"
+              placeholder="人民币大写金额"
+              style="margin-left: 20px"
+            ></el-input>
           </div>
           <div class="back_itemtitle">
             <span>
               资料附件上传
-              <span>(签约客户的身份证复印件、银行卡复印件、开户行及账号、医院的诊断证明、退订情况说明并有客户的签名)</span>
+              <span
+                >(签约客户的身份证复印件、银行卡复印件、开户行及账号、医院的诊断证明、退订情况说明并有客户的签名)</span
+              >
             </span>
             <span>文件格式PDF,JPG 大小≤3M</span>
           </div>
-          <div style="display:flex;">
+          <div style="display: flex">
             <el-upload
               class="avatar-uploader"
               action
@@ -187,7 +210,12 @@
       </span>
     </el-dialog>
     <!-- 编辑功能对话框 -->
-    <el-dialog title="提示" :visible.sync="dialogedit" width="70%" :before-close="handleClose">
+    <el-dialog
+      title="提示"
+      :visible.sync="dialogedit"
+      width="70%"
+      :before-close="handleClose"
+    >
       <div class="editBox">
         <div class="editBox_row">
           <div class="editBox_items">
@@ -207,13 +235,20 @@
             <div class="editBox_title">
               <span>申请日期</span>
             </div>
-            <el-date-picker v-model="department_time" type="date" placeholder="选择日期"></el-date-picker>
+            <el-date-picker
+              v-model="department_time"
+              type="date"
+              placeholder="选择日期"
+            ></el-date-picker>
           </div>
-          <div class="editBox_items" style="width:500px;">
+          <div class="editBox_items" style="width: 500px">
             <div class="editBox_title">
               <span>付款内容</span>
             </div>
-            <el-input placeholder="请输入付款内容"></el-input>
+            <el-input
+              v-model="payment_con"
+              placeholder="请输入付款内容"
+            ></el-input>
           </div>
         </div>
         <div class="editBox_row">
@@ -221,19 +256,38 @@
             <div class="editBox_title">
               <span>申请金额</span>
             </div>
-            <div style="display:flex;align-items: center;">
-              <el-input placeholder="人民币小写金额"></el-input>
-              <el-input placeholder="人民币大写金额" style="margin-left: 110px;"></el-input>
+            <div style="display: flex; align-items: center">
+              <el-input
+                v-model="apply_price"
+                placeholder="人民币小写金额"
+              ></el-input>
+              <el-input
+                v-model="apply_num"
+                placeholder="人民币大写金额"
+                style="margin-left: 110px"
+              ></el-input>
             </div>
           </div>
-          <div class="editBox_items" style="margin-left:70px;">
+          <div class="editBox_items" style="margin-left: 70px">
             <div class="editBox_title">
               <span>收款信息</span>
             </div>
-            <div style="display:flex;align-items: center;;">
-              <el-input placeholder="公司名称" style="width:150px;"></el-input>
-              <el-input placeholder="公司开户行" style="width:150px;margin-left:25px"></el-input>
-              <el-input placeholder="公司账号" style="width:150px;margin-left:25px"></el-input>
+            <div style="display: flex; align-items: center ;">
+              <el-input
+                v-model="gathering_name"
+                placeholder="公司名称"
+                style="width: 150px"
+              ></el-input>
+              <el-input
+                v-model="gathering_bark"
+                placeholder="公司开户行"
+                style="width: 150px; margin-left: 25px"
+              ></el-input>
+              <el-input
+                v-model="gathering_number"
+                placeholder="公司账号"
+                style="width: 150px; margin-left: 25px"
+              ></el-input>
             </div>
           </div>
         </div>
@@ -251,7 +305,7 @@
               ></el-option>
             </el-select>
           </div>
-          <div class="editBox_items" style="margin-left:20px;">
+          <div class="editBox_items" style="margin-left: 20px">
             <div class="editBox_title">
               <span>发票类型</span>
             </div>
@@ -264,17 +318,21 @@
               ></el-option>
             </el-select>
           </div>
-          <div class="editBox_items" style="margin-left:20px;">
+          <div class="editBox_items" style="margin-left: 20px">
             <div class="editBox_title">
               <span>截止付款日期</span>
             </div>
-            <el-date-picker v-model="department_time" type="date" placeholder="选择日期"></el-date-picker>
+            <el-date-picker
+              v-model="department_time"
+              type="date"
+              placeholder="选择日期"
+            ></el-date-picker>
           </div>
-          <div class="editBox_items" style="margin-left:20px;width:270px;">
+          <div class="editBox_items" style="margin-left: 20px; width: 270px">
             <div class="editBox_title">
               <span>备注</span>
             </div>
-            <el-input></el-input>
+            <el-input v-model="remark"></el-input>
           </div>
         </div>
       </div>
@@ -305,56 +363,56 @@ export default {
           back_why: "妈妈流产，取消订单",
           deposit: "189000.00",
           back_money: "35000.00",
-          status: "审核中"
-        }
+          status: "审核中",
+        },
       ],
       tableLabel: [
         {
           prop: "application_date",
-          label: "申请日期"
+          label: "申请日期",
         },
         {
           prop: "contract_num",
           label: "合同编号",
-          width: "250"
+          width: "250",
         },
         {
           prop: "user_name",
-          label: "姓名"
+          label: "姓名",
         },
         {
           prop: "user_phone",
           label: "联系方式",
-          width: "200"
+          width: "200",
         },
         {
           prop: "back_why",
           label: "退订原因",
-          width: "250"
+          width: "250",
         },
         {
           prop: "deposit",
-          label: "已交定金"
+          label: "已交定金",
         },
         {
           prop: "back_money",
           label: "退还金额",
-          width: "200"
+          width: "200",
         },
         {
           prop: "status",
-          label: "状态"
+          label: "状态",
         },
         {
           prop: "payment_request",
           label: "付款申请",
-          type: 1
-        }
+          type: 1,
+        },
       ],
       config: {
         page: 1,
         total: 30,
-        loading: false
+        loading: false,
       },
       dialogBack: false,
       application_date: "", //申请日期
@@ -371,55 +429,62 @@ export default {
       invoice_options: [
         {
           value: "选项1",
-          label: "专票"
+          label: "专票",
         },
         {
           value: "选项2",
-          label: "专票"
+          label: "专票",
         },
         {
           value: "选项2",
-          label: "专票"
-        }
+          label: "专票",
+        },
       ],
       type_options: [
         {
           value: "选项1",
-          label: "银行卡"
+          label: "银行卡",
         },
         {
           value: "选项2",
-          label: "支付宝"
+          label: "支付宝",
         },
         {
           value: "选项2",
-          label: "微信"
-        }
+          label: "微信",
+        },
       ],
       customer_options: [
         {
           value: "宋美女",
-          label: "宋美女"
+          label: "宋美女",
         },
         {
           value: "王美女",
-          label: "王美女"
-        }
+          label: "王美女",
+        },
       ],
       dialogedit: false,
       department: "",
       department_time: "",
+      payment_con: "",
+      apply_price: "",
+      apply_num: "",
+      gathering_name: "",
+      gathering_number: "",
+      gathering_bark: "",
+      remark: "",
       department_options: [
         {
           value: "宋美女",
-          label: "宋美女"
+          label: "宋美女",
         },
         {
           value: "王美女",
-          label: "王美女"
-        }
+          label: "王美女",
+        },
       ],
-      imageUrl: ""
+      imageUrl: "",
     };
   },
   created() {},
@@ -446,18 +511,18 @@ export default {
         paid_amount_upper: this.money_big, //人民币大写
         refund_amount_lower: this.back_money_small, //退还人民币小写
         refund_amount_upper: this.back_money_big, //退还人民币大写
-        attachs: "123"
+        attachs: "123",
       };
-      addSign(form).then(res => {
+      addSign(form).then((res) => {
         console.log(res);
       });
     },
     handleClose(done) {
       this.$confirm("确认关闭？")
-        .then(_ => {
+        .then((_) => {
           done();
         })
-        .catch(_ => {});
+        .catch((_) => {});
     },
     handleAvatarSuccess(res, file) {
       this.imageUrl = URL.createObjectURL(file.raw);
@@ -468,8 +533,8 @@ export default {
         this.$message.error("上传头像图片大小不能超过 2MB!");
       }
       return isLt2M;
-    }
-  }
+    },
+  },
 };
 </script>
 <style  scoped>

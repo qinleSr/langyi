@@ -1,6 +1,6 @@
 <template>
-  <div style="height:810px;">
-    <div class="toggle-button" @click="toggle">|||</div>
+  <div style="height: 100%">
+    <!-- <div class="toggle-button" @click="toggle">|||</div> -->
     <el-menu
       unique-opened
       :collapse="iscolshow"
@@ -15,21 +15,28 @@
       text-color="#fff"
       active-text-color="#B59461"
     >
-      <el-menu-item :index="'/index'" class="index">
+      <el-menu-item
+        style="border-top: 1px solid #dfdfdf; border-bottom: 1px solid #dfdfdf"
+        :index="'/index'"
+        class="index"
+      >
         <template>
-          <i class="el-icon-location"></i>
-          <span slot="title">首页</span>
+          <div class="menuImg">
+            <img style="width:25px;height:25px;" src="../../assets/img/menu_list/1.png" alt="" />
+          </div>
+          <span style="margin-left:30px;" slot="title">主页面板</span>
         </template>
       </el-menu-item>
-      <el-submenu index="2">
+
+      <el-submenu style="border-bottom: 1px solid #dfdfdf" index="2">
         <template slot="title">
-          <i class="el-icon-menu"></i>
-          <span>客资管理</span>
+          <img style="width:35px; height:34px;" src="../../assets/img/menu_list/2.png" alt="" />
+          <span style="margin-left:20px;">客资管理</span>
         </template>
         <el-menu-item-group>
           <el-submenu index="2-1-1" popper-append-to-body>
             <template slot="title">客户档案管理</template>
-            <el-menu-item :index=" '/Customer' ">客户信息管理</el-menu-item>
+            <el-menu-item :index="'/Customer'">客户信息管理</el-menu-item>
             <el-menu-item :index="'/CustomeTrack'">客户跟踪管理</el-menu-item>
           </el-submenu>
           <el-submenu index="2-1-2">
@@ -38,14 +45,19 @@
             <el-menu-item :index="'/PackageManagement'">套餐管理</el-menu-item>
             <el-menu-item :index="'/BackSign'">退签管理</el-menu-item>
           </el-submenu>
-          <el-menu-item :index="'/PregnancyMaintenance'" class="only_items">孕期维护管理</el-menu-item>
-          <el-menu-item :index="'/PersonnelManagement'" class="only_items">人事管理</el-menu-item>
+          <el-menu-item :index="'/PregnancyMaintenance'" class="only_items"
+            >孕期维护管理</el-menu-item
+          >
+          <el-menu-item :index="'/PersonnelManagement'" class="only_items"
+            >人事管理</el-menu-item
+          >
         </el-menu-item-group>
       </el-submenu>
-      <el-submenu index="3">
+
+      <el-submenu style="border-bottom: 1px solid #dfdfdf" index="3">
         <template slot="title">
-          <i class="el-icon-menu"></i>
-          <span>客房管理</span>
+         <img style="width:31px; height:26px;" src="../../assets/img/menu_list/3.png" alt="" />
+          <span style="margin-left:20px;">客房管理</span>
         </template>
         <el-menu-item-group>
           <el-submenu index="3-1">
@@ -70,27 +82,37 @@
           <el-submenu index="3-4">
             <template slot="title">管家中心</template>
             <el-menu-item :index="'/MotherLog'">妈妈日志</el-menu-item>
-            <el-menu-item :index="'/DirectionalService'">所内定向服务</el-menu-item>
+            <el-menu-item :index="'/DirectionalService'"
+              >所内定向服务</el-menu-item
+            >
             <el-menu-item :index="'/Complaints'">客户/申投诉管理</el-menu-item>
-            <el-menu-item :index="'/CustomerSatisfaction'">客户满意度</el-menu-item>
+            <el-menu-item :index="'/CustomerSatisfaction'"
+              >客户满意度</el-menu-item
+            >
           </el-submenu>
           <el-submenu index="3-5">
             <template slot="title">增值服务</template>
-            <el-menu-item :index="'/SettleAccountsDetail'">结账明细</el-menu-item>
+            <el-menu-item :index="'/SettleAccountsDetail'"
+              >结账明细</el-menu-item
+            >
             <el-menu-item :index="'/ProductSet'">产品设置</el-menu-item>
           </el-submenu>
         </el-menu-item-group>
       </el-submenu>
-      <el-submenu index="4">
+      <el-submenu style="border-bottom: 1px solid #dfdfdf" index="4">
         <template slot="title">
-          <i class="el-icon-menu"></i>
-          <span>护理管理</span>
+          <img style="width:36px; height:32px;" src="../../assets/img/menu_list/4.png" alt="" />
+          <span style="margin-left:20px;">护理管理</span>
         </template>
         <el-menu-item-group>
-          <el-menu-item :index="'/NursingRecord'" class="only_items">在所护理记录</el-menu-item>
+          <el-menu-item :index="'/NursingRecord'" class="only_items"
+            >在所护理记录</el-menu-item
+          >
           <el-submenu index="4-2">
             <template slot="title">护士管理</template>
-            <el-menu-item :index="'/NurseManagement'">护士人员管理</el-menu-item>
+            <el-menu-item :index="'/NurseManagement'"
+              >护士人员管理</el-menu-item
+            >
             <el-menu-item :index="'/NurseScheduling'">护士排班</el-menu-item>
             <el-menu-item :index="'/NurseAttendance'">护士考勤</el-menu-item>
           </el-submenu>
@@ -99,14 +121,18 @@
             <el-menu-item :index="'/ProfessionalCare'">专护师信息</el-menu-item>
             <el-menu-item :index="'/CarerWage'">专护师薪资结算</el-menu-item>
           </el-submenu>
-          <el-menu-item :index="'/NursingSubscribe'" class="only_items">护理预约</el-menu-item>
-          <el-menu-item :index="'/NursingReport'" class="only_items">护理报表</el-menu-item>
+          <el-menu-item :index="'/NursingSubscribe'" class="only_items"
+            >护理预约</el-menu-item
+          >
+          <el-menu-item :index="'/NursingReport'" class="only_items"
+            >护理报表</el-menu-item
+          >
         </el-menu-item-group>
       </el-submenu>
-      <el-submenu index="5">
+      <el-submenu style="border-bottom: 1px solid #dfdfdf" index="5">
         <template slot="title">
-          <i class="el-icon-menu"></i>
-          <span>产康管理</span>
+          <img style="width:35px; height:34px;" src="../../assets/img/menu_list/5.png" alt="" />
+          <span style="margin-left:20px;">产康管理</span>
         </template>
         <el-menu-item-group>
           <el-menu-item :index="'/ProductionIndex'" class="index">
@@ -117,9 +143,11 @@
           </el-menu-item>
           <el-submenu index="5-2">
             <template slot="title">产康客户管理</template>
-            <el-menu-item :index="'/CustomerInformation'">产康客户信息管理</el-menu-item>
+            <el-menu-item :index="'/CustomerInformation'"
+              >产康客户信息管理</el-menu-item
+            >
             <el-menu-item :index="'/CustomerType'">客户分类管理</el-menu-item>
-            <el-menu-item :index="'/PhysicalAssessment'">客户身体评价</el-menu-item>
+            <!-- <el-menu-item :index="'/PhysicalAssessment'">客户身体评价</el-menu-item> -->
             <el-menu-item :index="'/CustomerReturn'">产康客户回访</el-menu-item>
           </el-submenu>
           <el-submenu index="5-3">
@@ -134,34 +162,44 @@
             <el-menu-item :index="'/performanceRecord'">业绩记录</el-menu-item>
             <el-menu-item :index="'/CraftRecord'">手工记录</el-menu-item>
           </el-submenu>
-          <el-menu-item :index="'/PersonnelAdmin'" class="only_items">人事管理</el-menu-item>
+          <el-menu-item :index="'/PersonnelAdmin'" class="only_items"
+            >人事管理</el-menu-item
+          >
         </el-menu-item-group>
       </el-submenu>
-      <el-submenu index="6">
+      <el-submenu style="border-bottom: 1px solid #dfdfdf" index="6">
         <template slot="title">
-          <i class="el-icon-menu"></i>
-          <span>膳食管理</span>
+          <img style="width:34px; height:26px;" src="../../assets/img/menu_list/6.png" alt="" />
+          <span style="margin-left:20px;">膳食管理</span>
         </template>
         <el-menu-item-group>
           <el-submenu index="6-1">
             <template slot="title">月子餐出品</template>
             <el-menu-item :index="'/ConfinementMenu'">月子餐单</el-menu-item>
             <el-menu-item :index="'/RowMeal'">月子排餐</el-menu-item>
-            <el-menu-item :index="'/NutritionAssessment'">客户营养评价</el-menu-item>
+            <el-menu-item :index="'/NutritionAssessment'"
+              >客户营养评价</el-menu-item
+            >
             <el-menu-item :index="'/DietaryTaboos'">饮食禁忌</el-menu-item>
           </el-submenu>
-          <el-submenu index="6-2">
+          <!-- <el-submenu index="6-2">
             <template slot="title">膳食部管理</template>
-            <el-menu-item :index="'/IngredientsProcurement'">食材采购</el-menu-item>
+            <el-menu-item :index="'/IngredientsProcurement'"
+              >食材采购</el-menu-item
+            >
             <el-menu-item :index="'/KitchenInventory'">厨房库存</el-menu-item>
           </el-submenu>
-          <el-menu-item :index="'/DepartmentTypesettingAdmin'" class="only_items">部门排版管理</el-menu-item>
+          <el-menu-item
+            :index="'/DepartmentTypesettingAdmin'"
+            class="only_items"
+            >部门排版管理</el-menu-item
+          > -->
         </el-menu-item-group>
       </el-submenu>
-      <el-submenu index="7">
+      <el-submenu style="border-bottom: 1px solid #dfdfdf" index="7">
         <template slot="title">
-          <i class="el-icon-menu"></i>
-          <span>财务管理</span>
+          <img style="width:34px; height:35px;" src="../../assets/img/menu_list/7.png" alt="" />
+          <span style="margin-left:20px;">财务管理</span>
         </template>
         <el-menu-item-group>
           <el-menu-item :index="''">aaa</el-menu-item>
@@ -169,10 +207,10 @@
           <el-menu-item index="7-1-3">选项3</el-menu-item>
         </el-menu-item-group>
       </el-submenu>
-      <el-submenu index="8">
+      <el-submenu style="border-bottom: 1px solid #dfdfdf" index="8">
         <template slot="title">
-          <i class="el-icon-menu"></i>
-          <span>行政管理</span>
+           <img src="../../assets/img/menu_list/8.png" alt="" />
+          <span style="margin-left:20px;">行政管理</span>
         </template>
         <el-menu-item-group>
           <el-menu-item index="8-1-1">选项1</el-menu-item>
@@ -180,10 +218,10 @@
           <el-menu-item index="8-1-3">选项3</el-menu-item>
         </el-menu-item-group>
       </el-submenu>
-      <el-submenu index="9">
+      <el-submenu style="border-bottom: 1px solid #dfdfdf" index="9">
         <template slot="title">
-          <i class="el-icon-menu"></i>
-          <span>人事管理</span>
+          <img src="../../assets/img/menu_list/9.png" alt="" />
+          <span style="margin-left:20px;">人事管理</span>
         </template>
         <el-menu-item-group>
           <el-menu-item index="9-1-1">选项1</el-menu-item>
@@ -191,10 +229,10 @@
           <el-menu-item index="9-1-3">选项3</el-menu-item>
         </el-menu-item-group>
       </el-submenu>
-      <el-submenu index="10">
+      <el-submenu style="border-bottom: 1px solid #dfdfdf" index="10">
         <template slot="title">
-          <i class="el-icon-menu"></i>
-          <span>报表管理</span>
+          <img src="../../assets/img/menu_list/10.png" alt="" />
+          <span style="margin-left:20px;">报表管理</span>
         </template>
         <el-menu-item-group>
           <el-menu-item index="10-1-1">选项1</el-menu-item>
@@ -202,10 +240,10 @@
           <el-menu-item index="10-1-3">选项3</el-menu-item>
         </el-menu-item-group>
       </el-submenu>
-      <el-submenu index="11">
+      <el-submenu style="border-bottom: 1px solid #dfdfdf" index="11">
         <template slot="title">
-          <i class="el-icon-menu"></i>
-          <span>审批管理</span>
+          <img src="../../assets/img/menu_list/11.png" alt="" />
+          <span style="margin-left:20px;">审批管理</span>
         </template>
         <el-menu-item-group>
           <el-menu-item index="11-1-1">选项1</el-menu-item>
@@ -213,10 +251,10 @@
           <el-menu-item index="11-1-3">选项3</el-menu-item>
         </el-menu-item-group>
       </el-submenu>
-      <el-submenu index="12">
+      <el-submenu style="border-bottom: 1px solid #dfdfdf" index="12">
         <template slot="title">
-          <i class="el-icon-menu"></i>
-          <span>门店管理</span>
+          <img src="../../assets/img/menu_list/12.png" alt="" />
+          <span style="margin-left:20px;">门店管理</span>
         </template>
         <el-menu-item-group>
           <el-menu-item index="12-1-1">选项1</el-menu-item>
@@ -224,10 +262,10 @@
           <el-menu-item index="12-1-3">选项3</el-menu-item>
         </el-menu-item-group>
       </el-submenu>
-      <el-submenu index="13">
+      <el-submenu style="border-bottom: 1px solid #dfdfdf" index="13">
         <template slot="title">
-          <i class="el-icon-menu"></i>
-          <span>设置管理</span>
+          <img src="../../assets/img/menu_list/13.png" alt="" />
+          <span style="margin-left:20px;">设置管理</span>
         </template>
         <el-menu-item-group>
           <el-menu-item index="13-1-1">选项1</el-menu-item>
@@ -235,10 +273,10 @@
           <el-menu-item index="13-1-3">选项3</el-menu-item>
         </el-menu-item-group>
       </el-submenu>
-      <el-submenu index="14">
+      <el-submenu style="border-bottom: 1px solid #dfdfdf" index="14">
         <template slot="title">
-          <i class="el-icon-menu"></i>
-          <span>个人中心</span>
+          <img src="../../assets/img/menu_list/14.png" alt="" />
+          <span style="margin-left:20px;">个人中心</span>
         </template>
         <el-menu-item-group>
           <el-menu-item index="14-1-1">选项1</el-menu-item>
@@ -255,7 +293,7 @@ export default {
   data() {
     return {
       index: "",
-      iscolshow: false
+      iscolshow: false,
     };
   },
   created() {},
@@ -275,11 +313,11 @@ export default {
     toggle() {
       this.iscolshow = !this.iscolshow;
       this.$emit("iscolshow", this.iscolshow);
-    }
-  }
+    },
+  },
 };
 </script>
-<style  >
+<style>
 .el-menu {
   height: 100%;
   border-right: none;
@@ -297,7 +335,7 @@ export default {
   color: #212125 !important;
 }
 .el-menu-item.is-active {
-  background: #b59461 !important;
+  color: #b59461 !important;
 }
 .el-menu--horizontal {
   /* left: 0 !important; */
@@ -323,6 +361,7 @@ export default {
 }
 .el-menu--horizontal > .el-submenu.is-active .el-submenu__title {
   border-bottom: 0;
+  background: none;
 }
 .el-submenu.is-active .el-submenu__title {
   border-bottom: 0;
@@ -357,4 +396,13 @@ export default {
   letter-spacing: 0.2rem;
   cursor: pointer;
 }
+.menuImg {
+  display: inline-block;
+  /* width: 40px; */
+  /* height: 40px; */
+  /* display: flex; */
+  /* align-content: center; */
+  /* justify-content: center; */
+}
+.el-submenu.is-opened{background: burlywood !important;}
 </style>

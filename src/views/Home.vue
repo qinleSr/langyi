@@ -2,7 +2,7 @@
   <div class="home">
     <div class="Login_box">
       <div class="right_box">
-        <img src="../assets/img/1.jpg" />
+        <img src="../assets/img/1.png" />
       </div>
       <div class="Right_box">
         <div class="Login_title">后台管理中心</div>

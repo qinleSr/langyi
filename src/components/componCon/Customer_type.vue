@@ -3,15 +3,8 @@
   <div class="CustmerBox">
     <div class="CustmerBox_Head">
       <div class="Tab">
+        <Bread style="margin-left: 20px"></Bread>
         <div class="Tab_Right">
-          <div class="Right_items">
-            <img src="../../assets/img/11.png" />
-            <div class="Right_itemsTitle">新增</div>
-          </div>
-          <div class="Right_items">
-            <img src="../../assets/img/12.png" />
-            <div class="Right_itemsTitle">修改</div>
-          </div>
           <div class="Right_items">
             <img src="../../assets/img/13.png" />
             <div class="Right_itemsTitle">查看</div>
@@ -28,30 +21,28 @@
           <Search class="Search"></Search>
           <div class="All_headRight">
             <select>
-              <option>全部套餐</option>
-              <option>佛跳墙</option>
-              <option>佛跳墙</option>
-              <option>佛跳墙</option>
-            </select>
-            <select>
-              <option>生产方式</option>
-              <option>剖腹产</option>
-              <option>顺产</option>
+              <option>客户类别</option>
+              <option>总裁</option>
+              <option>员工</option>
             </select>
           </div>
           <div class="Choos_Time">
-            <div class="Time_title">入住日期</div>
+            <div class="Time_title">建档日期</div>
             <el-date-picker
               v-model="value1"
               type="daterange"
               range-separator="至"
               start-placeholder="开始日期"
               end-placeholder="结束日期"
-              style="width: 350px;"
+              style="width: 350px"
             ></el-date-picker>
           </div>
         </div>
-        <Maintenance :tableData="tableData" :tableLabel="tableLabel" :config="config">
+        <Maintenance
+          :tableData="tableData"
+          :tableLabel="tableLabel"
+          :config="config"
+        >
           <template v-slot:look>
             <button class="slot_btn" @click="look_msg">查看</button>
           </template>
@@ -85,28 +76,42 @@
               <span class="improtant">*</span>
               <span>客户姓名</span>
             </div>
-            <el-input v-model="form.customer_name" autocomplete="off"></el-input>
+            <el-input
+              v-model="form.customer_name"
+              autocomplete="off"
+            ></el-input>
           </el-col>
           <el-col>
             <div class="label_title">
               <span class="improtant">*</span>
               <span>联系方式</span>
             </div>
-            <el-input v-model="form.customer_phone" autocomplete="off"></el-input>
+            <el-input
+              v-model="form.customer_phone"
+              autocomplete="off"
+            ></el-input>
           </el-col>
           <el-col>
             <div class="label_title">
               <span class="improtant">*</span>
               <span>房号</span>
             </div>
-            <el-input v-model="form.customer_room" autocomplete="off" style="width:100px"></el-input>
+            <el-input
+              v-model="form.customer_room"
+              autocomplete="off"
+              style="width: 100px"
+            ></el-input>
           </el-col>
           <el-col>
             <div class="label_title">
               <span class="improtant">*</span>
               <span>套餐</span>
             </div>
-            <el-input v-model="form.customer_food" autocomplete="off" style="width:100px"></el-input>
+            <el-input
+              v-model="form.customer_food"
+              autocomplete="off"
+              style="width: 100px"
+            ></el-input>
           </el-col>
         </el-row>
         <el-row>
@@ -160,8 +165,14 @@
               <span>关注点</span>
             </div>
             <el-select v-model="form.focus" placeholder>
-              <el-option label="A：意向非常强，价格接受度高" value="shanghai"></el-option>
-              <el-option label="A：意向非常强，价格接受度高" value="beijing"></el-option>
+              <el-option
+                label="A：意向非常强，价格接受度高"
+                value="shanghai"
+              ></el-option>
+              <el-option
+                label="A：意向非常强，价格接受度高"
+                value="beijing"
+              ></el-option>
             </el-select>
           </el-col>
           <el-col>
@@ -207,7 +218,6 @@
           border
           @selection-change="selectionChangeHandle"
           @cell-dblclick="celledit"
-         
         >
           <el-table-column>
             <el-table-column type="index" width="85"></el-table-column>
@@ -218,7 +228,12 @@
                 <div>45分钟</div>
               </template>
             </el-table-column>
-            <el-table-column prop="first" label="第一次" width="150" edit="false">
+            <el-table-column
+              prop="first"
+              label="第一次"
+              width="150"
+              edit="false"
+            >
               <template slot-scope="scope">
                 <div>2020.9.29</div>
                 <div>10:00-10:45</div>
@@ -233,7 +248,7 @@
                 <span v-else>{{ scope.row.first.value }}</span>
               </template>
             </el-table-column>
-             <el-table-column prop="second" width="100" label="第二次">
+            <el-table-column prop="second" width="100" label="第二次">
               <template slot-scope="scope">
                 <el-input
                   v-if="scope.row.second.edit"
@@ -245,7 +260,7 @@
                 <span v-else>{{ scope.row.second.value }}</span>
               </template>
             </el-table-column>
-          <el-table-column prop="third" width="100" label="第三次">
+            <el-table-column prop="third" width="100" label="第三次">
               <template slot-scope="scope">
                 <el-input
                   v-if="scope.row.third.edit"
@@ -257,7 +272,7 @@
                 <span v-else>{{ scope.row.third.value }}</span>
               </template>
             </el-table-column>
-              <el-table-column prop="four" width="100" label="第四次">
+            <el-table-column prop="four" width="100" label="第四次">
               <template slot-scope="scope">
                 <el-input
                   v-if="scope.row.four.edit"
@@ -340,23 +355,28 @@
                 ></el-input>
                 <span v-else>{{ scope.row.ten.value }}</span>
               </template>
-            </el-table-column> -->
+            </el-table-column>
+            -->
           </el-table-column>
         </el-table>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="customer_msg = false">取 消</el-button>
-        <el-button type="primary" @click="customer_msg = false">确 定</el-button>
+        <el-button type="primary" @click="customer_msg = false"
+          >确 定</el-button
+        >
       </div>
     </el-dialog>
   </div>
 </template>
 <script>
+import Bread from "../Business/Bread";
 import Maintenance from "../Business/table_Track.vue";
 import Search from "../Conpontool/Search.vue";
+import { productionClientTypeList } from "../../api/production/productionClient";
 export default {
   name: "customer",
-  components: { Maintenance, Search },
+  components: { Maintenance, Search, Bread },
   data() {
     return {
       active: false,
@@ -372,69 +392,69 @@ export default {
           siging_money: "1800.00",
           preferential: "1800.00",
           channel: "大众点评",
-          customer_type: "拓展签约"
-        }
+          customer_type: "拓展签约",
+        },
       ],
       tableLabel: [
         {
-          prop: "signing_date",
+          prop: "signtime",
           label: "签约日期",
-          width: "110"
+          width: "110",
         },
         {
-          prop: "user_name",
+          prop: "name",
           label: "客户姓名",
-          width: "90"
+          width: "90",
         },
         {
-          prop: "user_phone",
-          label: "联系方式"
+          prop: "mobile",
+          label: "联系方式",
         },
         {
-          prop: "production_date",
-          label: "生产日期"
+          prop: "childbirthtime",
+          label: "生产日期",
         },
         {
           prop: "project_con",
           label: "项目内容",
-          type: 2
+          type: 2,
         },
         {
-          prop: "Focus_on",
+          prop: "focus",
           label: "关注点",
-          width: "220"
+          width: "220",
         },
         {
-          prop: "siging_money",
-          label: "签约金额"
+          prop: "money",
+          label: "签约金额",
         },
         {
-          prop: "preferential",
-          label: "折扣/优惠"
+          prop: "discount",
+          label: "折扣/优惠",
         },
         {
-          prop: "channel",
-          label: "大众点评"
+          prop: "public_comments",
+          label: "大众点评",
         },
         {
           prop: "return_visit",
           label: "回访跟踪",
-          type: 1
+          type: 1,
         },
         {
           prop: "due_Production",
           label: "产康预约",
-          type: 1
+          type: 1,
         },
         {
-          prop: "customer_type",
-          label: "客户类别"
-        }
+          prop: "ctype",
+          label: "客户类别",
+        },
       ],
       config: {
         page: 1,
         total: 30,
-        loading: false
+        loading: false,
       },
 
       customer_msg: false,
@@ -453,7 +473,7 @@ export default {
         channel: "",
         sigin_money: "",
         discount: "",
-        sigin_people: ""
+        sigin_people: "",
       },
 
       tableData00: [
@@ -469,7 +489,7 @@ export default {
           eight: "预约",
           nine: "预约",
           ten: "预约",
-          edit: false
+          edit: false,
         },
         {
           project_name: "无痛乳腺疏",
@@ -483,7 +503,7 @@ export default {
           eight: "预约",
           nine: "预约",
           ten: "预约",
-          edit: false
+          edit: false,
         },
         {
           project_name: "无痛乳腺疏",
@@ -497,7 +517,7 @@ export default {
           eight: "预约",
           nine: "预约",
           ten: "预约",
-          edit: false
+          edit: false,
         },
         {
           project_name: "无痛乳腺疏",
@@ -511,36 +531,52 @@ export default {
           eight: "预约",
           nine: "预约",
           ten: "预约",
-          edit: false
-        }
+          edit: false,
+        },
       ],
       tableDataSelections00: [], //选中的表格数据
-      row: ""
+      row: "",
     };
   },
-  created() {},
+  created() {
+    this.getCustomerType();
+  },
   mounted() {
     this.formatData();
   },
 
   methods: {
+    // 获取列表
+    getCustomerType() {
+      productionClientTypeList()
+        .then((res) => {
+          console.log(res);
+          if (res.status == 200) {
+            this.$message.success("获取成功");
+            this.tableData = res.data.data.data;
+          } else {
+            this.$message.error(res.data.message);
+          }
+        })
+        .catch((res) => {
+          this.$message.success(res.data.message);
+        });
+    },
     // 查看用户基本信息
     look_msg() {
       this.customer_msg = true;
     },
     formatData() {
-      this.tableData00.forEach(item => {
+      this.tableData00.forEach((item) => {
         for (let key in item) {
           item[key] = {
             value: item[key],
-            edit: false
+            edit: false,
           };
         }
       });
     },
-
-   
-  
+    selectionChangeHandle() {},
     //单元格双击事件
     celledit(row, column, cell, event) {
       console.log("我是哪一行", row);
@@ -555,8 +591,8 @@ export default {
           this.$refs[column.property].focus();
         }, 20);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 <style  scoped>

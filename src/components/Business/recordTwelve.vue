@@ -38,20 +38,23 @@ export default {
                 },
                 axisLine: {             //坐标轴轴线相关设置。
                     lineStyle: {
-                        color: '#FA6F53',
+                        color: '#333',
                     }
                 }
             },
             yAxis: {
-                name: '',
+                name:"体温",
+                interval:2,
+                min:34,
+                max:42,
                 nameTextStyle: {
-                    color: '#FA6F53',
-                    fontSize: 16,
-                    padding: [10, 10, 10, 10]
+                    color: '#333',
+                    fontSize: 14,
+                  
                 },
                 axisLine: {
                     lineStyle: {
-                        color: '#FA6F53',
+                        color: '#333',
                     }
                 },
                 type: 'value'

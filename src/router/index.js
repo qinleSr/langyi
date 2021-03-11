@@ -74,6 +74,10 @@ import AddNutrition from '../components/componCon/add_nutrition.vue'
 // 入住通知房间
 import NoticeForm from '../components/componCon/Notice_form.vue'
 import moveInNotice from '../components/componCon/move_inNotice'
+import confinementEdit from '../components/componCon/confinementEdit'
+import confinementFind from '../components/componCon/confinementFind'
+
+import Menu from '../components/menu/menu'
 Vue.use(VueRouter)
 const routes = [
   {
@@ -82,6 +86,12 @@ const routes = [
     // redirect:'/Home',
     component: Home
   },
+  // {
+  //   path: '/',
+  //   name: 'menu',
+  //   // redirect:'/Home',
+  //   component: Menu
+  // },
   {
     path: '/Index',
     name: 'Index',
@@ -259,6 +269,18 @@ const routes = [
         component: RowMeal,
         meta: {
           name: "月子排餐"
+        }
+      }, {
+        path: '/confinementEdit',
+        component: confinementEdit,
+        meta: {
+          name: "月子编辑"
+        }
+      }, {
+        path: '/confinementFind',
+        component: confinementFind,
+        meta: {
+          name: "月子查看"
         }
       }, {
         path: '/NutritionAssessment',

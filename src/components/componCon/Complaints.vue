@@ -42,11 +42,15 @@
               range-separator="至"
               start-placeholder="开始日期"
               end-placeholder="结束日期"
-              style="width: 350px;"
+              style="width: 350px"
             ></el-date-picker>
           </div>
         </div>
-        <MotherLog :tableData="tableData" :tableLabel="tableLabel" :config="config"></MotherLog>
+        <MotherLog
+          :tableData="tableData"
+          :tableLabel="tableLabel"
+          :config="config"
+        ></MotherLog>
       </div>
     </div>
     <!-- 客户投诉申诉新增 -->
@@ -70,16 +74,16 @@
               <span class="improtant">*</span>
               <span>客户姓名</span>
             </div>
-            <el-input v-model="form.user_name" autocomplete="off"></el-input>
+            <el-input v-model="form.customer_name" autocomplete="off"></el-input>
           </el-col>
           <el-col>
             <div class="label_title">
               <span class="improtant">*</span>
               <span>房间号</span>
             </div>
-            <el-select v-model="form.Room_num" placeholder>
-              <el-option label="305" value="shanghai"></el-option>
-              <el-option label="302" value="beijing"></el-option>
+            <el-select v-model="form.room_id" placeholder>
+              <el-option label="305" :value="305"></el-option>
+              <el-option label="302" :value="302"></el-option>
             </el-select>
           </el-col>
         </el-row>
@@ -89,15 +93,19 @@
               <span class="improtant">*</span>
               <span>内容</span>
             </div>
-            <el-input v-model="form.user_content" autocomplete="off" style="width:510px"></el-input>
+            <el-input
+              v-model="form.content"
+              autocomplete="off"
+              style="width: 530px"
+            ></el-input>
           </el-col>
-          <el-col style="width:300px"></el-col>
-          <el-col>
+          <el-col style="width: 300px"></el-col>
+          <el-col style="margin-left: 25px">
             <div class="label_title">
               <span class="improtant">*</span>
               <span>投诉情况分析</span>
             </div>
-            <el-input v-model="form.user_situation" autocomplete="off"></el-input>
+            <el-input v-model="form.report_split" autocomplete="off"></el-input>
           </el-col>
         </el-row>
         <el-row>
@@ -106,21 +114,21 @@
               <span class="improtant">*</span>
               <span>一级受理人</span>
             </div>
-            <el-input v-model="form.user_Level1" autocomplete="off"></el-input>
+            <el-input v-model="form.first_processer" autocomplete="off"></el-input>
           </el-col>
           <el-col>
             <div class="label_title">
               <span class="improtant">*</span>
               <span>终止受理人</span>
             </div>
-            <el-input v-model="form.user_end" autocomplete="off"></el-input>
+            <el-input v-model="form.last_processer" autocomplete="off"></el-input>
           </el-col>
           <el-col>
             <div class="label_title">
               <span class="improtant">*</span>
               <span>客户方处理结果</span>
             </div>
-            <el-input v-model="form.user_results" autocomplete="off"></el-input>
+            <el-input v-model="form.customer_result" autocomplete="off"></el-input>
           </el-col>
         </el-row>
         <el-row>
@@ -129,27 +137,27 @@
               <span class="improtant">*</span>
               <span>内部处理方案</span>
             </div>
-            <el-input v-model="form.user_plan" autocomplete="off"></el-input>
+            <el-input v-model="form.inside_resolution" autocomplete="off"></el-input>
           </el-col>
           <el-col>
             <div class="label_title">
               <span class="improtant">*</span>
               <span>纠正或预防措施</span>
             </div>
-            <el-input v-model="form.user_measures" autocomplete="off"></el-input>
+            <el-input v-model="form.adjust_solution" autocomplete="off"></el-input>
           </el-col>
           <el-col>
             <div class="label_title">
               <span class="improtant">*</span>
               <span>整改负责人</span>
             </div>
-            <el-input v-model="form.user_principal" autocomplete="off"></el-input>
+            <el-input v-model="form.adjust_leader" autocomplete="off"></el-input>
           </el-col>
         </el-row>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="complainForm = false">取 消</el-button>
-        <el-button type="primary" @click="complainForm = false">保 存</el-button>
+        <el-button type="primary" @click="addComplainForm">保 存</el-button>
       </div>
     </el-dialog>
   </div>
@@ -157,6 +165,11 @@
 <script>
 import MotherLog from "../Business/table_Track.vue";
 import Search from "../Conpontool/Search.vue";
+import {
+  complaintsList,
+  addComplaints,
+  editComplaints,
+} from "../../api/manager/complaints";
 export default {
   name: "customer",
   components: { MotherLog, Search },
@@ -176,94 +189,134 @@ export default {
           processing_results: "改善满意",
           internal_processing: "提前准备",
           prevention_programs: "提前准备",
-          Those_responsible: "张三"
-        }
+          Those_responsible: "张三",
+        },
       ],
       tableLabel: [
         {
-          prop: "date",
-          label: "日期"
+          prop: "created_at",
+          label: "日期",
         },
         {
-          prop: "user_name",
-          label: "姓名"
+          prop: "customer_name",
+          label: "姓名",
         },
         {
-          prop: "due_room",
-          label: "房间号"
+          prop: "room_id",
+          label: "房间号",
         },
         {
-          prop: "complaints_content",
+          prop: "content",
           label: "顾客投诉内容",
-          width: "200"
+          width: "200",
         },
         {
-          prop: "situation_analysis",
+          prop: "report_split",
           label: "投诉情况分析",
-          width: "150"
+          width: "150",
         },
         {
-          prop: "first_person",
-          label: "一级受理人"
+          prop: "first_processer",
+          label: "一级受理人",
         },
         {
-          prop: "end_person",
-          label: "终止受理人"
+          prop: "last_processer",
+          label: "终止受理人",
         },
         {
-          prop: "processing_results",
+          prop: "customer_result",
           label: "客户处理结果",
-          width: "150"
+          width: "150",
         },
         {
-          prop: "internal_processing",
+          prop: "inside_resolution",
           label: "内部处理方案",
-          width: "150"
+          width: "150",
         },
         {
-          prop: "prevention_programs",
+          prop: "adjust_solution",
           label: "纠正或预防措施",
-          width: "150"
+          width: "150",
         },
         {
-          prop: "Those_responsible",
-          label: "整改责任人"
-        }
+          prop: "adjust_leader",
+          label: "整改责任人",
+        },
       ],
       config: {
         page: 1,
         total: 30,
-        loading: false
+        loading: false,
       },
       complainForm: false,
       form: {
         say_time: "",
-        user_name: "",
-        Room_num: "",
-        user_content: "",
-        user_situation: "",
-        user_plan: "",
-        user_measures: "",
-        user_principal: "",
-        user_Level1: "",
-        user_end: "",
-        user_results: ""
+        room_id: "",
+        customer_name: "",
+        content: "",
+        report_split: "",
+        first_processer: "",
+        last_processer: "",
+        customer_result: "",
+        inside_resolution: "",
+        adjust_solution: "",
+        adjust_leader: "",
+        contract_id: 1,
       },
-      formLabelWidth: "120px"
+      formLabelWidth: "120px",
     };
   },
-  created() {},
+  created() {
+    this.getComplaintsList();
+  },
   mounted() {},
 
   methods: {
+    // 获取妈妈日志列表
+    getComplaintsList() {
+      complaintsList()
+        .then((res) => {
+          console.log(res);
+          if (res.status == 200) {
+            this.$message.success("获取成功");
+            this.tableData = res.data.data;
+          } else {
+            this.$message.error(res.data.message);
+          }
+        })
+        .catch((res) => {
+          this.$message.success(res.data.message);
+        });
+    },
     // 投诉新增事件
     complainAdd() {
       this.complainForm = true;
-    }
-  }
+    },
+    // 添加
+    addComplainForm() {
+      console.log(this.form.say_time);
+      console.log(this.form);
+
+      addComplaints(this.form)
+        .then((res) => {
+          console.log(res);
+          if (res.data.status == 0) {
+            console.log(this.form);
+            this.$message.success("新增成功");
+            this.complainForm = false;
+            this.getComplaintsList();
+          } else {
+            this.$message.error(res.data.message);
+          }
+        })
+        .catch((res) => {
+          this.$message.success(res.data.message);
+        });
+    },
+  },
 };
 </script>
-<style  scoped>
+<style scoped>
 .CustmerBox {
   margin: 10px;
   border: 1px solid #eee;

@@ -1,5 +1,5 @@
 <template>
-<!-- 出所办理 -->
+  <!-- 出所办理 -->
   <div class="CustmerBox">
     <div class="CustmerBox_Head">
       <div class="Tab">
@@ -16,41 +16,40 @@
       </div>
       <div class="cards">
         <div class="All_head">
-      <Search class="Search"></Search>
-      <div class="All_headRight">
-         <select>
-          <option>全部套餐</option>
-          <option>佛跳墙</option>
-          <option>佛跳墙</option>
-          <option>佛跳墙</option>
-        </select>
-        <select>
-          <option>生产方式</option>
-          <option>剖腹产</option>
-          <option>顺产</option>
-        </select>
-       
-      </div>
-      <div class="Choos_Time">
-        <div class="Time_title">入住日期</div>
-        <el-date-picker
-          v-model="value1"
-          type="daterange"
-          range-separator="至"
-          start-placeholder="开始日期"
-          end-placeholder="结束日期"
-          style="width: 350px;"
-        ></el-date-picker>
-      </div>
-    </div> 
-           <common-table :tableData="tableData" :tableLabel="tableLabel" :config="config">
-            <template v-slot:edit >
-               <button class="slot_btn">编辑</button>
-            </template>
-            <template v-slot:look >
-               <button class="slot_btn">查看</button>
-            </template>
-           </common-table>
+          <Search class="Search"></Search>
+          <div class="All_headRight">
+            <select>
+              <option>全部套餐</option>
+              <option>佛跳墙</option>
+              <option>佛跳墙</option>
+              <option>佛跳墙</option>
+            </select>
+            <select>
+              <option>生产方式</option>
+              <option>剖腹产</option>
+              <option>顺产</option>
+            </select>
+          </div>
+          <div class="Choos_Time">
+            <div class="Time_title">入住日期</div>
+            <el-date-picker
+              v-model="value1"
+              type="daterange"
+              range-separator="至"
+              start-placeholder="开始日期"
+              end-placeholder="结束日期"
+              style="width: 350px"
+            ></el-date-picker>
+          </div>
+        </div>
+        <common-table :tableData="tableData" :tableLabel="tableLabel" :config="config">
+          <template v-slot:edit>
+            <button class="slot_btn">编辑</button>
+          </template>
+          <template v-slot:look>
+            <button class="slot_btn">查看</button>
+          </template>
+        </common-table>
       </div>
     </div>
   </div>
@@ -58,109 +57,122 @@
 <script>
 import CommonTable from "../Business/table_Track.vue";
 import Search from "../Conpontool/Search.vue";
+import { outInHandleList } from "../../api/contract/preparation";
 export default {
   name: "customer",
-  components: { CommonTable, Search},
+  components: { CommonTable, Search },
   data() {
     return {
       active: false,
-      value1:'',
-        tableData: [
+      value1: "",
+      tableData: [
         {
           check_in_date: "2020-4-30",
           leave_date: "2020-4-30",
           due_days: "28",
           user_name: "张一二",
           user_phone: "15555828930",
-          due_food:'悦·套餐',
-          due_room:'208',
-          baby_name:'张宝宝',
-          baby_sex:'女',
-          total_amount:'148000',
-            received_deposit:"48000",
-        
-        }
+          due_food: "悦·套餐",
+          due_room: "208",
+          baby_name: "张宝宝",
+          baby_sex: "女",
+          total_amount: "148000",
+          received_deposit: "48000",
+        },
       ],
       tableLabel: [
-       {
-          prop: "check_in_date",
+        {
+          prop: "in_at",
           label: "入住日期",
           
         },
         {
-          prop: "leave_date",
+          prop: "out_at",
           label: "出所日期",
-          
-        },{
-          prop: "due_days",
+
+        },
+        {
+          prop: "insure_days",
           label: "预定天数",
-          width:'90'
+          width: "90",
         },
         {
-          prop: "user_name",
-          label: "姓名"
-          
+          prop: "customer_id",
+          label: "姓名",
         },
         {
-          prop: "user_phone",
-          label: "联系方式"
-          
-        }, {
-          prop: "due_food",
-          label: "套餐"
+          prop: "contact_at",
+          label: "联系方式",
         },
-         {
-          prop: "due_room",
+        {
+          prop: "taocan",
+          label: "套餐",
+        },
+        {
+          prop: " room_name",
           label: "房间号",
-          width:'90'
+          width: "90",
         },
-         {
+        {
           prop: "baby_name",
-          label: "宝宝姓名"
+          label: "宝宝姓名",
         },
-         {
+        {
           prop: "baby_sex",
           label: "宝宝性别",
-          width:'90'
+          width: "90",
         },
-         {
-          prop: "total_amount",
-          label: "总金额"
+        {
+          prop: "amount_sum",
+          label: "总金额",
         },
-         {
-          prop: "received_deposit",
-          label: "已收押金"
+        {
+          prop: "deposit_amount",
+          label: "已收押金",
         },
-         {
+        {
           prop: "balance_payment",
           label: "离店申请",
-          type:1
-          
+          type: 1,
         },
         {
           prop: "document_date",
           label: "出所办理",
-           type:2
+          type: 2,
         },
-       
       ],
       config: {
         page: 1,
         total: 30,
-        loading: false
-      }
+        loading: false,
+      },
     };
   },
-  created() {},
+  created() {
+    this.getOutInHandleList();
+  },
   mounted() {},
 
   methods: {
-    
-  
-  }
+    getOutInHandleList() {
+      outInHandleList()
+        .then((res) => {
+          console.log(res);
+          if (res.status == 200) {
+            this.$message.success("获取成功");
+            this.tableData = res.data.data.data;
+          } else {
+            this.$message.error(res.data.message);
+          }
+        })
+        .catch((res) => {
+          this.$message.success(res.data.message);
+        });
+    },
+  },
 };
 </script>
-<style  scoped>
+<style scoped>
 .CustmerBox {
   margin: 10px;
   border: 1px solid #eee;
@@ -196,13 +208,13 @@ export default {
 .All_head {
   display: flex;
   align-items: center;
-  border-bottom: 2px solid #eee
+  border-bottom: 2px solid #eee;
 }
- .All_head .Search {
+.All_head .Search {
   flex: 1;
   min-width: 350px;
 }
- .All_head .All_headRight {
+.All_head .All_headRight {
   flex: 1;
   min-width: 530px;
 }
@@ -230,12 +242,12 @@ export default {
   outline: 0;
   border-color: none;
 }
-.slot_btn{
-    border: 0;
-    background: #C19A68;
-    width: 60px;
-    height: 30px;
-    border-radius: 3px;
-    color: #fff;
+.slot_btn {
+  border: 0;
+  background: #c19a68;
+  width: 60px;
+  height: 30px;
+  border-radius: 3px;
+  color: #fff;
 }
 </style>

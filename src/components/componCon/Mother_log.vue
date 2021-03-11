@@ -51,8 +51,8 @@
           :tableLabel="tableLabel"
           :config="config"
         >
-          <template v-slot:edit>
-            <button class="slot_btn" @click="edit_log">编辑</button>
+          <template v-slot:edit="id">
+            <button class="slot_btn" @click="edit_log(id.id)">编辑</button>
             <button class="slot_btn" @click="look_log">查看</button>
           </template>
         </MotherLog>
@@ -68,7 +68,7 @@
                 <span class="improtant">*</span>
                 <span>客户姓名</span>
               </div>
-              <el-input v-model="form.user_name" autocomplete="off"></el-input>
+              <el-input v-model="form.cname" autocomplete="off"></el-input>
             </div>
           </el-col>
           <el-col>
@@ -77,7 +77,7 @@
                 <span class="improtant">*</span>
                 <span>联系方式</span>
               </div>
-              <el-input v-model="form.user_phone" autocomplete="off"></el-input>
+              <el-input v-model="form.contact" autocomplete="off"></el-input>
             </div>
           </el-col>
           <el-col>
@@ -87,8 +87,9 @@
                 <span>出生日期</span>
               </div>
               <el-date-picker
-                v-model="form.birth_time"
+                v-model="form.birth_at"
                 type="date"
+                value-format="yyyy-MM-dd"
                 placeholder="选择日期"
               ></el-date-picker>
             </div>
@@ -101,9 +102,9 @@
                 <span class="improtant">*</span>
                 <span>套餐</span>
               </div>
-              <el-select v-model="form.food_region" placeholder="">
-                <el-option label="区域一" value="shanghai"></el-option>
-                <el-option label="区域二" value="beijing"></el-option>
+              <el-select v-model="form.set_meal" placeholder="">
+                <el-option label="区域一" value="区域一"></el-option>
+                <el-option label="区域二" value="撒大的撒"></el-option>
               </el-select>
             </div>
           </el-col>
@@ -113,9 +114,9 @@
                 <span class="improtant">*</span>
                 <span>房间号</span>
               </div>
-              <el-select v-model="form.room_region" placeholder="">
-                <el-option label="区域一" value="shanghai"></el-option>
-                <el-option label="区域二" value="beijing"></el-option>
+              <el-select v-model="form.roomid" placeholder="">
+                <el-option label="201" :value="201"></el-option>
+                <el-option label="101" :value="101"></el-option>
               </el-select>
             </div>
           </el-col>
@@ -126,7 +127,8 @@
                 <span>入住日期</span>
               </div>
               <el-date-picker
-                v-model="form.to_time"
+                v-model="form.in_the_room"
+                value-format="yyyy-MM-dd"
                 type="date"
                 placeholder="选择日期"
               ></el-date-picker>
@@ -140,7 +142,10 @@
                 <span class="improtant">*</span>
                 <span>入住天数</span>
               </div>
-              <el-input v-model="form.to_days" autocomplete="off"></el-input>
+              <el-select v-model="form.in_days" placeholder="">
+                <el-option label="两天" :value="1"></el-option>
+                <el-option label="一天" :value="2"></el-option>
+              </el-select>
             </div>
           </el-col>
           <el-col>
@@ -149,9 +154,9 @@
                 <span class="improtant">*</span>
                 <span>生产方式</span>
               </div>
-              <el-select v-model="form.production_region" placeholder="">
-                <el-option label="区域一" value="shanghai"></el-option>
-                <el-option label="区域二" value="beijing"></el-option>
+              <el-select v-model="form.production" placeholder="">
+                <el-option :label="十大" value=""></el-option>
+                <el-option :label="阿斯顿" value="阿斯顿"></el-option>
               </el-select>
             </div>
           </el-col>
@@ -162,7 +167,8 @@
                 <span>生产日期</span>
               </div>
               <el-date-picker
-                v-model="form.production_time"
+                v-model="form.production_at"
+                value-format="yyyy-MM-dd"
                 type="date"
                 placeholder="选择日期"
               ></el-date-picker>
@@ -177,7 +183,8 @@
                 <span>出所日期</span>
               </div>
               <el-date-picker
-                v-model="form.leave_time"
+                v-model="form.out_the_room"
+                value-format="yyyy-MM-dd"
                 type="date"
                 placeholder="选择日期"
               ></el-date-picker>
@@ -189,9 +196,9 @@
                 <span class="improtant">*</span>
                 <span>责任管家</span>
               </div>
-              <el-select v-model="form.housekeeper_region" placeholder="">
-                <el-option label="区域一" value="shanghai"></el-option>
-                <el-option label="区域二" value="beijing"></el-option>
+              <el-select v-model="form.housekeeper" placeholder="">
+                <el-option label="区域一" value="区域一"></el-option>
+                <el-option label="区域二" value="区域二"></el-option>
               </el-select>
             </div>
           </el-col>
@@ -212,7 +219,7 @@
                 <span class="improtant">*</span>
                 <span>入所天数</span>
               </div>
-              <el-input v-model="form2.to_days" autocomplete="off"></el-input>
+              <el-input v-model="form2.in_days" autocomplete="off"></el-input>
             </div>
           </el-col>
           <el-col>
@@ -238,13 +245,13 @@
                 <el-input
                   v-model="form2.s_time"
                   autocomplete="off"
-                  width="50"
+                  style="width: 110px"
                 ></el-input>
-                <span>:</span>
+                <span style="margin: 0 20px">:</span>
                 <el-input
                   v-model="form2.e_time"
                   autocomplete="off"
-                  width="50"
+                  style="width: 110px"
                 ></el-input>
               </el-row>
             </div>
@@ -257,35 +264,37 @@
                 <span class="improtant">*</span>
                 <span>内容</span>
               </div>
-              <el-input v-model="form2.content" autocomplete="off"></el-input>
+              <el-input
+                style="width: 100%"
+                v-model="form2.content"
+                autocomplete="off"
+              ></el-input>
             </div>
           </el-col>
         </el-row>
         <el-row>
-          <el-col>
+          <el-col :span="8">
             <div class="col_items">
               <div class="head_items">
                 <span class="improtant">*</span>
                 <span>交接部门</span>
               </div>
-              <el-input
-                v-model="form2.department"
-                autocomplete="off"
-              ></el-input>
+              <el-input v-model="form2.dept" autocomplete="off"></el-input>
             </div>
           </el-col>
-          <el-col>
+          <el-col :span="8">
             <div class="col_items">
               <div class="head_items">
                 <span class="improtant">*</span>
                 <span>是否完成</span>
               </div>
-              <el-select v-model="form.is_ok" placeholder="">
-                <el-option label="区域一" value="shanghai"></el-option>
-                <el-option label="区域二" value="beijing"></el-option>
+              <el-select v-model="form2.is_done" placeholder="是">
+                <el-option label="是" :value="1"></el-option>
+                <el-option label="否" :value="0"></el-option>
               </el-select>
             </div>
           </el-col>
+          <el-col :span="8"></el-col>
         </el-row>
         <el-row>
           <el-col>
@@ -294,16 +303,18 @@
                 <span class="improtant">*</span>
                 <span>备注</span>
               </div>
-              <el-input v-model="form2.note" autocomplete="off"></el-input>
+              <el-input
+                style="width: 100%"
+                v-model="form2.remarks"
+                autocomplete="off"
+              ></el-input>
             </div>
           </el-col>
         </el-row>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="FormEditMomlog = false">取 消</el-button>
-        <el-button type="primary" @click="FormEditMomlog = false"
-          >确 定</el-button
-        >
+        <el-button type="primary" @click="edit_momlog">确 定</el-button>
       </div>
     </el-dialog>
     <!-- 查看妈妈日志 -->
@@ -424,8 +435,8 @@
               <span>责任管家</span>
             </div>
             <el-select v-model="customer_housekeeper" placeholder="">
-              <el-option label="区域一" value="shanghai"></el-option>
-              <el-option label="区域二" value="beijing"></el-option>
+              <el-option label="区域一" value="区域一"></el-option>
+              <el-option label="区域二" value="区域二"></el-option>
             </el-select>
           </div>
         </el-col>
@@ -460,7 +471,7 @@
 <script>
 import MotherLog from "../Business/table_Track.vue";
 import Search from "../Conpontool/Search.vue";
-import { addMother } from "../../api/momlog/momlog";
+import { addMother, motherList, editMother } from "../../api/manager/mother";
 export default {
   name: "customer",
   components: { MotherLog, Search },
@@ -485,45 +496,45 @@ export default {
       ],
       tableLabel: [
         {
-          prop: "user_name",
+          prop: "cname",
           label: "姓名",
         },
         {
-          prop: "user_phone",
+          prop: "contact",
           label: "联系方式",
         },
         {
-          prop: "due_room",
+          prop: "roomid",
           label: "房间号",
           width: "90",
         },
         {
-          prop: "due_food",
+          prop: "set_meal",
           label: "套餐",
         },
         {
-          prop: "production_date",
+          prop: "production_at",
           label: "生产日期",
         },
         {
-          prop: "check_in_date",
+          prop: "in_the_room",
           label: "入住日期",
         },
         {
-          prop: "birth_date",
+          prop: "birth_at",
           label: "出生日期",
         },
         {
-          prop: "check_in_days",
+          prop: "in_days",
           label: "入住天数",
           width: "90",
         },
         {
-          prop: "production_mode",
+          prop: "production",
           label: "生产方式",
         },
         {
-          prop: "leave_date",
+          prop: "out_the_room",
           label: "出所日期",
         },
         {
@@ -544,29 +555,31 @@ export default {
       },
       FormMomlog: false,
       form: {
-        user_name: "",
-        user_phone: "",
-        birth_date: "",
-        food_region: "",
-        room_region: "",
-        to_time: "",
-        to_days: "",
-        production_time: "",
-        production_region: "",
-        leave_time: "",
-        housekeeper_region: "",
+        cname: "", //客户姓名
+        contact: "", //联系方式
+        birth_at: "", //出生日期
+        set_meal: "", //套餐
+        roomid: "", //房间号
+        in_the_room: "", //入住日期
+        in_days: "", //入住天数
+        production: "", //生产方式
+        production_at: "", //生产日期
+        out_the_room: "", //出所日期
+        housekeeper: "", //责任管家
       },
       formLabelWidth: "120px",
       FormEditMomlog: false,
+      editMotherId: "",
       form2: {
-        to_days: "",
+        in_days: "",
         date: "",
         s_time: "",
         e_time: "",
         content: "",
-        department: "",
-        is_ok: "",
-        note: "",
+        dept: "",
+        is_done: "",
+        remarks: "",
+        mother_log_id: 2,
       },
       dialogmomLog: false,
       customer_name: "",
@@ -620,23 +633,72 @@ export default {
       ],
     };
   },
-  created() {},
+  created() {
+    this.getmotherList();
+  },
   mounted() {},
 
   methods: {
+    // 获取妈妈日志列表
+    getmotherList() {
+      motherList()
+        .then((res) => {
+          console.log(res);
+          if (res.status == 200) {
+            this.$message.success("获取成功");
+            this.tableData = res.data.data.data;
+          } else {
+            this.$message.error(res.data.message);
+          }
+        })
+        .catch((res) => {
+          this.$message.success(res.data.message);
+        });
+    },
     // 新增妈妈日志
     add_momlog() {
       this.FormMomlog = true;
     },
+    // 添加
     addMomLog() {
-      addMother(this.form).then((res) => {
-        console.log(res);
-      });
-      // this.FormMomlog = false;
+      addMother(this.form)
+        .then((res) => {
+          console.log(res);
+          if (res.data.status == 0) {
+            console.log(this.form);
+            this.$message.success("新增成功");
+            this.FormMomlog = false;
+            this.getmotherList();
+          } else {
+            this.$message.error(res.data.message);
+          }
+        })
+        .catch((res) => {
+          this.$message.success(res.data.message);
+        });
     },
     // 妈妈日志编辑
-    edit_log() {
+    edit_log(id) {
+      console.log(id);
+      this.editMotherId = id;
       this.FormEditMomlog = true;
+    },
+    // 编辑
+    edit_momlog() {
+      editMother(this.form2, this.editMotherId)
+        .then((res) => {
+          console.log(res);
+          if (res.data.status == 0) {
+            this.$message.success("编辑成功");
+            this.FormEditMomlog = false;
+            this.getmotherList();
+          } else {
+            this.$message.error(res.data.message);
+          }
+        })
+        .catch((res) => {
+          this.$message.success(res.data.message);
+        });
     },
     // 查看妈妈日志
     look_log() {

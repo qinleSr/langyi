@@ -1,10 +1,11 @@
 <template>
-<!-- 产康管理中内部管理人员管理 -->
+  <!-- 产康管理中内部管理人员管理 -->
   <div class="CustmerBox">
     <div class="CustmerBox_Head">
       <div class="Tab">
+        <Bread style="margin-left: 20px"></Bread>
         <div class="Tab_Right">
-          <div class="Right_items" >
+          <div class="Right_items">
             <img src="../../assets/img/11.png" />
             <div class="Right_itemsTitle">新增</div>
           </div>
@@ -27,36 +28,26 @@
         <div class="All_head">
           <Search class="Search"></Search>
           <div class="All_headRight">
+            <div class="Time_title">部门</div>
             <select>
               <option>全部套餐</option>
-              <option>佛跳墙</option>
+              <option>产康中心</option>
               <option>佛跳墙</option>
               <option>佛跳墙</option>
             </select>
+            <div class="Time_title">状态</div>
             <select>
-              <option>生产方式</option>
-              <option>剖腹产</option>
-              <option>顺产</option>
+              <option>在职</option>
+              <option>离职</option>
             </select>
-          </div>
-          <div class="Choos_Time">
-            <div class="Time_title">入住日期</div>
-            <el-date-picker
-              v-model="value1"
-              type="daterange"
-              range-separator="至"
-              start-placeholder="开始日期"
-              end-placeholder="结束日期"
-              style="width: 350px;"
-            ></el-date-picker>
           </div>
         </div>
-          <Maintenance :tableData="tableData" :tableLabel="tableLabel" :config="config">
-             <template v-slot:edit>
+        <Maintenance :tableData="tableData" :tableLabel="tableLabel" :config="config">
+          <template v-slot:edit>
             <button class="slot_btn">编辑</button>
-             <button class="slot_btn">查看</button>
+            <button class="slot_btn">查看</button>
           </template>
-            </Maintenance> 
+        </Maintenance>
       </div>
     </div>
   </div>
@@ -64,9 +55,11 @@
 <script>
 import Maintenance from "../Business/table_Track.vue";
 import Search from "../Conpontool/Search.vue";
+import Bread from "../Business/Bread";
+import { employeeList, addEmployee } from "../../api/production/employee_admin";
 export default {
   name: "customer",
-  components: { Maintenance,Search },
+  components: { Maintenance, Search, Bread },
   data() {
     return {
       active: false,
@@ -76,77 +69,90 @@ export default {
           department: "产康中心",
           position: "产康师",
           user_name: "张一二",
-          birth_day:'2020-4-30',
-          entry_date:'2020-4-30',
-          obtainment_date:'2020-4-30',
+          birth_day: "2020-4-30",
+          entry_date: "2020-4-30",
+          obtainment_date: "2020-4-30",
           user_phone: "15555828930",
-          status:'在职',
-          note:''
-        }
+          status: "在职",
+          note: "",
+        },
       ],
       tableLabel: [
         {
-          prop: "department",
+          prop: "jid",
           label: "部门",
-         
         },
         {
-          prop: "position",
+          prop: "jids",
           label: "职位",
-          
         },
         {
-          prop: "user_name",
+          prop: "ename",
           label: "姓名",
-          
         },
-         {
-          prop: "birth_day",
+        {
+          prop: "birth_time",
           label: "出生日期",
-          width: "200"
+          width: "200",
         },
         {
-          prop: "entry_date",
+          prop: "in_the_time",
           label: "入职日期",
-          width: "200"
+          width: "200",
         },
         {
-          prop: "obtainment_date",
+          prop: "positive_time",
           label: "转正日期",
-          width: "200"
+          width: "200",
         },
         {
-          prop: "user_phone",
+          prop: "mobile",
           label: "联系方式",
-          width: "200"
+          width: "200",
         },
         {
           prop: "status",
           label: "状态",
         },
         {
-            prop:'note',
-            label:'备注',
-            width: "250"
-        }
+          prop: "note",
+          label: "备注",
+          width: "250",
+        },
       ],
       config: {
         page: 1,
         total: 30,
-        loading: false
-      }
+        loading: false,
+      },
     };
   },
-  created() {},
+  created() {
+    this.getemployeeList();
+  },
   mounted() {},
 
   methods: {
-    
-  
-  }
+    // 获取人员管理列表
+    getemployeeList() {
+      employeeList()
+        .then((res) => {
+          console.log(res);
+          if (res.status == 200) {
+            this.$message.success("获取成功");
+            this.tableData = res.data.data.data;
+          } else {
+            this.$message.error(res.data.message);
+          }
+        })
+        .catch((res) => {
+          this.$message.success(res.data.message);
+        });
+    },
+  },
 };
 </script>
-<style  scoped>
+<style scoped>
 .CustmerBox {
   margin: 10px;
   border: 1px solid #eee;
@@ -224,5 +230,13 @@ export default {
   border-radius: 3px;
   color: #fff;
   margin: 0 5px;
+}
+.All_headRight {
+  display: flex;
+  align-items: center;
+}
+.All_head {
+  display: flex;
+  justify-content: space-between;
 }
 </style>

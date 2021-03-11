@@ -4,9 +4,9 @@
     <div class="CustmerBox_Head">
       <div class="Tab">
         <div class="Tab_Right">
-          <div class="Right_items">
+          <div @click="add_checkin" class="Right_items">
             <img src="../../assets/img/11.png" />
-            <div class="Right_itemsTitle" @click="add_checkin">新增</div>
+            <div class="Right_itemsTitle">新增</div>
           </div>
           <div class="Right_items">
             <img src="../../assets/img/12.png" />
@@ -58,7 +58,7 @@
       </div>
     </div>
     <!-- 入住办理弹框 -->
-    <el-dialog title="提示" :visible.sync="dialogCheckIn" width="65%">
+    <el-dialog title="新增" :visible.sync="dialogCheckIn" width="65%">
       <div class="checkin_box">
         <div class="checkin_row">
           <div class="checkin_items">
@@ -73,14 +73,14 @@
               <span class="improtant">*</span>
               <span>客户姓名</span>
             </div>
-            <el-input v-model="client_name" placeholder=""></el-input>
+            <el-input v-model="cname" placeholder=""></el-input>
           </div>
           <div class="checkin_items">
             <div class="checkin_title">
               <span class="improtant">*</span>
               <span>联系方式</span>
             </div>
-            <el-input v-model="client_mobile" placeholder=""></el-input>
+            <el-input v-model="contact_at" placeholder=""></el-input>
           </div>
           <div class="checkin_items">
             <div class="checkin_title">
@@ -90,8 +90,16 @@
             <el-date-picker
               v-model="birth_at"
               type="date"
+              value-format="yyyy-MM-dd"
               placeholder="选择日期"
             ></el-date-picker>
+          </div>
+          <div class="checkin_items">
+            <div class="checkin_title">
+              <span class="improtant">*</span>
+              <span>预定天数</span>
+            </div>
+            <el-input v-model="reserve_days" placeholder=""></el-input>
           </div>
         </div>
         <div class="checkin_row">
@@ -103,6 +111,7 @@
             <el-date-picker
               v-model="card_at"
               type="date"
+              value-format="yyyy-MM-dd"
               placeholder="选择日期"
             ></el-date-picker>
           </div>
@@ -158,7 +167,7 @@
               <span class="improtant">*</span>
               <span>合同套餐</span>
             </div>
-            <el-select v-model="contract_food" placeholder="请选择">
+            <el-select v-model="set_meal" placeholder="请选择">
               <el-option
                 v-for="item in food_options"
                 :key="item.value"
@@ -179,7 +188,7 @@
               <span class="improtant">*</span>
               <span>房间号</span>
             </div>
-            <el-select v-model="room_num" placeholder="请选择">
+            <el-select v-model="room_name" placeholder="请选择">
               <el-option
                 v-for="item in room_options"
                 :key="item.value"
@@ -196,6 +205,7 @@
               <span>入住日期</span>
             </div>
             <el-date-picker
+              value-format="yyyy-MM-dd"
               v-model="in_at"
               type="date"
               placeholder="选择日期"
@@ -207,6 +217,7 @@
               <span>出所日期</span>
             </div>
             <el-date-picker
+              value-format="yyyy-MM-dd"
               v-model="out_at"
               type="date"
               placeholder="选择日期"
@@ -247,7 +258,7 @@
               <span class="improtant">*</span>
               <span>宝宝性别</span>
             </div>
-             <el-radio v-model="baby_gender" label="1">男</el-radio>
+            <el-radio v-model="baby_gender" label="1">男</el-radio>
             <el-radio v-model="baby_gender" label="2">女</el-radio>
           </div>
           <div class="checkin_items">
@@ -256,8 +267,9 @@
               <span>出生日期</span>
             </div>
             <el-date-picker
-              v-model="baby_birth"
+              v-model="baby_brith"
               type="date"
+              value-format="yyyy-MM-dd"
               placeholder="选择日期"
             ></el-date-picker>
           </div>
@@ -368,7 +380,7 @@
 <script>
 import CommonTable from "../Business/table.vue";
 import Search from "../Conpontool/Search.vue";
-import { addInHandle } from "../../api/contract/preparation";
+import { addInHandle, inHandleList } from "../../api/contract/preparation";
 export default {
   name: "customer",
   components: { CommonTable, Search },
@@ -396,24 +408,24 @@ export default {
       ],
       tableLabel: [
         {
-          prop: "check_in_date",
+          prop: "in_at",
           label: "入住日期",
         },
         {
-          prop: "leave_date",
+          prop: "out_at",
           label: "出所日期",
         },
         {
-          prop: "due_days",
+          prop: "reserve_days",
           label: "预定天数",
-          width: "100",
+          width: "90",
         },
         {
-          prop: "user_name",
+          prop: "cname",
           label: "姓名",
         },
         {
-          prop: "user_phone",
+          prop: "contact_at",
           label: "联系方式",
         },
         {
@@ -422,38 +434,38 @@ export default {
           width: "100",
         },
         {
-          prop: "baby_sex",
+          prop: "baby_gender",
           label: "宝宝性别",
           width: "100",
         },
         {
-          prop: "birth_date",
+          prop: "baby_brith",
           label: "出生日期",
         },
         {
-          prop: "due_food",
+          prop: "set_meal",
           label: "套餐",
+ width:"80"
         },
         {
-          prop: "due_room",
+          prop: "room_name",
           label: "房间号",
-          width: "100",
+          width: "80",
         },
-
         {
-          prop: "total_amount",
+          prop: "meal_price",
           label: "套餐价格",
         },
         {
-          prop: "deposit",
+          prop: "deposit_amount",
           label: "押金",
         },
         {
-          prop: "pay_type",
+          prop: "payment",
           label: "付款方式",
         },
         {
-          prop: "document_date",
+          prop: "card_at",
           label: "建档日期",
         },
       ],
@@ -464,6 +476,8 @@ export default {
       },
       dialogCheckIn: false,
       contract_id: "", //合同编号
+      cname: "", //客户姓名
+      contact_at: "", //联系方式
       birth_at: "", //出生日期
       card_at: "", //建档日期
       country_region: "", //国家和地区
@@ -487,84 +501,101 @@ export default {
       panic_id_no: "", //证件号码
       panic_card_expired: "", //证件有效期
       special_require: "", //特殊需求
-
-      client_name: "", //客户姓名
-      client_mobile: "", //客户电话
+      baby_brith: "", //宝宝出生日期
+      set_meal: "", //合同套餐
+      reserve_days: 5, //预定天数
       meal_price: "", //套餐价格
-      baby_birth: "", //宝宝出生日期
+      room_name: "", //房间号
       escorter: "", //陪护人证件
-      contract_food: "", //合同套餐
-      room_num: "", //房间号
       certificate_options: [
         {
-          value: "选项1",
+          value: 1,
           label: "身份证",
         },
         {
-          value: "选项2",
+          value: 2,
           label: "军官证",
         },
       ],
       food_options: [
         {
-          value: "选项1",
+          value: 1,
           label: "淑·套餐",
         },
         {
-          value: "选项2",
+          value: 2,
           label: "荣·套餐",
         },
       ],
       room_options: [
         {
-          value: "选项1",
+          value: 1,
           label: "201",
         },
         {
-          value: "选项3",
+          value: 2,
           label: "202",
         },
         {
-          value: "选项4",
+          value: 3,
           label: "203",
         },
       ],
       pay_options: [
         {
-          value: "选项1",
+          value: 1,
           label: "支票",
         },
         {
-          value: "选项5",
+          value: 2,
           label: "转账",
         },
         {
-          value: "选项6",
+          value: 3,
           label: "微信",
         },
       ],
       escorter_options: [
         {
-          value: "选项1",
+          value: 1,
           label: "身份证",
         },
         {
-          value: "7",
+          value: 2,
           label: "军官证",
         },
       ],
     };
   },
-  created() {},
+  created() {
+    this.getInHandleList();
+  },
   mounted() {},
 
   methods: {
+    getInHandleList() {
+      inHandleList()
+        .then((res) => {
+          console.log(res);
+          if (res.status == 200) {
+            this.$message.success("获取成功");
+            this.tableData = res.data.data.data;
+          } else {
+            this.$message.error(res.data.message);
+          }
+        })
+        .catch((res) => {
+          this.$message.success(res.data.message);
+        });
+    },
     // 添加入住信息事件
     add_checkin() {
       this.dialogCheckIn = true;
     },
     addInHandleData() {
       const form = {
+        cname: this.cname,
+        contact_at: this.contact_at,
         contract_id: this.contract_id,
         birth_at: this.birth_at,
         card_at: this.card_at,
@@ -589,15 +620,20 @@ export default {
         panic_id_no: this.panic_id_no,
         panic_card_expired: this.panic_card_expired,
         special_require: this.special_require,
+        baby_brith: this.baby_brith,
+        set_meal: this.set_meal,
+        meal_price: this.meal_price,
+        room_name: this.room_name,
+        reserve_days: this.reserve_days,
       };
       console.log(form);
-      // console.log(addInHandle());
       addInHandle(form)
         .then((res) => {
           console.log(res);
-          if (res.status == 0) {
+          if (res.data.status == 0) {
             this.$message.success("恭喜创建成功");
             this.dialogCheckIn = false;
+            this.getInHandleList();
           } else {
             this.$message.error(res.data.message);
           }

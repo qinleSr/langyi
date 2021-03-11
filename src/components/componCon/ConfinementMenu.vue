@@ -57,62 +57,221 @@
       </div>
     </el-card>
     <!-- 新增月子菜单对话框 -->
-    <el-dialog
-      title="提示"
-      :visible.sync="addConfinementMenuDialog"
-      width="50%"
-      center
-    >
-      <div>
-        <el-form
-          :model="mealsForm"
-          :rules="mealsFormRules"
-          ref="mealsFormRef"
-          label-width="100px"
-        >
-          <el-row>
-            <el-col :span="4">
-              <div>
-                <!-- <div style="background: red">asd</div> -->
-                <el-form-item label="餐食：" prop="name">
-                  <el-input style="width:100px;" v-model="mealsForm.name"></el-input>
-                </el-form-item>
+    <el-dialog title="新增月子餐" :visible.sync="addConfinementMenuDialog">
+      <el-form :model="mealsForm">
+        <el-row>
+          <el-col :span="7">
+            <div class="col_items">
+              <div class="head_items">
+                <span class="improtant">*</span>
+                <span>套餐</span>
               </div>
-            </el-col>
-            <el-col :span="9">
-              <div>
-                <div style="background: red">asd</div>
-                <!-- <el-form-item label="" prop="name">
-                  <el-input v-model="mealsForm.name"></el-input>
-                </el-form-item> -->
+              <el-select
+                style="100px"
+                v-model="food_region"
+                placeholder="请选择"
+              >
+                <el-option
+                  v-for="item in options"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
+                >
+                </el-option>
+              </el-select>
+            </div>
+          </el-col>
+          <el-col :span="8">
+            <div class="col_items">
+              <div class="head_items">
+                <span class="improtant">*</span>
+                <span>类别：</span>
               </div>
-            </el-col>
-            <el-col :span="9">
-              <div>
-                <div style="background: red">asd</div>
-
-                <!-- <el-form-item label="" prop="name">
-                  <el-input v-model="mealsForm.name"></el-input>
-                </el-form-item> -->
+              <el-input
+                style="margin-right: 20px"
+                v-model="user_name"
+                autocomplete="off"
+              ></el-input>
+            </div>
+          </el-col>
+          <el-col :span="8">
+            <div class="col_items">
+              <div class="head_items">
+                <span class="improtant">*</span>
+                <span>名称：</span>
               </div>
-            </el-col>
-            <el-col :span="2">
-              <div>
-                <div style="background: red">asd</div>
-                <!-- <el-form-item label="" prop="name">
-                  <el-input v-model="mealsForm.name"></el-input>
-                </el-form-item> -->
+              <el-input
+                style="margin-right: 20px"
+                v-model="user_name"
+                autocomplete="off"
+              ></el-input>
+            </div>
+          </el-col>
+          <el-col :span="15">
+            <div style="400px" class="col_items">
+              <div class="head_items">
+                <span class="improtant">*</span>
+                <span>食材/作用：</span>
               </div>
-            </el-col>
-          </el-row>
-        </el-form>
-      </div>
-      <span slot="footer" class="dialog-footer">
+              <el-input v-model="user_name" autocomplete="off"></el-input>
+            </div>
+          </el-col>
+          <el-col :span="3">
+            <div class="head_items">
+              <span style="color: #fff">a</span>
+            </div>
+            <div class="confinement_but">
+              <i class="el-icon-circle-plus"></i>
+              <i class="el-icon-remove"></i>
+            </div>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="7"></el-col>
+          <el-col :span="8">
+            <div class="col_items">
+              <div class="head_items">
+                <span class="improtant">*</span>
+                <span>类别：</span>
+              </div>
+              <el-input
+                style="margin-right: 20px"
+                v-model="user_name"
+                autocomplete="off"
+              ></el-input>
+            </div>
+          </el-col>
+          <el-col :span="8">
+            <div class="col_items">
+              <div class="head_items">
+                <span class="improtant">*</span>
+                <span>名称：</span>
+              </div>
+              <el-input
+                style="margin-right: 20px"
+                v-model="user_name"
+                autocomplete="off"
+              ></el-input>
+            </div>
+          </el-col>
+          <el-col :span="15">
+            <div style="400px" class="col_items">
+              <div class="head_items">
+                <span class="improtant">*</span>
+                <span>食材/作用：</span>
+              </div>
+              <el-input v-model="user_name" autocomplete="off"></el-input>
+            </div>
+          </el-col>
+          <el-col :span="3">
+            <div class="head_items">
+              <span style="color: #fff">a</span>
+            </div>
+            <div class="confinement_but">
+              <i class="el-icon-circle-plus"></i>
+              <i class="el-icon-remove"></i>
+            </div>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="7"></el-col>
+          <el-col :span="8">
+            <div class="col_items">
+              <div class="head_items">
+                <span class="improtant">*</span>
+                <span>类别：</span>
+              </div>
+              <el-input
+                style="margin-right: 20px"
+                v-model="user_name"
+                autocomplete="off"
+              ></el-input>
+            </div>
+          </el-col>
+          <el-col :span="8">
+            <div class="col_items">
+              <div class="head_items">
+                <span class="improtant">*</span>
+                <span>名称:</span>
+              </div>
+              <el-input
+                style="margin-right: 20px"
+                v-model="user_name"
+                autocomplete="off"
+              ></el-input>
+            </div>
+          </el-col>
+          <el-col :span="15">
+            <div style="400px" class="col_items">
+              <div class="head_items">
+                <span class="improtant">*</span>
+                <span>食材/作用：</span>
+              </div>
+              <el-input v-model="user_name" autocomplete="off"></el-input>
+            </div>
+          </el-col>
+          <el-col :span="3">
+            <div class="head_items">
+              <span style="color: #fff">a</span>
+            </div>
+            <div class="confinement_but">
+              <i class="el-icon-circle-plus"></i>
+              <i class="el-icon-remove"></i>
+            </div>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="7"></el-col>
+          <el-col :span="8">
+            <div class="col_items">
+              <div class="head_items">
+                <span class="improtant">*</span>
+                <span>类别：</span>
+              </div>
+              <el-input
+                style="margin-right: 20px"
+                v-model="user_name"
+                autocomplete="off"
+              ></el-input>
+            </div>
+          </el-col>
+          <el-col :span="8">
+            <div class="col_items">
+              <div class="head_items">
+                <span class="improtant">*</span>
+                <span>名称：</span>
+              </div>
+              <el-input
+                style="margin-right: 20px"
+                v-model="user_name"
+                autocomplete="off"
+              ></el-input>
+            </div>
+          </el-col>
+          <el-col :span="15">
+            <div style="400px" class="col_items">
+              <div class="head_items">
+                <span class="improtant">*</span>
+                <span>食材/作用：</span>
+              </div>
+              <el-input v-model="user_name" autocomplete="off"></el-input>
+            </div>
+          </el-col>
+          <el-col :span="3">
+            <div class="head_items">
+              <span style="color: #fff">a</span>
+            </div>
+            <div class="confinement_but">
+              <i class="el-icon-circle-plus"></i>
+              <i class="el-icon-remove"></i>
+            </div>
+          </el-col>
+        </el-row>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
         <el-button @click="addConfinementMenuDialog = false">取 消</el-button>
-        <el-button type="primary" @click="addConfinementMenuDialog = false"
-          >确 定</el-button
-        >
-      </span>
+        <el-button type="primary" @click="addConfinementMenuSub">确 定</el-button>
+      </div>
     </el-dialog>
   </div>
 </template>
@@ -246,6 +405,23 @@ export default {
       addConfinementMenuDialog: false,
       mealsForm: {},
       mealsFormRules: {},
+      value1: "",
+      user_name: "",
+      food_region: "",
+      options: [
+        {
+          value: "选项1",
+          label: "早餐",
+        },
+        {
+          value: "选项2",
+          label: "午餐",
+        },
+        {
+          value: "选项3",
+          label: "晚餐",
+        },
+      ],
     };
   },
   methods: {
@@ -269,6 +445,9 @@ export default {
       console.log("1");
       this.addConfinementMenuDialog = true;
     },
+    addConfinementMenuSub(){
+      this.addConfinementMenuDialog=false
+    }
   },
 };
 </script>
@@ -315,5 +494,28 @@ export default {
 }
 .el-table__row {
   height: 40px;
+}
+.confinement_but {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.el-row {
+  margin: 30px 0;
+}
+.col_items {
+  margin: 0 5px;
+}
+.el-select {
+  width: 130px;
+}
+.head_items {
+  margin-bottom: 5px;
+}
+.confinement_but >i{
+  font-size: 20px;
+  color: #BD9B6F;
 }
 </style>

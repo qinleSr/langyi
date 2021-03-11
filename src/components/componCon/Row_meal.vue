@@ -9,14 +9,9 @@
             <div class="Right_itemsTitle">新增</div>
           </div>
           <div class="Right_items">
-            <img src="../../assets/img/12.png" />
-            <div class="Right_itemsTitle">修改</div>
-          </div>
-          <div class="Right_items">
             <img src="../../assets/img/13.png" />
             <div class="Right_itemsTitle">查看</div>
           </div>
-
           <div class="Right_items">
             <img src="../../assets/img/14.png" />
             <div class="Right_itemsTitle">导出</div>
@@ -51,14 +46,10 @@
             ></el-date-picker>
           </div>
         </div>
-        <Maintenance
-          :tableData="tableData"
-          :tableLabel="tableLabel"
-          :config="config"
-        >
+        <Maintenance :tableData="tableData" :tableLabel="tableLabel" :config="config">
           <template v-slot:edit>
-            <button class="slot_btn">编辑</button>
-            <button class="slot_btn">查看</button>
+            <button @click="toConfinementEdit" class="slot_btn">编辑</button>
+            <button @click="toConfinementFind" class="slot_btn">查看</button>
           </template>
         </Maintenance>
       </div>
@@ -73,11 +64,7 @@
                 <span class="improtant">*</span>
                 <span>客户姓名</span>
               </div>
-              <el-date-picker
-                v-model="value1"
-                type="date"
-                placeholder="选择日期"
-              >
+              <el-date-picker v-model="value1" type="date" placeholder="选择日期">
               </el-date-picker>
             </div>
           </el-col>
@@ -87,7 +74,11 @@
                 <span class="improtant">*</span>
                 <span>客户姓名</span>
               </div>
-              <el-input style="margin-right:20px;" v-model="form.user_name" autocomplete="off"></el-input>
+              <el-input
+                style="margin-right: 20px"
+                v-model="form.user_name"
+                autocomplete="off"
+              ></el-input>
             </div>
           </el-col>
           <el-col>
@@ -156,46 +147,46 @@ export default {
       value1: "",
       tableData: [
         {
-          user_name: "张毅",
-          user_phone: "15555828930",
-          production_date: "2020-4-30",
-          in_date: "2020-4-30",
-          out_date: "2020-4-30",
-          in_days: "28",
-          package: "淑·套餐",
-          room_num: "201",
+          // cname: "张毅",
+          // user_phone: "15555828930",
+          // production_date: "2020-4-30",
+          // in_date: "2020-4-30",
+          // out_date: "2020-4-30",
+          // in_days: "28",
+          // package: "淑·套餐",
+          // room_num: "201",
         },
       ],
       tableLabel: [
         {
-          prop: "user_name",
+          prop: "cname",
           label: "客户姓名",
         },
         {
-          prop: "user_phone",
+          prop: "production_at",
           label: "联系方式",
         },
         {
           prop: "production_date",
           label: "生产日期",
-          width: "200",
+          width: "220",
         },
         {
-          prop: "in_date",
+          prop: "in_the_room",
           label: "入所日期",
-          width: "200",
+          width: "220",
         },
         {
-          prop: "out_date",
+          prop: "out_the_room",
           label: "出所日期",
-          width: "200",
+          width: "220",
         },
         {
           prop: "in_days",
           label: "入住天数",
         },
         {
-          prop: "package",
+          prop: "taocan",
           label: "套餐",
         },
         {
@@ -215,7 +206,7 @@ export default {
         loading: false,
       },
       // 控制新增对话框
-      addDialogVisible: true,
+      addDialogVisible: false,
       form: {},
     };
   },
@@ -223,7 +214,6 @@ export default {
     this.getconfinementList();
   },
   mounted() {},
-
   methods: {
     // 获取月子排餐列表
     getconfinementList() {
@@ -241,6 +231,13 @@ export default {
           this.$message.success(res.data.message);
         });
     },
+    // 月子编辑
+    toConfinementEdit() {
+      this.$router.push("/confinementEdit");
+    },
+    toConfinementFind() {
+      this.$router.push("/confinementFind");
+    },
     addFootMeal() {
       this.addDialogVisible = true;
     },
@@ -250,7 +247,7 @@ export default {
   },
 };
 </script>
-<style  scoped>
+<style scoped>
 .CustmerBox {
   margin: 10px;
   border: 1px solid #eee;

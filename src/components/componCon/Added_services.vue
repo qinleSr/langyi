@@ -3,12 +3,59 @@
   <div class="CustmerBox">
     <div class="serve_Box">
       <!-- 左侧账单区域 -->
-      <div class="order_list">
+      <!-- <div class="order_list">
         <div class="footer">
           <button class="solt_btn" style="background-color: #7a6f69;" @click="customerForm">所外客户</button>
           <button class="solt_btn" style="background-color: #c19a68;">在住客户</button>
         </div>
+      </div> -->
+      <el-card class="left-card">
+      <div class="detailed">
+        <div class="tit"></div>
+        <div class="detail_image">
+          <img src="" alt="" />
+        </div>
+        <div class="detailed_content">
+          <div class="detailed_con">
+            <h4>结账明细清单</h4>
+            <p>CUSTOMERS INVOICE</p>
+          </div>
+          <div class="detailed_list">
+            <el-row
+              class="detail_list_data"
+              v-for="(item, index) in detailList"
+              :key="index"
+            >
+              <el-col :span="15" class="detail_name"
+                ><div>{{ item.name }}</div></el-col
+              >
+              <el-col :span="6" class="detail_price"
+                ><div>￥{{ item.price }}</div>
+              </el-col>
+              <el-col :span="2.5" class="detail_yiem"
+                ><div>{{ item.tiem }}</div>
+              </el-col>
+            </el-row>
+          </div>
+          <div class="detail_total">总计：￥{{ detailTotal }}</div>
+          <div class="detail_signature">
+            <p style="font-size: 14px">贵宾签字：</p>
+            <p style="font-size: 12px">Your Signature：</p>
+          </div>
+        </div>
+        <div class="detailed_footer">
+          <div class="detailed_footer_con">
+            <p>
+              请您仔细核对以上款项金额，确认无误后签名。<br />本人同意支付以上款项，并对此账单涉及的项目和金额。
+            </p>
+          </div>
+        </div>
       </div>
+      <div class="detailed_but">
+        <el-button class="nobeing_client" @click="customerForm">所外客户</el-button>
+        <el-button class="being_client">在住客户</el-button>
+      </div>
+    </el-card>
       <!-- 右侧项目区域 -->
       <div class="project_box">
         <div class="project_head">
@@ -19,7 +66,7 @@
           <div class="tab-card" style="display: block;">
             <div class="project_list">
                   <div class="project_items">
-                      <img src="../../assets/img/23.jpg">
+                      <img src="../../assets/img/25.jpg">
                       <div class="project_row">
                           <div class="project_left">
                               <div class="title">暖宫散寒</div>
@@ -43,7 +90,7 @@
                       </div>
                   </div>
                   <div class="project_items">
-                      <img src="../../assets/img/23.jpg">
+                      <img src="../../assets/img/26.jpg">
                       <div class="project_row">
                           <div class="project_left">
                               <div class="title">暖宫散寒</div>
@@ -67,7 +114,7 @@
                       </div>
                   </div>
                   <div class="project_items">
-                      <img src="../../assets/img/23.jpg">
+                      <img src="../../assets/img/27.jpg">
                       <div class="project_row">
                           <div class="project_left">
                               <div class="title">暖宫散寒</div>
@@ -91,7 +138,7 @@
                       </div>
                   </div>
                    <div class="project_items">
-                      <img src="../../assets/img/23.jpg" mode="scaleToFill">
+                      <img src="../../assets/img/28.jpg" mode="scaleToFill">
                       <div class="project_row">
                           <div class="project_left">
                               <div class="title">暖宫散寒</div>
@@ -143,7 +190,83 @@
                       </div>
                   </div>
                   <div class="project_items">
-                      <img src="../../assets/img/23.jpg">
+                      <img src="../../assets/img/25.jpg">
+                      <div class="project_row">
+                          <div class="project_left">
+                              <div class="title">暖宫散寒</div>
+                              <div class="price">¥2198.00</div>
+                          </div>
+                          <div class="project_right">
+                              <div class="type">仪器</div>
+                              <div class="time">30分钟</div>
+                          </div>
+                      </div>
+                      <div class="project_footer">
+                          <div class="footer_left">
+                              <div class="number">1次</div>
+                              <div class="number">10次</div>
+                          </div>
+                          <div class="footer_right">
+                              <div class="add">-</div>
+                              <div class="amoun">1</div>
+                              <div class="minus">+</div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="project_items">
+                      <img src="../../assets/img/26.jpg">
+                      <div class="project_row">
+                          <div class="project_left">
+                              <div class="title">暖宫散寒</div>
+                              <div class="price">¥2198.00</div>
+                          </div>
+                          <div class="project_right">
+                              <div class="type">仪器</div>
+                              <div class="time">30分钟</div>
+                          </div>
+                      </div>
+                      <div class="project_footer">
+                          <div class="footer_left">
+                              <div class="number">1次</div>
+                              <div class="number">10次</div>
+                          </div>
+                          <div class="footer_right">
+                              <div class="add">-</div>
+                              <div class="amoun">1</div>
+                              <div class="minus">+</div>
+                          </div>
+                      </div>
+                  </div>
+                   <div class="project_items">
+                      <img src="../../assets/img/27.jpg" mode="scaleToFill">
+                      <div class="project_row">
+                          <div class="project_left">
+                              <div class="title">暖宫散寒</div>
+                              <div class="price">¥2198.00</div>
+                          </div>
+                          <div class="project_right">
+                              <div class="type">仪器</div>
+                              <div class="time">30分钟</div>
+                          </div>
+                      </div>
+                      <div class="project_footer">
+                          <div class="footer_left">
+                              <div class="number">1次</div>
+                              <div class="number">10次</div>
+                          </div>
+                          <div class="footer_right">
+                              <div class="add" @click="jian">-</div>
+                              <div class="amoun">1</div>
+                              <div class="minus"@click="jia">+</div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="tab-card" style="display: none;">
+            <div class="project_list">
+                  <div class="project_items">
+                      <img src="../../assets/img/25.jpg">
                       <div class="project_row">
                           <div class="project_left">
                               <div class="title">暖宫散寒</div>
@@ -190,8 +313,132 @@
                           </div>
                       </div>
                   </div>
+                  <div class="project_items">
+                      <img src="../../assets/img/26.jpg">
+                      <div class="project_row">
+                          <div class="project_left">
+                              <div class="title">暖宫散寒</div>
+                              <div class="price">¥2198.00</div>
+                          </div>
+                          <div class="project_right">
+                              <div class="type">仪器</div>
+                              <div class="time">30分钟</div>
+                          </div>
+                      </div>
+                      <div class="project_footer">
+                          <div class="footer_left">
+                              <div class="number">1次</div>
+                              <div class="number">10次</div>
+                          </div>
+                          <div class="footer_right">
+                              <div class="add">-</div>
+                              <div class="amoun">1</div>
+                              <div class="minus">+</div>
+                          </div>
+                      </div>
+                  </div>
                    <div class="project_items">
-                      <img src="../../assets/img/23.jpg" mode="scaleToFill">
+                      <img src="../../assets/img/28.jpg" mode="scaleToFill">
+                      <div class="project_row">
+                          <div class="project_left">
+                              <div class="title">暖宫散寒</div>
+                              <div class="price">¥2198.00</div>
+                          </div>
+                          <div class="project_right">
+                              <div class="type">仪器</div>
+                              <div class="time">30分钟</div>
+                          </div>
+                      </div>
+                      <div class="project_footer">
+                          <div class="footer_left">
+                              <div class="number">1次</div>
+                              <div class="number">10次</div>
+                          </div>
+                          <div class="footer_right">
+                              <div class="add" @click="jian">-</div>
+                              <div class="amoun">1</div>
+                              <div class="minus"@click="jia">+</div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="tab-card" style="display: none;">
+            <div class="project_list">
+                  <div class="project_items">
+                      <img src="../../assets/img/28.jpg">
+                      <div class="project_row">
+                          <div class="project_left">
+                              <div class="title">暖宫散寒</div>
+                              <div class="price">¥2198.00</div>
+                          </div>
+                          <div class="project_right">
+                              <div class="type">仪器</div>
+                              <div class="time">30分钟</div>
+                          </div>
+                      </div>
+                      <div class="project_footer">
+                          <div class="footer_left">
+                              <div class="number">1次</div>
+                              <div class="number">10次</div>
+                          </div>
+                          <div class="footer_right">
+                              <div class="add">-</div>
+                              <div class="amoun">1</div>
+                              <div class="minus">+</div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="project_items">
+                      <img src="../../assets/img/27.jpg">
+                      <div class="project_row">
+                          <div class="project_left">
+                              <div class="title">暖宫散寒</div>
+                              <div class="price">¥2198.00</div>
+                          </div>
+                          <div class="project_right">
+                              <div class="type">仪器</div>
+                              <div class="time">30分钟</div>
+                          </div>
+                      </div>
+                      <div class="project_footer">
+                          <div class="footer_left">
+                              <div class="number">1次</div>
+                              <div class="number">10次</div>
+                          </div>
+                          <div class="footer_right">
+                              <div class="add">-</div>
+                              <div class="amoun">1</div>
+                              <div class="minus">+</div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="project_items">
+                      <img src="../../assets/img/26.jpg">
+                      <div class="project_row">
+                          <div class="project_left">
+                              <div class="title">暖宫散寒</div>
+                              <div class="price">¥2198.00</div>
+                          </div>
+                          <div class="project_right">
+                              <div class="type">仪器</div>
+                              <div class="time">30分钟</div>
+                          </div>
+                      </div>
+                      <div class="project_footer">
+                          <div class="footer_left">
+                              <div class="number">1次</div>
+                              <div class="number">10次</div>
+                          </div>
+                          <div class="footer_right">
+                              <div class="add">-</div>
+                              <div class="amoun">1</div>
+                              <div class="minus">+</div>
+                          </div>
+                      </div>
+                  </div>
+                   <div class="project_items">
+                      <img src="../../assets/img/27.jpg" mode="scaleToFill">
                       <div class="project_row">
                           <div class="project_left">
                               <div class="title">暖宫散寒</div>
@@ -243,7 +490,7 @@
                       </div>
                   </div>
                   <div class="project_items">
-                      <img src="../../assets/img/23.jpg">
+                      <img src="../../assets/img/25.jpg">
                       <div class="project_row">
                           <div class="project_left">
                               <div class="title">暖宫散寒</div>
@@ -267,7 +514,7 @@
                       </div>
                   </div>
                   <div class="project_items">
-                      <img src="../../assets/img/23.jpg">
+                      <img src="../../assets/img/26.jpg">
                       <div class="project_row">
                           <div class="project_left">
                               <div class="title">暖宫散寒</div>
@@ -291,207 +538,7 @@
                       </div>
                   </div>
                    <div class="project_items">
-                      <img src="../../assets/img/23.jpg" mode="scaleToFill">
-                      <div class="project_row">
-                          <div class="project_left">
-                              <div class="title">暖宫散寒</div>
-                              <div class="price">¥2198.00</div>
-                          </div>
-                          <div class="project_right">
-                              <div class="type">仪器</div>
-                              <div class="time">30分钟</div>
-                          </div>
-                      </div>
-                      <div class="project_footer">
-                          <div class="footer_left">
-                              <div class="number">1次</div>
-                              <div class="number">10次</div>
-                          </div>
-                          <div class="footer_right">
-                              <div class="add" @click="jian">-</div>
-                              <div class="amoun">1</div>
-                              <div class="minus"@click="jia">+</div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="tab-card" style="display: none;">
-            <div class="project_list">
-                  <div class="project_items">
-                      <img src="../../assets/img/23.jpg">
-                      <div class="project_row">
-                          <div class="project_left">
-                              <div class="title">暖宫散寒</div>
-                              <div class="price">¥2198.00</div>
-                          </div>
-                          <div class="project_right">
-                              <div class="type">仪器</div>
-                              <div class="time">30分钟</div>
-                          </div>
-                      </div>
-                      <div class="project_footer">
-                          <div class="footer_left">
-                              <div class="number">1次</div>
-                              <div class="number">10次</div>
-                          </div>
-                          <div class="footer_right">
-                              <div class="add">-</div>
-                              <div class="amoun">1</div>
-                              <div class="minus">+</div>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="project_items">
-                      <img src="../../assets/img/23.jpg">
-                      <div class="project_row">
-                          <div class="project_left">
-                              <div class="title">暖宫散寒</div>
-                              <div class="price">¥2198.00</div>
-                          </div>
-                          <div class="project_right">
-                              <div class="type">仪器</div>
-                              <div class="time">30分钟</div>
-                          </div>
-                      </div>
-                      <div class="project_footer">
-                          <div class="footer_left">
-                              <div class="number">1次</div>
-                              <div class="number">10次</div>
-                          </div>
-                          <div class="footer_right">
-                              <div class="add">-</div>
-                              <div class="amoun">1</div>
-                              <div class="minus">+</div>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="project_items">
-                      <img src="../../assets/img/23.jpg">
-                      <div class="project_row">
-                          <div class="project_left">
-                              <div class="title">暖宫散寒</div>
-                              <div class="price">¥2198.00</div>
-                          </div>
-                          <div class="project_right">
-                              <div class="type">仪器</div>
-                              <div class="time">30分钟</div>
-                          </div>
-                      </div>
-                      <div class="project_footer">
-                          <div class="footer_left">
-                              <div class="number">1次</div>
-                              <div class="number">10次</div>
-                          </div>
-                          <div class="footer_right">
-                              <div class="add">-</div>
-                              <div class="amoun">1</div>
-                              <div class="minus">+</div>
-                          </div>
-                      </div>
-                  </div>
-                   <div class="project_items">
-                      <img src="../../assets/img/23.jpg" mode="scaleToFill">
-                      <div class="project_row">
-                          <div class="project_left">
-                              <div class="title">暖宫散寒</div>
-                              <div class="price">¥2198.00</div>
-                          </div>
-                          <div class="project_right">
-                              <div class="type">仪器</div>
-                              <div class="time">30分钟</div>
-                          </div>
-                      </div>
-                      <div class="project_footer">
-                          <div class="footer_left">
-                              <div class="number">1次</div>
-                              <div class="number">10次</div>
-                          </div>
-                          <div class="footer_right">
-                              <div class="add" @click="jian">-</div>
-                              <div class="amoun">1</div>
-                              <div class="minus"@click="jia">+</div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="tab-card" style="display: none;">
-            <div class="project_list">
-                  <div class="project_items">
-                      <img src="../../assets/img/23.jpg">
-                      <div class="project_row">
-                          <div class="project_left">
-                              <div class="title">暖宫散寒</div>
-                              <div class="price">¥2198.00</div>
-                          </div>
-                          <div class="project_right">
-                              <div class="type">仪器</div>
-                              <div class="time">30分钟</div>
-                          </div>
-                      </div>
-                      <div class="project_footer">
-                          <div class="footer_left">
-                              <div class="number">1次</div>
-                              <div class="number">10次</div>
-                          </div>
-                          <div class="footer_right">
-                              <div class="add">-</div>
-                              <div class="amoun">1</div>
-                              <div class="minus">+</div>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="project_items">
-                      <img src="../../assets/img/23.jpg">
-                      <div class="project_row">
-                          <div class="project_left">
-                              <div class="title">暖宫散寒</div>
-                              <div class="price">¥2198.00</div>
-                          </div>
-                          <div class="project_right">
-                              <div class="type">仪器</div>
-                              <div class="time">30分钟</div>
-                          </div>
-                      </div>
-                      <div class="project_footer">
-                          <div class="footer_left">
-                              <div class="number">1次</div>
-                              <div class="number">10次</div>
-                          </div>
-                          <div class="footer_right">
-                              <div class="add">-</div>
-                              <div class="amoun">1</div>
-                              <div class="minus">+</div>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="project_items">
-                      <img src="../../assets/img/23.jpg">
-                      <div class="project_row">
-                          <div class="project_left">
-                              <div class="title">暖宫散寒</div>
-                              <div class="price">¥2198.00</div>
-                          </div>
-                          <div class="project_right">
-                              <div class="type">仪器</div>
-                              <div class="time">30分钟</div>
-                          </div>
-                      </div>
-                      <div class="project_footer">
-                          <div class="footer_left">
-                              <div class="number">1次</div>
-                              <div class="number">10次</div>
-                          </div>
-                          <div class="footer_right">
-                              <div class="add">-</div>
-                              <div class="amoun">1</div>
-                              <div class="minus">+</div>
-                          </div>
-                      </div>
-                  </div>
-                   <div class="project_items">
-                      <img src="../../assets/img/23.jpg" mode="scaleToFill">
+                      <img src="../../assets/img/27.jpg" mode="scaleToFill">
                       <div class="project_row">
                           <div class="project_left">
                               <div class="title">暖宫散寒</div>
@@ -543,7 +590,7 @@
                       </div>
                   </div>
                   <div class="project_items">
-                      <img src="../../assets/img/23.jpg">
+                      <img src="../../assets/img/27.jpg">
                       <div class="project_row">
                           <div class="project_left">
                               <div class="title">暖宫散寒</div>
@@ -567,7 +614,7 @@
                       </div>
                   </div>
                   <div class="project_items">
-                      <img src="../../assets/img/23.jpg">
+                      <img src="../../assets/img/28.jpg">
                       <div class="project_row">
                           <div class="project_left">
                               <div class="title">暖宫散寒</div>
@@ -591,7 +638,7 @@
                       </div>
                   </div>
                    <div class="project_items">
-                      <img src="../../assets/img/23.jpg" mode="scaleToFill">
+                      <img src="../../assets/img/26.jpg" mode="scaleToFill">
                       <div class="project_row">
                           <div class="project_left">
                               <div class="title">暖宫散寒</div>
@@ -643,7 +690,7 @@
                       </div>
                   </div>
                   <div class="project_items">
-                      <img src="../../assets/img/23.jpg">
+                      <img src="../../assets/img/25.jpg">
                       <div class="project_row">
                           <div class="project_left">
                               <div class="title">暖宫散寒</div>
@@ -667,7 +714,7 @@
                       </div>
                   </div>
                   <div class="project_items">
-                      <img src="../../assets/img/23.jpg">
+                      <img src="../../assets/img/26.jpg">
                       <div class="project_row">
                           <div class="project_left">
                               <div class="title">暖宫散寒</div>
@@ -691,7 +738,7 @@
                       </div>
                   </div>
                    <div class="project_items">
-                      <img src="../../assets/img/23.jpg" mode="scaleToFill">
+                      <img src="../../assets/img/27.jpg" mode="scaleToFill">
                       <div class="project_row">
                           <div class="project_left">
                               <div class="title">暖宫散寒</div>
@@ -743,7 +790,7 @@
                       </div>
                   </div>
                   <div class="project_items">
-                      <img src="../../assets/img/23.jpg">
+                      <img src="../../assets/img/28.jpg">
                       <div class="project_row">
                           <div class="project_left">
                               <div class="title">暖宫散寒</div>
@@ -767,7 +814,7 @@
                       </div>
                   </div>
                   <div class="project_items">
-                      <img src="../../assets/img/23.jpg">
+                      <img src="../../assets/img/25.jpg">
                       <div class="project_row">
                           <div class="project_left">
                               <div class="title">暖宫散寒</div>
@@ -791,7 +838,7 @@
                       </div>
                   </div>
                    <div class="project_items">
-                      <img src="../../assets/img/23.jpg" mode="scaleToFill">
+                      <img src="../../assets/img/26.jpg" mode="scaleToFill">
                       <div class="project_row">
                           <div class="project_left">
                               <div class="title">暖宫散寒</div>
@@ -872,7 +919,19 @@ export default {
           isActive: false
         }
       ],
-      active: false
+      active: false,
+       detailList: [
+        { name: "暖宫散寒", price: 100, tiem: "首次" },
+        { name: "暖宫散寒", price: 100, tiem: "首次" },
+        { name: "暖宫散寒", price: 100, tiem: "首次" },
+        { name: "暖宫散寒", price: 100, tiem: "首次" },
+        { name: "暖宫散寒", price: 100, tiem: "首次" },
+        { name: "暖宫散寒", price: 100, tiem: "首次" },
+        { name: "暖宫散寒", price: 100, tiem: "首次" },
+        { name: "暖宫散寒", price: 100, tiem: "首次" },
+        { name: "暖宫散寒", price: 100, tiem: "首次" },
+        { name: "暖宫散寒", price: 100, tiem: "首次" },
+      ],
     };
   },
   created() {},
@@ -1038,5 +1097,40 @@ position: absolute;
     line-height: 20px;
     padding: 5px 0;
     color: #fff;
+}
+.left-card {
+  width: 32%;
+  margin-right: 20px;
+}
+.right_card {
+  width: 100%;
+}
+.detailed_but {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+.nobeing_client {
+  background-color: #6f6059;
+  color: #fff;
+}
+.being_client {
+  background-color: #bb956f;
+  color: #fff;
+}
+.detailed {
+  width: 100%;
+  height: 666px;
+  box-sizing: border-box;
+  border: 1px solid #dfdfdf;
+}
+.tit {
+  background-color: #000;
+  height: 10px;
+}
+.detail_image {
+  height: 70px;
+  background-color: #ccc;
 }
 </style>

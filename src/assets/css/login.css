@@ -1,8 +1,9 @@
-.home{
-    height: 935px;
+.home {
+    height: 100%;
     background-color: #8B7568;
 }
-.Login_box{
+
+.Login_box {
     background-color: #fff;
     display: flex;
     width: 1000px;
@@ -12,55 +13,73 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
-.Right_box .Login_title{
+
+.Right_box .Login_title {
     font-size: 40px;
     padding: 40px 0;
     font-weight: 500;
+    margin-top: 60px;
 }
-.Login_box .right_box{
-     width: 600px;
-    height: 600px; 
+.right_box{
+    width: 500px;
 }
-.Login_box .right_box img{
-     width: 500px;
-    height: 600px; 
+.Login_box .right_box {
+    width: 500px;
+    height: 600px;
 }
-.Right_box .user_input{
+.Right_box{
+    width: 500px;
+    padding: 0 80px;
+    box-sizing: border-box;
+}
+.Login_box .right_box img {
+    width: 500px;
+    height: 600px;
+}
+
+.Right_box .user_input {
     border: 2px solid #8B7568;
     border-radius: 30px;
     padding: 10px;
     margin: 20px 0;
-    width: 300px;
+    width: 315px;
     display: flex;
     align-items: center;
+    margin-right: 0;
 }
-.Right_box .user_input input{
+
+.Right_box .user_input input {
     border: none;
     margin-left: 10px;
     padding: 5px;
-    
+
 }
-.Right_box .user_input input:focus{
+
+.Right_box .user_input input:focus {
     outline: none;
+ 
 }
-.Right_box .Right_footer{
+.Right_box .Right_footer {
     display: flex;
     align-items: center;
     color: #8B7568;
 }
-.Right_box .Right_footer .footer_left{
+
+.Right_box .Right_footer .footer_left {
     display: flex;
     align-items: center;
 }
-.Right_box .Right_footer .footer_rigth{
+
+.Right_box .Right_footer .footer_rigth {
     margin-left: auto;
 }
-.Right_box  .login_btn{
-    margin-top: 100px;
+
+.Right_box .login_btn {
+    margin-top: 70px;
     background-color: #8B7568;
     color: #fff;
     font-weight: 600;
-    font-size: 20px;
+    font-size: 25px;
     letter-spacing: .2rem;
     text-align: center;
     border-radius: 30px;
