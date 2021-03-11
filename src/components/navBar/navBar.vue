@@ -3,13 +3,34 @@
     <div class="head_icon">
       <img src="../../assets/img/logo.png" alt="" />
     </div>
-    <div class="Content_head">
-      <div class="Content_con">
+    <div class="head_right">
+      <div class="Content_head">
+        <div class="Content_con">
           <img class="Content_con_img" src="../../assets/img/8.jpg" />
-        <div class="Content_conText">玺圆阁母婴护理中心(上海·滨江旗舰店)</div>
+          <div class="Content_conText">玺圆阁母婴护理中心(上海·滨江旗舰店)</div>
+        </div>
+        <div class="Content_Rightcon">
+          <img class="Content_Rightcon_img" src="../../assets/img/9.jpg" />
+        </div>
       </div>
-      <div class="Content_Rightcon">
-        <img class="Content_Rightcon_img" src="../../assets/img/9.jpg" />
+      <div class="header_right_bottom">
+        <div class="header_tab">
+          <div class="header_tab_item">
+            <img src="../../assets/img/menu_list/1.png" alt="" />
+          </div>
+          <div class="header_tab_item">
+            <img src="../../assets/img/menu_list/2.png" alt="" />
+            <p>客资管理</p>
+            <img src="" alt="" />
+          </div>
+        </div>
+        <div class="search">
+          <div class="search_input">
+            <input type="text" />
+            <img src="" alt="" />
+          </div>
+          <img src="" alt="" />
+        </div>
       </div>
     </div>
   </div>
@@ -56,6 +77,13 @@ export default {
 // .Content_con > img {
 //   margin: 0 10px;
 // }
+.head_right {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 2px;
+}
 .Content_head {
   width: 100%;
   display: flex;
@@ -101,5 +129,37 @@ export default {
   // text-align: center;
   // padding-top: 5px;
   // box-sizing: border-box;
+}
+.header_right_bottom {
+  // background-color: #ccc;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .header_tab {
+    display: flex;
+    .header_tab_item {
+      margin-right: 10px;
+      display: flex;
+      align-items: center;
+      background-color: red;
+      border-radius: 5px 5px 0 0;
+      // width: 35px;
+      height: 35px;
+      padding: 0 10px;
+    }
+  }
+  .search {
+    height: 35px;
+    line-height: 35px;
+    .search_input {
+      input {
+        background-color: #59514c;
+        width: 200px;
+        padding: 2px 10px;
+        border-radius: 100px;
+      }
+    }
+  }
 }
 </style>
